@@ -10,7 +10,7 @@
 define('DB_HOST',    getenv('DB_HOST') ?: 'localhost');
 define('DB_NAME',    getenv('DB_NAME') ?: 'visualisasi_data');
 define('DB_USER',    getenv('DB_USER') ?: 'root');
-define('DB_PASS',    getenv('DB_PASS') ?: '');
+define('DB_PASS',    getenv('DB_PASSWORD') ?: '');
 define('DB_CHARSET', 'utf8mb4');
 
 // ── CORS & Header (izinkan akses dari file HTML lokal) ──
