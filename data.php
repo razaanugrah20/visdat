@@ -134,7 +134,7 @@ function getSlide2(PDO $db): array {
         SELECT 
             job_title, 
             ROUND(AVG(ai_risk_score) * 100, 2) as ai_risk_pct, 
-            ROUND(AVG(job_openings), 0) as job_openings 
+            SUM(job_openings) as job_openings 
         FROM jobs 
         GROUP BY job_title 
         ORDER BY ai_risk_pct DESC 
