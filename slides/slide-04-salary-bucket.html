@@ -1,302 +1,153 @@
-<section class="slide" id="s4" style="
-  padding: clamp(12px, 2vh, 32px) 5vw;
-  overflow: hidden;
-">
+<!-- SLIDE 4 — SALARY TIER DISTRIBUTION PER JOB TITLE -->
+<section class="slide" id="s4" style="padding:clamp(12px,2vh,32px) 5vw;overflow:hidden;">
 
-    <!-- decorations -->
-    <div class="deco-circle"
-        style="width:460px;height:460px;top:-160px;right:-120px;border-color:rgba(102,102,255,.11);"></div>
-    <div class="deco-circle"
-        style="width:270px;height:270px;bottom:10px;left:-90px;border-color:rgba(185,240,215,.08);"></div>
+  <div class="deco-circle" style="width:460px;height:460px;top:-160px;right:-120px;border-color:rgba(102,102,255,.11);"></div>
+  <div class="deco-circle" style="width:270px;height:270px;bottom:10px;left:-90px;border-color:rgba(185,240,215,.08);"></div>
 
+  <div style="max-width:1120px;width:100%;display:flex;flex-direction:column;gap:clamp(6px,1.2vh,14px);">
 
-    <div style="
-        max-width: 1120px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: clamp(6px, 1.2vh, 14px);
-    ">
-
-        <!-- HEADER -->
-        <div class="slide-in">
-
-            <div class="badge badge-blue" style="
-                margin-bottom: clamp(4px, 0.8vh, 10px);
-                padding: 5px 14px;
-                font-size: 11px;
-            ">
-                Slide 4 · Distribusi Gaji Berdasarkan Profesi
-            </div>
-
-            <h2 class="font-raj" style="
-                font-size: clamp(1.2rem, 2.8vw, 2.55rem);
-                font-weight: 700;
-                line-height: 1.06;
-                margin-bottom: clamp(2px, 0.5vh, 8px);
-            ">
-                APAKAH SPESIALISASI
-                <br>
-                <span style="color:var(--slate-blue);" class="glow-blue">
-                    MEMENGARUHI GAJI?
-                </span>
-            </h2>
-
-            <span class="neon-line" style="width:230px;"></span>
-
-        </div>
-
-
-        <!-- GRID: chart kiri, cards kanan -->
-        <div style="
-            display: grid;
-            grid-template-columns: 1fr clamp(200px, 22vw, 270px);
-            gap: clamp(10px, 1.6vw, 20px);
-            align-items: start;
-        ">
-
-            <!-- LEFT: Chart -->
-            <div class="glass slide-in" style="padding: clamp(10px, 1.4vh, 18px) clamp(12px, 1.6vw, 22px);">
-
-                <!-- Legend row -->
-                <div style="
-                    display: flex;
-                    align-items: center;
-                    gap: 14px;
-                    margin-bottom: clamp(4px, 0.8vh, 10px);
-                    flex-wrap: wrap;
-                ">
-                    <div style="font-family:Rajdhani;font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--periwinkle);">
-                        SHARE OF SALARY TIERS BY PROFESSION
-                    </div>
-                    <div style="display:flex;gap:12px;margin-left:auto;font-size:10px;">
-                        <div style="display:flex;align-items:center;gap:5px;color:var(--periwinkle)">
-                            <div style="width:11px;height:11px;background:#6666ff;border-radius:3px"></div>High
-                        </div>
-                        <div style="display:flex;align-items:center;gap:5px;color:var(--periwinkle)">
-                            <div style="width:11px;height:11px;background:rgba(184,186,255,.5);border-radius:3px"></div>Medium
-                        </div>
-                        <div style="display:flex;align-items:center;gap:5px;color:var(--periwinkle)">
-                            <div style="width:11px;height:11px;background:rgba(185,240,215,.7);border-radius:3px"></div>Low
-                        </div>
-                    </div>
-                </div>
-
-                <!--
-                    KUNCI RESPONSIF: tinggi chart pakai clamp(vh).
-                    clamp(MIN, IDEAL, MAX)
-                    - MIN  = batas bawah layar sangat pendek
-                    - IDEAL= proporsi dari tinggi viewport (vh)
-                    - MAX  = batas atas agar tidak melar di layar besar
-                -->
-                <div id="salaryBucketChart" style="
-                    width: 100%;
-                    height: clamp(220px, 48vh, 430px);
-                "></div>
-
-            </div>
-
-
-            <!-- RIGHT: Stat cards + Insight -->
-            <div style="display:flex;flex-direction:column;gap:clamp(6px, 1vh, 10px);">
-
-                <div class="glass-accent slide-in" style="padding: clamp(8px, 1.1vh, 13px);">
-                    <div style="font-size:9px;color:var(--slate-blue);letter-spacing:.12em;">
-                        🥇 PEMIMPIN GAJI TERTINGGI
-                    </div>
-                    <div id="s4-most-high-prof" class="font-raj"
-                        style="font-size: clamp(.8rem, 1.1vw, .95rem); font-weight:700; margin-top:3px;">—</div>
-                    <div id="s4-most-high-pct" style="
-                        font-family:Orbitron;
-                        font-size: clamp(.9rem, 1.3vw, 1.15rem);
-                        color:var(--slate-blue);">—</div>
-                </div>
-
-                <div class="glass-accent slide-in" style="
-                    padding: clamp(8px, 1.1vh, 13px);
-                    border-color:rgba(255,77,166,.35);">
-                    <div style="font-size:9px;color:var(--hot-pink);letter-spacing:.12em;">
-                        ⚠ PAPARAN GAJI RENDAH
-                    </div>
-                    <div id="s4-most-low-prof" class="font-raj"
-                        style="font-size: clamp(.8rem, 1.1vw, .95rem); font-weight:700; margin-top:3px;">—</div>
-                    <div id="s4-most-low-pct" style="
-                        font-family:Orbitron;
-                        font-size: clamp(.9rem, 1.3vw, 1.15rem);
-                        color:var(--hot-pink);">—</div>
-                </div>
-
-                <div class="glass-accent slide-in" style="
-                    padding: clamp(8px, 1.1vh, 13px);
-                    border-color:rgba(185,240,215,.3);">
-                    <div style="font-size:9px;color:var(--celadon);letter-spacing:.12em;">
-                        📊 KELOMPOK GAJI MENENGAH
-                    </div>
-                    <div id="s4-most-med-prof" class="font-raj"
-                        style="font-size: clamp(.8rem, 1.1vw, .95rem); font-weight:700; margin-top:3px;">—</div>
-                    <div id="s4-most-med-pct" style="
-                        font-family:Orbitron;
-                        font-size: clamp(.9rem, 1.3vw, 1.15rem);
-                        color:var(--celadon);">—</div>
-                </div>
-
-                <!-- Insight -->
-                <div class="glass slide-in" style="padding: clamp(8px, 1.2vh, 14px);">
-
-                    <div style="
-                        font-size: 10px;
-                        letter-spacing: .1em;
-                        color: var(--periwinkle);
-                        margin-bottom: clamp(4px, 0.6vh, 8px);
-                    ">📌 KEY INSIGHT</div>
-
-                    <p style="
-                        font-size: clamp(10px, 1vh, 11.5px);
-                        line-height: 1.55;
-                        margin-bottom: clamp(4px, 0.7vh, 8px);
-                        color: var(--columbia-blue);
-                    ">
-                        <strong style="color:var(--slate-blue);">AI Researcher, ML Engineer, Cloud roles</strong>
-                        menunjukkan konsentrasi kuat di <b>tingkat pendapatan tinggi</b>,
-                        mencerminkan nilai premium keterampilan AI terdepan.
-                    </p>
-
-                    <p style="
-                        font-size: clamp(10px, 1vh, 11.5px);
-                        line-height: 1.55;
-                        margin-bottom: clamp(4px, 0.7vh, 8px);
-                        color: var(--columbia-blue);
-                    ">
-                        <strong style="color:var(--hot-pink);">Data & Business Analysts</strong>
-                        menunjukkan dispersi upah yang lebih luas,
-                        dengan pangsa menengah/rendah lebih besar.
-                    </p>
-
-                    <p style="
-                        font-size: clamp(9px, 0.95vh, 10.5px);
-                        line-height: 1.5;
-                        color: var(--periwinkle);
-                    ">
-                        💡 Spesialisasi lebih besar cenderung menggeser pekerjaan ke konsentrasi gaji yang lebih tinggi.
-                    </p>
-
-                </div>
-
-            </div>
-        </div>
+    <!-- HEADER -->
+    <div class="slide-in">
+      <div class="badge badge-blue" style="margin-bottom:clamp(4px,.8vh,10px);padding:5px 14px;font-size:11px;">
+        Slide 4 · Distribusi Gaji Berdasarkan Profesi
+      </div>
+      <h2 class="font-raj" style="font-size:clamp(1.2rem,2.8vw,2.55rem);font-weight:700;line-height:1.06;margin-bottom:clamp(2px,.5vh,8px);">
+        APAKAH SPESIALISASI<br>
+        <span class="glow-blue" style="color:var(--slate-blue);">MEMENGARUHI GAJI?</span>
+      </h2>
+      <span class="neon-line" style="width:230px;"></span>
     </div>
+
+    <!-- GRID -->
+    <div style="display:grid;grid-template-columns:1fr clamp(210px,23vw,280px);gap:clamp(10px,1.6vw,20px);align-items:start;">
+
+      <!-- CHART -->
+      <div class="glass slide-in" style="padding:clamp(10px,1.4vh,18px) clamp(12px,1.6vw,22px);">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(4px,.8vh,10px);flex-wrap:wrap;">
+          <span class="font-raj" style="font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--periwinkle);">SHARE OF SALARY TIERS BY PROFESSION</span>
+          <div style="display:flex;gap:12px;margin-left:auto;font-size:10px;">
+            <div style="display:flex;align-items:center;gap:5px;color:var(--periwinkle);">
+              <div style="width:11px;height:11px;background:#6666ff;border-radius:3px;"></div>High
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;color:var(--periwinkle);">
+              <div style="width:11px;height:11px;background:rgba(184,186,255,.5);border-radius:3px;"></div>Medium
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;color:var(--periwinkle);">
+              <div style="width:11px;height:11px;background:rgba(185,240,215,.7);border-radius:3px;"></div>Low
+            </div>
+          </div>
+        </div>
+        <div id="salaryBucketChart" style="width:100%;height:clamp(220px,48vh,430px);"></div>
+      </div>
+
+      <!-- KANAN: narasi mengalir + satu bottom line -->
+      <div class="slide-in" style="display:flex;flex-direction:column;gap:18px;padding-top:4px;">
+
+        <div>
+          <p class="font-raj" style="font-size:1.05rem;font-weight:600;color:var(--columbia-blue);line-height:1.5;margin-bottom:12px;">
+            Bar paling panjang di sisi biru adalah milik
+            <strong style="color:var(--celadon);">AI Researcher</strong> —
+            90.8% gajinya masuk kategori High.
+            Itu bukan kebetulan.
+          </p>
+
+          <p style="font-size:13px;line-height:1.75;color:var(--periwinkle);margin-bottom:12px;">
+            Profesi dengan AI risk rendah seperti
+            <strong style="color:var(--columbia-blue);">ML Engineer dan Cloud Engineer</strong>
+            juga menumpuk di sisi High. Pasar membayar mahal untuk keahlian yang belum bisa digantikan mesin.
+          </p>
+
+          <p style="font-size:13px;line-height:1.75;color:var(--periwinkle);">
+            Sebaliknya, <strong style="color:var(--hot-pink);">Data Analyst</strong> hanya 45.7% High —
+            hampir separuh gajinya tersebar di Medium dan Low.
+            Pekerjaan yang repetitif memang sulit naik kelas.
+          </p>
+        </div>
+
+        <div class="glass" style="padding:16px 18px;">
+          <div class="font-raj" style="font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--slate-blue);margin-bottom:8px;">BOTTOM LINE</div>
+          <p style="font-size:13px;line-height:1.7;color:var(--columbia-blue);">
+            Spesialisasi bukan hanya soal aman dari AI —
+            <strong style="color:var(--celadon);">ia juga yang menentukan di tier mana gajimu bermuara.</strong>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </section>
 
-
-
 <script>
-    (function () {
+(function(){
+  const C = window.PALETTE;
 
-        const C = window.PALETTE;
+  const DATA = [
+    { job_title:'Data Analyst',          high_pct:45.7, medium_pct:40.0, low_pct:14.3, total:1293 },
+    { job_title:'Business Analyst',      high_pct:60.0, medium_pct:30.9, low_pct: 9.1, total:1312 },
+    { job_title:'Cybersecurity Analyst', high_pct:75.4, medium_pct:18.6, low_pct: 6.0, total:1209 },
+    { job_title:'Software Engineer',     high_pct:77.8, medium_pct:16.2, low_pct: 6.0, total:1252 },
+    { job_title:'Data Scientist',        high_pct:82.3, medium_pct:13.1, low_pct: 4.7, total:1224 },
+    { job_title:'DevOps Engineer',       high_pct:85.2, medium_pct:11.0, low_pct: 3.8, total:1118 },
+    { job_title:'ML Engineer',           high_pct:86.8, medium_pct:11.2, low_pct: 2.0, total:1205 },
+    { job_title:'Cloud Engineer',        high_pct:88.0, medium_pct:10.0, low_pct: 2.0, total:1273 },
+    { job_title:'Product Manager',       high_pct:88.7, medium_pct: 8.9, low_pct: 2.4, total:1247 },
+    { job_title:'AI Researcher',         high_pct:90.8, medium_pct: 8.0, low_pct: 1.2, total:1209 },
+  ]; // sudah ascending by high_pct
 
-        const DATA = [
-            { job_title: 'AI Researcher',        high_pct: 90.8, low_pct:  1.2, medium_pct:  8.0, total: 1209 },
-            { job_title: 'Product Manager',       high_pct: 88.7, low_pct:  2.4, medium_pct:  8.9, total: 1247 },
-            { job_title: 'Cloud Engineer',        high_pct: 88.0, low_pct:  2.0, medium_pct: 10.0, total: 1273 },
-            { job_title: 'ML Engineer',           high_pct: 86.8, low_pct:  2.0, medium_pct: 11.2, total: 1205 },
-            { job_title: 'DevOps Engineer',       high_pct: 85.2, low_pct:  3.8, medium_pct: 11.0, total: 1118 },
-            { job_title: 'Data Scientist',        high_pct: 82.3, low_pct:  4.7, medium_pct: 13.1, total: 1224 },
-            { job_title: 'Software Engineer',     high_pct: 77.8, low_pct:  6.0, medium_pct: 16.2, total: 1252 },
-            { job_title: 'Cybersecurity Analyst', high_pct: 75.4, low_pct:  6.0, medium_pct: 18.6, total: 1209 },
-            { job_title: 'Business Analyst',      high_pct: 60.0, low_pct:  9.1, medium_pct: 30.9, total: 1312 },
-            { job_title: 'Data Analyst',          high_pct: 45.7, low_pct: 14.3, medium_pct: 40.0, total: 1293 }
-        ].sort((a, b) => a.high_pct - b.high_pct);
+  const jobs = DATA.map(d => d.job_title);
+  const high = DATA.map(d => d.high_pct);
+  const med  = DATA.map(d => d.medium_pct);
+  const low  = DATA.map(d => d.low_pct);
 
-        const jobs = DATA.map(d => d.job_title);
-        const high = DATA.map(d => d.high_pct);
-        const low  = DATA.map(d => d.low_pct);
-        const med  = DATA.map(d => d.medium_pct);
+  const chart = echarts.init(document.getElementById('salaryBucketChart'));
+  chart.setOption({
+    backgroundColor: 'transparent',
+    tooltip: {
+      trigger:'axis', axisPointer:{ type:'shadow' },
+      backgroundColor:'rgba(8,8,20,.97)', borderColor:C.blue, borderWidth:1,
+      textStyle:{ color:C.col, fontFamily:'Outfit', fontSize:12 },
+      formatter(params) {
+        const i = params[0].dataIndex, d = DATA[i];
+        return `<div style="font-family:Rajdhani;font-size:14px;font-weight:700;color:${C.blue};margin-bottom:5px;">${d.job_title}</div>
+                High ${d.high_pct}% &nbsp;·&nbsp; Medium ${d.medium_pct}% &nbsp;·&nbsp; Low ${d.low_pct}%`;
+      }
+    },
+    grid: { left:'3%', right:'5%', top:'3%', bottom:'5%', containLabel:true },
+    xAxis: {
+      type:'value', min:0, max:100,
+      axisLabel:{ color:C.peri, fontSize:10, formatter:v=>v+'%' },
+      splitLine:{ lineStyle:{ color:'rgba(184,186,255,.08)', type:'dashed' } },
+      axisLine:{ show:false }, axisTick:{ show:false }
+    },
+    yAxis: {
+      type:'category', data:jobs, axisTick:{ show:false },
+      axisLabel:{ color:C.col, fontSize:11 },
+      axisLine:{ lineStyle:{ color:'rgba(102,102,255,.15)' } }
+    },
+    series:[
+      {
+        name:'Medium', type:'bar', stack:'salary', barWidth:'55%',
+        data: med.map(v=>({ value:v, itemStyle:{ color:'rgba(184,186,255,.45)', borderWidth:1, borderColor:'rgba(184,186,255,.28)' } })),
+        label:{ show:true, position:'inside', color:'#dbe7ff', fontSize:10, formatter:p=>p.value>=8?p.value+'%':'' }
+      },
+      {
+        name:'Low', type:'bar', stack:'salary', barWidth:'55%',
+        data: low.map(v=>({ value:v, itemStyle:{ color:'rgba(185,240,215,.58)', borderWidth:1, borderColor:'rgba(185,240,215,.35)' } })),
+        label:{ show:true, position:'inside', color:'#fff', fontSize:10, formatter:p=>p.value>=4?p.value+'%':'' }
+      },
+      {
+        name:'High', type:'bar', stack:'salary', barWidth:'55%',
+        data: high.map(v=>({ value:v, itemStyle:{
+          color:{ type:'linear',x:0,y:0,x2:1,y2:0, colorStops:[
+            {offset:0,color:'rgba(102,102,255,.55)'},{offset:.45,color:'rgba(102,102,255,.82)'},{offset:1,color:'rgba(120,110,255,.96)'}
+          ]},
+          borderColor:'rgba(102,102,255,.5)', borderWidth:1, borderRadius:[0,5,5,0]
+        }})),
+        label:{ show:true, position:'insideRight', fontSize:10.5, fontWeight:700, color:'#fff', formatter:p=>p.value>=12?p.value+'%':'' }
+      }
+    ]
+  });
 
-        const chart = echarts.init(document.getElementById('salaryBucketChart'));
-
-        chart.setOption({
-            backgroundColor: 'transparent',
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: { type: 'shadow' },
-                backgroundColor: 'rgba(8,8,20,.97)',
-                borderColor: C.blue,
-                borderWidth: 1
-            },
-            grid: {
-                left: '3%', right: '5%',
-                top: '3%',  bottom: '5%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'value', min: 0, max: 100,
-                axisLabel: { color: C.peri, fontSize: 10, formatter: v => v + '%' },
-                splitLine: { lineStyle: { color: 'rgba(184,186,255,.08)', type: 'dashed' } },
-                axisLine: { show: false },
-                axisTick: { show: false }
-            },
-            yAxis: {
-                type: 'category',
-                data: jobs,
-                axisTick: { show: false },
-                axisLabel: { color: C.col, fontSize: 11 },
-                axisLine: { lineStyle: { color: 'rgba(102,102,255,.15)' } }
-            },
-            series: [
-                {
-                    name: 'Medium', type: 'bar', stack: 'salary', barWidth: '55%',
-                    data: med.map(v => ({
-                        value: v,
-                        itemStyle: { color: 'rgba(184,186,255,.45)', borderWidth: 1, borderColor: 'rgba(184,186,255,.28)' }
-                    })),
-                    label: { show: true, position: 'inside', color: '#dbe7ff', fontSize: 10,
-                             formatter: p => p.value >= 8 ? p.value + '%' : '' }
-                },
-                {
-                    name: 'Low', type: 'bar', stack: 'salary', barWidth: '55%',
-                    data: low.map(v => ({
-                        value: v,
-                        itemStyle: { color: 'rgba(185,240,215,.58)', borderWidth: 1, borderColor: 'rgba(185,240,215,.35)' }
-                    })),
-                    label: { show: true, position: 'inside', color: '#fff', fontSize: 10,
-                             formatter: p => p.value >= 4 ? p.value + '%' : '' }
-                },
-                {
-                    name: 'High', type: 'bar', stack: 'salary', barWidth: '55%',
-                    data: high.map(v => ({
-                        value: v,
-                        itemStyle: {
-                            color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0,
-                                colorStops: [
-                                    { offset: 0,   color: 'rgba(102,102,255,.55)' },
-                                    { offset: .45, color: 'rgba(102,102,255,.82)' },
-                                    { offset: 1,   color: 'rgba(120,110,255,.96)' }
-                                ]
-                            },
-                            borderColor: 'rgba(102,102,255,.5)',
-                            borderWidth: 1,
-                            borderRadius: [0, 5, 5, 0]
-                        }
-                    })),
-                    label: { show: true, position: 'insideRight', fontSize: 10.5, fontWeight: 700,
-                             color: '#fff', formatter: p => p.value >= 12 ? p.value + '%' : '' }
-                }
-            ]
-        });
-
-        // Isi stat cards
-        const maxHigh = [...DATA].sort((a, b) => b.high_pct    - a.high_pct)[0];
-        const maxLow  = [...DATA].sort((a, b) => b.low_pct     - a.low_pct)[0];
-        const maxMed  = [...DATA].sort((a, b) => b.medium_pct  - a.medium_pct)[0];
-
-        document.getElementById('s4-most-high-prof').textContent = maxHigh.job_title;
-        document.getElementById('s4-most-high-pct').textContent  = maxHigh.high_pct + '%';
-        document.getElementById('s4-most-low-prof').textContent  = maxLow.job_title;
-        document.getElementById('s4-most-low-pct').textContent   = maxLow.low_pct + '%';
-        document.getElementById('s4-most-med-prof').textContent  = maxMed.job_title;
-        document.getElementById('s4-most-med-pct').textContent   = maxMed.medium_pct + '%';
-
-        window.addEventListener('resize', () => chart.resize());
-
-    })();
+  window.addEventListener('resize', ()=>chart.resize());
+})();
 </script>

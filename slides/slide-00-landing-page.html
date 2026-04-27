@@ -1,358 +1,222 @@
-<!--
-  SLIDE 00 — LANDING PAGE
-  File: slide-00-landing-page.html
-  Tidak boleh ada: <html>, <body>, <style> dengan selector body/html,
-  overflow:hidden, atau height:100vh di level root.
-  Semua sudah di-handle oleh index.html & styles.css
--->
+<!-- ═══════════════════════════════════════════
+     SLIDE 00 — Landing Page / Hero
+     Nama file: slide-00-landing-page.html
+     Background: vbg.jpeg (letakkan di folder slides/)
+═══════════════════════════════════════════ -->
 
-<section 
-  class="slide" 
-  id="s0" 
-  style="
-    position:relative;
-    overflow:hidden;
-    background-image:
-      linear-gradient(rgba(8,10,30,.72), rgba(8,10,30,.82)),
-      url('image/background-polos.jpg');
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-  "
->
-  <!-- Deco circles (lokal, tidak konflik) -->
-  <div class="deco-circle" style="width:520px;height:520px;top:-160px;right:-120px;border-color:rgba(102,102,255,0.12);"></div>
-  <div class="deco-circle" style="width:300px;height:300px;bottom:80px;left:-90px;border-color:rgba(185,240,215,0.09);"></div>
-  <div class="deco-circle" style="width:180px;height:180px;top:60px;left:90px;border-color:rgba(184,186,255,0.07);"></div>
+<section class="slide" id="slide-00" style="
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+">
 
-  <!-- Corner frame dekorasi -->
-  <div style="position:absolute;top:22px;left:22px;width:40px;height:40px;border-top:1px solid rgba(102,102,255,0.3);border-left:1px solid rgba(102,102,255,0.3);pointer-events:none;"></div>
-  <div style="position:absolute;top:22px;right:22px;width:40px;height:40px;border-top:1px solid rgba(184,186,255,0.25);border-right:1px solid rgba(184,186,255,0.25);pointer-events:none;"></div>
-  <div style="position:absolute;bottom:22px;left:22px;width:40px;height:40px;border-bottom:1px solid rgba(185,240,215,0.2);border-left:1px solid rgba(185,240,215,0.2);pointer-events:none;"></div>
-  <div style="position:absolute;bottom:22px;right:22px;width:40px;height:40px;border-bottom:1px solid rgba(184,186,255,0.2);border-right:1px solid rgba(184,186,255,0.2);pointer-events:none;"></div>
-
-  <!-- Particle canvas (lokal per slide) -->
-  <canvas id="landing-canvas" style="position:absolute;inset:0;pointer-events:none;z-index:0;"></canvas>
-
-  <!-- Konten utama -->
+  <!-- ── Background Image ── -->
   <div style="
-    position:relative;z-index:1;
-    max-width:1200px;width:100%;
-    display:flex;flex-direction:column;
-    align-items:center;
-    gap:clamp(12px,2vh,24px);
-    text-align:center;
+    position: absolute;
+    inset: 0;
+    background-image: url('slides/vbg.jpeg');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    z-index: 0;
+  "></div>
+
+  <!-- ── Dark overlay gradient (kiri gelap, kanan transparan) ── -->
+  <div style="
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(8,8,16,0.97) 0%,
+      rgba(8,8,16,0.92) 35%,
+      rgba(8,8,16,0.65) 58%,
+      rgba(8,8,16,0.10) 80%,
+      transparent 100%
+    );
+    z-index: 1;
+  "></div>
+
+  <!-- ── Circuit grid overlay ── -->
+  <div style="
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(102,102,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(102,102,255,0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    z-index: 2;
+    pointer-events: none;
+  "></div>
+
+  <!-- ── Top glow ── -->
+  <div style="
+    position: absolute;
+    top: -100px; left: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(102,102,255,0.18) 0%, transparent 70%);
+    z-index: 2;
+    pointer-events: none;
+  "></div>
+
+  <!-- ── Animated scan line ── -->
+  <div id="scan-line-00" style="
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(102,102,255,0.6), rgba(185,240,215,0.4), transparent);
+    z-index: 3;
+    animation: scanMove 4s ease-in-out infinite;
+    pointer-events: none;
+  "></div>
+
+  <!-- ── LEFT CONTENT ── -->
+  <div style="
+    position: relative;
+    z-index: 10;
+    max-width: 54%;
+    padding: 0 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: auto;
+    margin-bottom: auto;
   ">
 
     <!-- Badge -->
-    <div class="badge badge-blue slide-in" style="animation-delay:0s;">
-      <span style="width:6px;height:6px;border-radius:50%;background:var(--slate-blue);animation:pulse 2s infinite;display:inline-block;"></span>
-      Visualisasi Data &nbsp;·&nbsp; AI &amp; Future of Jobs &nbsp;·&nbsp; 2025
+    <div class="slide-in" style="display:flex;align-items:center;gap:10px;">
+      <span class="badge badge-blue" style="font-size:10px;letter-spacing:.18em;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--slate-blue);animation:pulse 1.5s infinite;display:inline-block;"></span>
+        VISUALISASI DATA &amp; INFORMASI · 2026
+      </span>
+      <span class="badge badge-celadon" style="font-size:10px;">KELOMPOK 6 3SD2 </span>
     </div>
 
-    <!-- ═══ AKRONIM HERO ═══
-         P·A·R·A·D·O·K·S
-         Profesi · Ancaman · Risiko · Adaptasi · Digitalisasi · Otomatisasi · Karir · Strategis
-    -->
+
+    <!-- JUDUL UTAMA -->
+    <div class="slide-in" style="line-height: 1.0;">
+      <span style="
+        font-family: 'Orbitron', monospace;
+        font-size: clamp(3.4rem, 7.5vw, 7.2rem);
+        font-weight: 900;
+        color: #fff;
+        display: block;
+        text-shadow:
+          0 0 30px rgba(102,102,255,0.8),
+          0 0 80px rgba(102,102,255,0.3),
+          0 2px 0 rgba(0,0,0,0.8);
+        letter-spacing: -.02em;
+      ">GOKIL</span>
+      <span style="
+        font-family: 'Orbitron', monospace;
+        font-size: clamp(3.4rem, 7.5vw, 7.2rem);
+        font-weight: 900;
+        background: linear-gradient(135deg, #6666ff 0%, #b8baff 40%, #b9f0d7 80%, #6666ff 100%);
+        background-size: 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+        animation: gradShift 4s ease-in-out infinite alternate;
+        letter-spacing: -.02em;
+      ">ABIEE<span style="
+        -webkit-text-fill-color: var(--hot-pink);
+        text-shadow: 0 0 30px rgba(255,77,166,0.8);
+      ">ZZ</span></span>
+    </div>
+
+    <!-- Neon divider -->
+    <div class="slide-in neon-line" style="width: min(420px, 80%);"></div>
+
+    <!-- Kepanjangan -->
     <div class="slide-in" style="
-      display:flex;flex-direction:column;
-      align-items:center;
-      gap:clamp(4px,0.8vh,10px);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.35rem, 2.8vw, 2.1rem);
+      font-weight: 600;
+      color: var(--columbia-blue);
+      letter-spacing: .08em;
+      line-height: 1.5;
+      max-width: 480px;
     ">
+      <span style="color: var(--celadon);">G</span>empa Otomasi IT,
+      <br>
+      <span style="color: var(--celadon);">S</span>iap <em style="color:#fff;font-style:normal;">Level Up</em> atau
+      <span style="
+        color: var(--hot-pink);
+        text-shadow: 0 0 16px rgba(255,77,166,0.7);
+      ">Zzz?</span>
+    </div>
 
-      <!-- Baris 1: P A R A -->
-      <div style="display:flex;align-items:center;gap:clamp(10px,1.5vw,28px);flex-wrap:wrap;justify-content:center;">
 
-        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
-          <span id="lp-P" style="
-            font-family:'Orbitron',monospace;font-weight:900;
-            font-size:clamp(3.2rem,9vw,8.5rem);
-            line-height:.9;color:var(--columbia-blue);
-            text-shadow:0 0 36px rgba(102,102,255,0.6),0 0 72px rgba(102,102,255,0.2);
-            transition:transform .2s,color .2s;cursor:default;
-          ">P</span>
-          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
-            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
-            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--columbia-blue);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Profesi</span>
-          </div>
-        </div>
-
-        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
-
-        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
-          <span style="
-            font-family:'Orbitron',monospace;font-weight:900;
-            font-size:clamp(3.2rem,9vw,8.5rem);
-            line-height:.9;color:var(--hot-pink);
-            text-shadow:0 0 36px rgba(255,77,166,0.6),0 0 72px rgba(255,77,166,0.2);
-            cursor:default;
-          ">A</span>
-          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
-            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
-            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--hot-pink);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Ancaman</span>
-          </div>
-        </div>
-
-        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
-
-        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
-          <span style="
-            font-family:'Orbitron',monospace;font-weight:900;
-            font-size:clamp(3.2rem,9vw,8.5rem);
-            line-height:.9;color:var(--columbia-blue);
-            text-shadow:0 0 36px rgba(102,102,255,0.6),0 0 72px rgba(102,102,255,0.2);
-            cursor:default;
-          ">R</span>
-          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
-            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
-            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--columbia-blue);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Risiko</span>
-          </div>
-        </div>
-
-        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
-
-        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
-          <span style="
-            font-family:'Orbitron',monospace;font-weight:900;
-            font-size:clamp(3.2rem,9vw,8.5rem);
-            line-height:.9;color:var(--celadon);
-            text-shadow:0 0 36px rgba(185,240,215,0.6),0 0 72px rgba(185,240,215,0.2);
-            cursor:default;
-          ">A</span>
-          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
-            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
-            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--celadon);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Adaptasi</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Baris 2: D O K S -->
-      <div style="display:flex;align-items:center;gap:clamp(10px,1.5vw,28px);flex-wrap:wrap;justify-content:center;">
-
-        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
-          <span style="
-            font-family:'Orbitron',monospace;font-weight:900;
-            font-size:clamp(3.2rem,9vw,8.5rem);
-            line-height:.9;color:var(--periwinkle);
-            text-shadow:0 0 36px rgba(184,186,255,0.6),0 0 72px rgba(184,186,255,0.2);
-            cursor:default;
-          ">D</span>
-          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
-            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
-            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--periwinkle);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Digitalisasi</span>
-          </div>
-        </div>
-
-        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
-
-        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
-          <span style="
-            font-family:'Orbitron',monospace;font-weight:900;
-            font-size:clamp(3.2rem,9vw,8.5rem);
-            line-height:.9;color:var(--hot-pink);
-            text-shadow:0 0 36px rgba(255,77,166,0.6),0 0 72px rgba(255,77,166,0.2);
-            cursor:default;
-          ">O</span>
-          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
-            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
-            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--hot-pink);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Otomatisasi</span>
-          </div>
-        </div>
-
-        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
-
-        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
-          <span style="
-            font-family:'Orbitron',monospace;font-weight:900;
-            font-size:clamp(3.2rem,9vw,8.5rem);
-            line-height:.9;color:var(--columbia-blue);
-            text-shadow:0 0 36px rgba(102,102,255,0.6),0 0 72px rgba(102,102,255,0.2);
-            cursor:default;
-          ">K</span>
-          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
-            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
-            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--columbia-blue);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Karir</span>
-          </div>
-        </div>
-
-        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
-
-        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
-          <span style="
-            font-family:'Orbitron',monospace;font-weight:900;
-            font-size:clamp(3.2rem,9vw,8.5rem);
-            line-height:.9;color:var(--celadon);
-            text-shadow:0 0 36px rgba(185,240,215,0.6),0 0 72px rgba(185,240,215,0.2);
-            cursor:default;
-          ">S</span>
-          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
-            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
-            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--celadon);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Strategis</span>
-          </div>
-        </div>
-
-      </div>
-    </div><!-- /akronim -->
-
-    <!-- Garis neon -->
-    <div class="neon-line slide-in" style="width:clamp(160px,28vw,360px);"></div>
-
-    <!-- Subtitle -->
-    <p class="slide-in" style="
-      font-size:clamp(.8rem,1.3vw,.98rem);
-      color:rgba(184,186,255,0.6);
-      max-width:520px;line-height:1.75;
-    ">
-      Di balik tingginya permintaan pasar kerja digital, tersimpan paradoks —
-      <strong style="color:var(--columbia-blue);">tidak semua profesi IT aman dari gelombang otomatisasi.</strong>
-      Temukan datanya.
-    </p>
-
-    <!-- CTA -->
-    <div class="slide-in" style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-      <button onclick="goTo(1)" style="
-        display:inline-flex;align-items:center;gap:10px;
-        padding:clamp(9px,1.2vh,14px) clamp(24px,3vw,44px);
-        background:linear-gradient(135deg,var(--slate-blue),rgba(102,102,255,0.7));
-        border:none;border-radius:8px;
-        font-family:'Orbitron',monospace;
-        font-size:clamp(9px,1vw,12px);
-        letter-spacing:.18em;color:#fff;cursor:pointer;
-        box-shadow:0 0 28px rgba(102,102,255,0.45);
-        transition:box-shadow .3s,transform .2s;
+    <!-- CTA Button -->
+    <div class="slide-in" style="margin-top:8px;">
+      <button onclick="window.goTo(1)" style="
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 32px;
+        background: linear-gradient(135deg, rgba(102,102,255,0.25), rgba(102,102,255,0.08));
+        border: 1px solid rgba(102,102,255,0.6);
+        border-radius: 50px;
+        color: var(--periwinkle);
+        font-family: 'Orbitron', monospace;
+        font-size: 11px;
+        letter-spacing: .2em;
+        cursor: pointer;
+        transition: all .3s;
+        position: relative;
+        overflow: hidden;
       "
-      onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 44px rgba(102,102,255,0.7)'"
-      onmouseleave="this.style.transform='';this.style.boxShadow='0 0 28px rgba(102,102,255,0.45)'"
+      onmouseenter="this.style.background='linear-gradient(135deg,rgba(102,102,255,0.45),rgba(102,102,255,0.2))';this.style.color='#fff';this.style.boxShadow='0 0 30px rgba(102,102,255,0.5)'"
+      onmouseleave="this.style.background='linear-gradient(135deg,rgba(102,102,255,0.25),rgba(102,102,255,0.08))';this.style.color='var(--periwinkle)';this.style.boxShadow='none'"
       >
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
         MULAI EKSPLORASI
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+        </svg>
       </button>
     </div>
 
-    <!-- Stat strip inline -->
-    <div class="slide-in" style="
-      display:flex;align-items:center;gap:clamp(14px,2.5vw,40px);
-      padding:clamp(10px,1.4vh,16px) clamp(20px,3vw,40px);
-      border:1px solid rgba(102,102,255,0.15);
-      border-radius:12px;
-      background:rgba(12,12,30,0.5);
-      backdrop-filter:blur(10px);
-      flex-wrap:wrap;justify-content:center;
-      margin-top:clamp(2px,0.5vh,8px);
-    ">
-      <div style="text-align:center;">
-        <div style="font-family:Orbitron;font-size:clamp(.9rem,1.8vw,1.2rem);font-weight:700;color:var(--hot-pink);text-shadow:0 0 12px rgba(255,77,166,0.5);">18.59%</div>
-        <div style="font-size:9px;letter-spacing:.1em;color:rgba(184,186,255,0.4);text-transform:uppercase;margin-top:2px;">High Risk</div>
-      </div>
-      <div style="width:1px;height:32px;background:rgba(102,102,255,0.2);"></div>
-      <div style="text-align:center;">
-        <div style="font-family:Orbitron;font-size:clamp(.9rem,1.8vw,1.2rem);font-weight:700;color:var(--periwinkle);">48.74%</div>
-        <div style="font-size:9px;letter-spacing:.1em;color:rgba(184,186,255,0.4);text-transform:uppercase;margin-top:2px;">Medium Risk</div>
-      </div>
-      <div style="width:1px;height:32px;background:rgba(102,102,255,0.2);"></div>
-      <div style="text-align:center;">
-        <div style="font-family:Orbitron;font-size:clamp(.9rem,1.8vw,1.2rem);font-weight:700;color:var(--celadon);text-shadow:0 0 12px rgba(185,240,215,0.4);">32.67%</div>
-        <div style="font-size:9px;letter-spacing:.1em;color:rgba(184,186,255,0.4);text-transform:uppercase;margin-top:2px;">Low Risk</div>
-      </div>
-      <div style="width:1px;height:32px;background:rgba(102,102,255,0.2);"></div>
-      <div style="text-align:center;">
-        <div style="font-family:Orbitron;font-size:clamp(.9rem,1.8vw,1.2rem);font-weight:700;color:var(--columbia-blue);">12.546</div>
-        <div style="font-size:9px;letter-spacing:.1em;color:rgba(184,186,255,0.4);text-transform:uppercase;margin-top:2px;">Data Records</div>
-      </div>
-    </div>
-
-  </div><!-- /konten utama -->
-
-  <!-- Scroll hint -->
-  <div class="scroll-down" onclick="goTo(1)" style="z-index:2;">
-    <svg width="26" height="26" fill="none" stroke="var(--slate-blue)" stroke-width="2.5" viewBox="0 0 24 24">
-      <path d="M12 5v14M5 12l7 7 7-7"/>
-    </svg>
   </div>
+
+  <!-- ── Decorative corner element ── -->
+  <div style="
+    position: absolute;
+    bottom: 32px;
+    left: 5vw;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+    opacity: .5;
+  " class="slide-in">
+    <div style="width:40px;height:1px;background:rgba(102,102,255,0.5);"></div>
+    <span style="font-family:'Orbitron',monospace;font-size:9px;letter-spacing:.2em;color:rgba(184,186,255,0.6);">SCROLL DOWN</span>
+    <div style="width:40px;height:1px;background:rgba(102,102,255,0.5);"></div>
+  </div>
+
+  <!-- ── Decorative rings ── -->
+  <div class="deco-circle" style="width:320px;height:320px;border-color:rgba(102,102,255,0.1);bottom:-100px;left:-80px;"></div>
+  <div class="deco-circle" style="width:180px;height:180px;border-color:rgba(185,240,215,0.08);bottom:-20px;left:60px;"></div>
+
+  <!-- ── Corner brackets ── -->
+  <div style="position:absolute;top:24px;left:24px;width:40px;height:40px;border-top:2px solid rgba(102,102,255,0.5);border-left:2px solid rgba(102,102,255,0.5);z-index:10;"></div>
+  <div style="position:absolute;top:24px;right:24px;width:40px;height:40px;border-top:2px solid rgba(102,102,255,0.5);border-right:2px solid rgba(102,102,255,0.5);z-index:10;"></div>
+  <div style="position:absolute;bottom:24px;left:24px;width:40px;height:40px;border-bottom:2px solid rgba(102,102,255,0.5);border-left:2px solid rgba(102,102,255,0.5);z-index:10;"></div>
+  <div style="position:absolute;bottom:24px;right:24px;width:40px;height:40px;border-bottom:2px solid rgba(102,102,255,0.5);border-right:2px solid rgba(102,102,255,0.5);z-index:10;"></div>
 
 </section>
 
-<script>
-// Partikel mengambang — lokal untuk slide landing, tidak konflik global
-(function initLandingParticles() {
-  const canvas = document.getElementById('landing-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  function resize() {
-    const section = canvas.parentElement;
-    canvas.width  = section.offsetWidth;
-    canvas.height = section.offsetHeight;
-  }
-  resize();
-  // Re-resize saat window resize
-  window.addEventListener('resize', resize);
-
-  const COLS = [
-    'rgba(102,102,255,',
-    'rgba(184,186,255,',
-    'rgba(185,240,215,',
-    'rgba(255,77,166,',
-  ];
-
-  function mkParticle(W, H) {
-    return {
-      x: Math.random() * W,
-      y: H + 10,
-      r: Math.random() * 1.6 + 0.3,
-      vx: (Math.random() - .5) * .3,
-      vy: -Math.random() * .38 - .08,
-      alpha: Math.random() * .45 + .1,
-      col: COLS[Math.floor(Math.random() * COLS.length)],
-      life: 0,
-      maxLife: 160 + Math.random() * 200,
-    };
-  }
-
-  let particles = [];
-  function populate() {
-    const W = canvas.width, H = canvas.height;
-    particles = Array.from({ length: 70 }, () => {
-      const p = mkParticle(W, H);
-      p.y = Math.random() * H; // scatter on init
-      return p;
-    });
-  }
-  populate();
-  window.addEventListener('resize', populate);
-
-  let rafId;
-  function animate() {
-    const W = canvas.width, H = canvas.height;
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach((p, idx) => {
-      p.x += p.vx; p.y += p.vy; p.life++;
-      const t = p.life / p.maxLife;
-      const a = p.alpha * (t < .15 ? t / .15 : t > .75 ? 1 - (t - .75) / .25 : 1);
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.col + a + ')';
-      ctx.fill();
-      if (p.life > p.maxLife || p.y < -10) {
-        particles[idx] = mkParticle(W, H);
-      }
-    });
-    rafId = requestAnimationFrame(animate);
-  }
-  animate();
-
-  // Stop animation ketika slide ini tidak terlihat (optimasi)
-  const observer = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      if (!rafId) animate();
-    } else {
-      cancelAnimationFrame(rafId);
-      rafId = null;
-    }
-  }, { threshold: 0.1 });
-  observer.observe(canvas.parentElement);
-})();
-</script>
+<style>
+@keyframes scanMove {
+  0%   { top: -2px; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100vh; opacity: 0; }
+}
+@keyframes gradShift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+</style>

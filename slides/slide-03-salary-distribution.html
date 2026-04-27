@@ -1,498 +1,147 @@
-<section class="slide" id="s3" style="padding-top: clamp(24px,5.5vh,72px)">
-  <div
-    class="deco-circle"
-    style="
-      width: 480px;
-      height: 480px;
-      top: -130px;
-      right: -100px;
-      border-color: rgba(102, 102, 255, 0.15);
-    "
-  ></div>
+<!-- SLIDE 3 — DISTRIBUSI GAJI PER PROFESI -->
+<section class="slide" id="s3" style="padding-top:clamp(24px,5.5vh,72px);">
+  <div class="deco-circle" style="width:480px;height:480px;top:-130px;right:-100px;border-color:rgba(102,102,255,.15);"></div>
+  <div class="deco-circle" style="width:260px;height:260px;bottom:30px;left:-80px;border-color:rgba(185,240,215,.10);"></div>
 
-  <div
-    class="deco-circle"
-    style="
-      width: 260px;
-      height: 260px;
-      bottom: 30px;
-      left: -80px;
-      border-color: rgba(185, 240, 215, 0.1);
-    "
-  ></div>
+  <div style="max-width:1120px;width:100%;display:flex;flex-direction:column;gap:16px;">
 
-  <div
-    style="
-      max-width: 1120px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    "
-  >
     <!-- HEADER -->
-    <div class="slide-in" style="margin-top: 10px">
-      <div class="badge badge-blue" style="margin-bottom: 8px">
-        Slide 3 · Distribusi Gaji
-      </div>
-
-      <h2
-        class="font-raj"
-        style="
-          font-size: clamp(1.65rem, 3.6vw, 2.8rem);
-          font-weight: 700;
-          line-height: 1.12;
-        "
-      >
-        BAGAIMANA DISTRIBUSI<br />
-        <span style="color: var(--slate-blue)" class="glow-blue">
-          GAJI PER PROFESI?
-        </span>
+    <div class="slide-in" style="margin-top:10px;">
+      <div class="badge badge-blue" style="margin-bottom:8px;">Slide 3 · Distribusi Gaji</div>
+      <h2 class="font-raj" style="font-size:clamp(1.65rem,3.6vw,2.8rem);font-weight:700;line-height:1.12;">
+        BAGAIMANA DISTRIBUSI<br>
+        <span class="glow-blue" style="color:var(--slate-blue);">GAJI PER PROFESI?</span>
       </h2>
-
-      <span class="neon-line" style="width: 200px"></span>
+      <span class="neon-line" style="width:200px;"></span>
     </div>
 
-    <div
-      style="
-        display: grid;
-        grid-template-columns: 1fr clamp(200px,24vw,290px);
-        gap: 20px;
-        align-items: start;
-      "
-    >
+    <!-- GRID: chart kiri, narasi kanan -->
+    <div style="display:grid;grid-template-columns:1fr clamp(220px,26vw,300px);gap:22px;align-items:start;">
+
       <!-- CHART -->
-      <div class="glass slide-in" style="padding: 20px 24px">
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 18px;
-            margin-bottom: 14px;
-          "
-        >
-          <div
-            style="
-              font-family: Rajdhani;
-              font-size: 12px;
-              font-weight: 600;
-              letter-spacing: 0.06em;
-              color: var(--periwinkle);
-            "
-          >
-            RENTANG GAJI TAHUNAN (USD)
-          </div>
-
-          <div style="display: flex; gap: 14px; margin-left: auto">
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                font-size: 10px;
-                color: var(--periwinkle);
-              "
-            >
-              <div
-                style="
-                  width: 24px;
-                  height: 8px;
-                  border-radius: 4px;
-                  background: rgba(102, 102, 255, 0.4);
-                  border: 1px solid rgba(102, 102, 255, 0.6);
-                "
-              ></div>
-
-              Range
+      <div class="glass slide-in" style="padding:20px 24px;">
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-bottom:14px;">
+          <span class="font-raj" style="font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--periwinkle);">RENTANG GAJI TAHUNAN (USD)</span>
+          <div style="display:flex;gap:14px;margin-left:auto;">
+            <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--periwinkle);">
+              <div style="width:24px;height:8px;border-radius:4px;background:rgba(102,102,255,.4);border:1px solid rgba(102,102,255,.6);"></div>Range
             </div>
-
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                font-size: 10px;
-                color: var(--periwinkle);
-              "
-            >
-              <div
-                style="
-                  width: 10px;
-                  height: 10px;
-                  border-radius: 50%;
-                  background: #080810;
-                  border: 2px solid #c9e8ff;
-                "
-              ></div>
-
-              Avg
+            <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--periwinkle);">
+              <div style="width:10px;height:10px;border-radius:50%;background:#080810;border:2px solid #c9e8ff;"></div>Avg
             </div>
           </div>
         </div>
-
-        <div id="salaryDistChart" style="width: 100%; height: clamp(220px,44vh,410px)"></div>
+        <div id="salaryDistChart" style="width:100%;height:clamp(220px,44vh,410px);"></div>
       </div>
 
-      <!-- RIGHT SIDE -->
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <div class="glass-accent slide-in" style="padding: 13px">
-          <div style="font-size: 10px; color: var(--celadon)">
-            🏆 MAX SALARY
-          </div>
+      <!-- KANAN: narasi mengalir — tanpa box berlebihan -->
+      <div class="slide-in" style="display:flex;flex-direction:column;gap:20px;padding-top:4px;">
 
-          <div
-            class="font-raj"
-            style="
-              font-size: 0.95rem;
-              font-weight: 700;
-              color: var(--columbia-blue);
-            "
-            id="s3-top-prof"
-          >
-            —
-          </div>
-
-          <div
-            id="s3-top-max"
-            style="
-              font-family: Orbitron;
-              font-size: 1.15rem;
-              color: var(--celadon);
-              margin-top: 4px;
-            "
-          >
-            —
-          </div>
-        </div>
-
-        <div class="glass-accent slide-in" style="padding: 13px">
-          <div style="font-size: 10px; color: var(--slate-blue)">
-            📊 WIDEST RANGE
-          </div>
-
-          <div
-            class="font-raj"
-            style="
-              font-size: 0.95rem;
-              font-weight: 700;
-              color: var(--columbia-blue);
-            "
-            id="s3-wide-prof"
-          >
-            —
-          </div>
-
-          <div
-            id="s3-wide-range"
-            style="
-              font-family: Orbitron;
-              font-size: 1.15rem;
-              color: var(--slate-blue);
-              margin-top: 4px;
-            "
-          >
-            —
-          </div>
-        </div>
-
-        <div class="glass-accent slide-in" style="padding: 13px">
-          <div style="font-size: 10px; color: var(--amber)">⭐ TOP AVG</div>
-
-          <div
-            class="font-raj"
-            style="
-              font-size: 0.95rem;
-              font-weight: 700;
-              color: var(--columbia-blue);
-            "
-            id="s3-avg-prof"
-          >
-            —
-          </div>
-
-          <div
-            id="s3-avg-val"
-            style="
-              font-family: Orbitron;
-              font-size: 1.15rem;
-              color: var(--amber);
-              margin-top: 4px;
-            "
-          >
-            —
-          </div>
-        </div>
-
-        <!-- SHORT INSIGHT -->
-        <div class="glass slide-in" style="padding: 14px">
-          <div
-            style="
-              font-size: 10px;
-              color: var(--periwinkle);
-              margin-bottom: 8px;
-            "
-          >
-            📌 INSIGHT
-          </div>
-
-          <p
-            style="
-              font-size: 11.5px;
-              line-height: 1.55;
-              color: var(--columbia-blue);
-              margin-bottom: 7px;
-            "
-          >
-            Profesi AI yang lebih
-            <strong style="color: var(--celadon)"> specialized </strong>
-            punya salary ceiling dan growth lebih tinggi.
+        <!-- Narasi utama — satu blok teks mengalir -->
+        <div>
+          <p class="font-raj" style="font-size:1.05rem;font-weight:600;color:var(--columbia-blue);line-height:1.5;margin-bottom:12px;">
+            Perhatikan betapa jauhnya jarak antara
+            <strong style="color:var(--hot-pink);">Data Analyst</strong> dan
+            <strong style="color:var(--celadon);">AI Researcher</strong> —
+            bukan hanya soal angka, tapi soal <em>ceiling</em> yang bisa dicapai.
           </p>
 
-          <p
-            style="
-              font-size: 11.5px;
-              line-height: 1.55;
-              color: var(--columbia-blue);
-              margin-bottom: 7px;
-            "
-          >
-            AI Researcher & ML Engineer memimpin, sementara analyst roles berada
-            di tier awal.
+          <p style="font-size:13px;line-height:1.75;color:var(--periwinkle);margin-bottom:12px;">
+            AI Researcher bisa tembus <strong style="color:var(--celadon);">$114K</strong>,
+            sementara Data Analyst mentok di <strong style="color:var(--hot-pink);">$54K</strong>.
+            Rentang yang lebar bukan berarti tidak pasti —
+            justru menandakan ruang tumbuh yang lebih besar.
           </p>
 
-          <p
-            style="
-              font-size: 10.5px;
-              line-height: 1.5;
-              color: var(--periwinkle);
-            "
-          >
-            💡 Semakin tinggi spesialisasi, semakin besar salary upside.
-          </p>
-
-          <div class="neon-line" style="margin-top: 8px; width: 68%"></div>
-
-          <p
-            style="font-size: 9.8px; margin-top: 6px; color: var(--periwinkle)"
-          >
-            Titik = Avg • Bar = Min–Max
+          <p style="font-size:13px;line-height:1.75;color:var(--periwinkle);">
+            Yang menarik, profesi dengan AI risk rendah seperti
+            <strong style="color:var(--columbia-blue);">ML Engineer dan Cloud Engineer</strong>
+            juga punya rentang gaji yang sangat lebar. Susah digantikan, dan bayarannya mengikuti.
           </p>
         </div>
+
+        <!-- Bottom line — satu box tipis, paling penting -->
+        <div class="glass" style="padding:16px 18px;">
+          <div class="font-raj" style="font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--slate-blue);margin-bottom:8px;">BOTTOM LINE</div>
+          <p style="font-size:13px;line-height:1.7;color:var(--columbia-blue);">
+            Titik putih di setiap bar adalah rata-rata — tapi karier yang bagus bukan soal rata-rata.
+            <strong style="color:var(--celadon);">Spesialisasi yang tinggi menggeser posisimu ke ujung kanan bar.</strong>
+          </p>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  (function () {
-    const C = window.PALETTE;
+(function(){
+  const C   = window.PALETTE;
+  const fmt = v => '$' + (v >= 1000 ? Math.round(v/1000) + 'K' : v);
 
-    const fmt = (v) => "$" + (v >= 1000 ? Math.round(v / 1000) + "K" : v);
+  const data = [
+    { profession:'Data Analyst',         min_salary:3875,  avg_salary:20310, max_salary:53878  },
+    { profession:'Business Analyst',     min_salary:4665,  avg_salary:24783, max_salary:60024  },
+    { profession:'Cybersecurity Analyst',min_salary:5702,  avg_salary:30089, max_salary:76453  },
+    { profession:'Software Engineer',    min_salary:5951,  avg_salary:31613, max_salary:81228  },
+    { profession:'Data Scientist',       min_salary:6347,  avg_salary:35717, max_salary:88901  },
+    { profession:'DevOps Engineer',      min_salary:6937,  avg_salary:36839, max_salary:92427  },
+    { profession:'Cloud Engineer',       min_salary:7611,  avg_salary:39385, max_salary:99724  },
+    { profession:'Product Manager',      min_salary:7715,  avg_salary:40940, max_salary:101685 },
+    { profession:'ML Engineer',          min_salary:7774,  avg_salary:41360, max_salary:104596 },
+    { profession:'AI Researcher',        min_salary:8484,  avg_salary:46128, max_salary:113589 },
+  ];
 
-    const data = [
+  const p    = data.map(d => d.profession);
+  const mins = data.map(d => d.min_salary);
+  const maxs = data.map(d => d.max_salary);
+  const avgs = data.map(d => d.avg_salary);
+
+  const chart = echarts.init(document.getElementById('salaryDistChart'));
+  chart.setOption({
+    backgroundColor: 'transparent',
+    grid: { left:'2%', right:70, top:12, bottom:18, containLabel:true },
+    tooltip: {
+      trigger:'axis',
+      backgroundColor:'rgba(8,8,20,.97)',
+      borderColor:'#6666ff', borderWidth:1,
+      textStyle:{ color:'#c9e8ff', fontFamily:'Outfit', fontSize:12 },
+      formatter(params) {
+        const i = params[0].dataIndex, d = data[i];
+        return `<div style="font-family:Rajdhani;font-size:14px;font-weight:700;color:#6666ff;margin-bottom:5px;">${d.profession}</div>
+                Min ${fmt(d.min_salary)} &nbsp;·&nbsp; Avg ${fmt(d.avg_salary)} &nbsp;·&nbsp; Max ${fmt(d.max_salary)}`;
+      }
+    },
+    xAxis: {
+      type:'value',
+      axisLabel:{ color:C.peri, formatter:v=>fmt(v) },
+      splitLine:{ lineStyle:{ color:'rgba(184,186,255,.06)', type:'dashed' } },
+      axisLine:{ show:false }, axisTick:{ show:false }
+    },
+    yAxis: {
+      type:'category', data:p,
+      axisLabel:{ color:C.col, fontSize:11.5, width:175, overflow:'break' },
+      axisLine:{ lineStyle:{ color:'rgba(102,102,255,.12)' } }, axisTick:{ show:false }
+    },
+    series:[
+      { type:'bar', stack:'s', data:mins, itemStyle:{ color:'transparent' }, silent:true },
       {
-        profession: "Data Analyst",
-        min_salary: 3875,
-        avg_salary: 20310,
-        max_salary: 53878,
+        type:'bar', stack:'s', barWidth:'46%',
+        data: data.map(d=>({ value:d.max_salary-d.min_salary, itemStyle:{
+          color:{ type:'linear',x:0,y:0,x2:1,y2:0, colorStops:[
+            {offset:0,color:'rgba(102,102,255,.45)'},{offset:1,color:'rgba(185,240,215,.85)'}
+          ]},
+          borderRadius:[0,8,8,0]
+        }})),
+        label:{ show:true, position:'right', formatter:p=>fmt(maxs[p.dataIndex]), color:C.peri }
       },
       {
-        profession: "Business Analyst",
-        min_salary: 4665,
-        avg_salary: 24783,
-        max_salary: 60024,
-      },
-      {
-        profession: "Cybersecurity Analyst",
-        min_salary: 5702,
-        avg_salary: 30089,
-        max_salary: 76453,
-      },
-      {
-        profession: "Software Engineer",
-        min_salary: 5951,
-        avg_salary: 31613,
-        max_salary: 81228,
-      },
-      {
-        profession: "Data Scientist",
-        min_salary: 6347,
-        avg_salary: 35717,
-        max_salary: 88901,
-      },
-      {
-        profession: "DevOps Engineer",
-        min_salary: 6937,
-        avg_salary: 36839,
-        max_salary: 92427,
-      },
-      {
-        profession: "Cloud Engineer",
-        min_salary: 7611,
-        avg_salary: 39385,
-        max_salary: 99724,
-      },
-      {
-        profession: "Product Manager",
-        min_salary: 7715,
-        avg_salary: 40940,
-        max_salary: 101685,
-      },
-      {
-        profession: "ML Engineer",
-        min_salary: 7774,
-        avg_salary: 41360,
-        max_salary: 104596,
-      },
-      {
-        profession: "AI Researcher",
-        min_salary: 8484,
-        avg_salary: 46128,
-        max_salary: 113589,
-      },
-    ];
+        type:'scatter', data:avgs.map((v,i)=>[v,p[i]]), symbolSize:13,
+        itemStyle:{ color:'#080810', borderColor:C.col, borderWidth:2.5, shadowBlur:12, shadowColor:C.col }
+      }
+    ]
+  });
 
-    const p = data.map((d) => d.profession);
-    const mins = data.map((d) => d.min_salary);
-    const maxs = data.map((d) => d.max_salary);
-    const avgs = data.map((d) => d.avg_salary);
-
-    const chart = echarts.init(document.getElementById("salaryDistChart"));
-
-    chart.setOption({
-      backgroundColor: "transparent",
-
-      grid: {
-        left: '2%',
-        right: 70,
-        top: 12,
-        bottom: 18,
-        containLabel: true,
-      },
-
-      tooltip: {
-        trigger: "axis",
-        formatter(params) {
-          let i = params[0].dataIndex;
-          let d = data[i];
-          return `
-<b>${d.profession}</b><br>
-Min ${fmt(d.min_salary)}<br>
-Avg ${fmt(d.avg_salary)}<br>
-Max ${fmt(d.max_salary)}
-`;
-        },
-      },
-
-      xAxis: {
-        type: "value",
-        axisLabel: {
-          color: C.peri,
-          formatter: (v) => fmt(v),
-        },
-        splitLine: {
-          lineStyle: {
-            color: "rgba(184,186,255,.06)",
-            type: "dashed",
-          },
-        },
-      },
-
-      yAxis: {
-        type: "category",
-        data: p,
-        axisLabel: {
-          color: C.col,
-          fontSize: 11.5,
-          width: 175,
-          overflow: "break",
-        },
-      },
-
-      series: [
-        {
-          type: "bar",
-          stack: "s",
-          data: mins,
-          itemStyle: {
-            color: "transparent",
-          },
-          silent: true,
-        },
-
-        {
-          type: "bar",
-          stack: "s",
-          barWidth: "46%",
-          data: data.map((d) => ({
-            value: d.max_salary - d.min_salary,
-            itemStyle: {
-              color: {
-                type: "linear",
-                x: 0,
-                y: 0,
-                x2: 1,
-                y2: 0,
-                colorStops: [
-                  {
-                    offset: 0,
-                    color: "rgba(102,102,255,.45)",
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(185,240,215,.85)",
-                  },
-                ],
-              },
-              borderRadius: [0, 8, 8, 0],
-            },
-          })),
-          label: {
-            show: true,
-            position: "right",
-            formatter: (p) => fmt(maxs[p.dataIndex]),
-            color: C.peri,
-          },
-        },
-
-        {
-          type: "scatter",
-          data: avgs.map((v, i) => [v, p[i]]),
-          symbolSize: 13,
-          itemStyle: {
-            color: "#080810",
-            borderColor: C.col,
-            borderWidth: 2.5,
-            shadowBlur: 12,
-            shadowColor: C.col,
-          },
-        },
-      ],
-    });
-
-    let topMax = [...data].sort((a, b) => b.max_salary - a.max_salary)[0];
-
-    let widest = [...data].sort(
-      (a, b) => b.max_salary - b.min_salary - (a.max_salary - a.min_salary),
-    )[0];
-
-    let topAvg = [...data].sort((a, b) => b.avg_salary - a.avg_salary)[0];
-
-    document.getElementById("s3-top-prof").textContent = topMax.profession;
-
-    document.getElementById("s3-top-max").textContent = fmt(topMax.max_salary);
-
-    document.getElementById("s3-wide-prof").textContent = widest.profession;
-
-    document.getElementById("s3-wide-range").textContent = fmt(
-      widest.max_salary - widest.min_salary,
-    );
-
-    document.getElementById("s3-avg-prof").textContent = topAvg.profession;
-
-    document.getElementById("s3-avg-val").textContent = fmt(topAvg.avg_salary);
-
-    window.addEventListener("resize", () => chart.resize());
-  })();
+  window.addEventListener('resize', ()=>chart.resize());
+})();
 </script>

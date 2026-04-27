@@ -19,28 +19,49 @@
       <span class="neon-line slide-in" style="width:220px;display:block;"></span>
     </div>
 
-    <!-- Body: stat cards + chart -->
+    <!-- Body: conclusion boxes + chart -->
     <div style="display:grid;grid-template-columns:1fr 1.8fr;gap:clamp(10px,1.8vh,20px);align-items:stretch;">
 
-      <!-- Left: insight box -->
+      <!-- Left: two conclusion boxes -->
       <div style="display:flex;flex-direction:column;gap:12px;">
 
-        <div class="glass-accent slide-in" style="padding:clamp(12px,2vh,24px);display:flex;flex-direction:column;gap:16px;flex:1;border-color:rgba(185,240,215,0.3);">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="font-size:1.6rem;">💡</div>
-            <div class="font-raj" style="font-size:1.1rem;font-weight:700;color:var(--celadon);letter-spacing:.04em;">INSIGHT UTAMA</div>
+        <!-- Box 1: Tren Umum -->
+        <div class="glass-accent slide-in" style="padding:clamp(10px,1.8vh,20px);display:flex;flex-direction:column;gap:10px;flex:1;border-color:rgba(185,240,215,0.3);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--celadon),var(--periwinkle));border-radius:4px 4px 0 0;"></div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--celadon);box-shadow:0 0 6px var(--celadon);flex-shrink:0;"></div>
+            <div class="font-raj" style="font-size:clamp(9px,0.9vh,11px);font-weight:700;color:rgba(185,240,215,0.55);letter-spacing:.1em;text-transform:uppercase;">Kesimpulan 1 · Tren Umum</div>
           </div>
-          <p style="font-size:clamp(11px,1.1vh,13.5px);color:var(--columbia-blue);line-height:1.8;">
-            Semakin tinggi pengalaman, median gaji memang meningkat (dari <strong style="color:var(--periwinkle);">$16K → $34K</strong>), menunjukkan adanya <strong style="color:var(--celadon);">return yang jelas</strong> dari akumulasi pengalaman kerja.
+          <div class="font-raj" style="font-size:clamp(13px,1.4vh,16px);font-weight:700;color:var(--columbia-blue);">Pengalaman vs Kenaikan Gaji</div>
+          <div style="height:1px;background:rgba(185,240,215,0.1);"></div>
+          <p style="font-size:clamp(10px,1vh,12.5px);color:var(--columbia-blue);line-height:1.8;margin:0;">
+            Semakin tinggi pengalaman, <strong style="color:var(--celadon);">median gaji meningkat</strong> — menunjukkan adanya <strong style="color:var(--celadon);">return yang jelas</strong> dari akumulasi pengalaman kerja.
           </p>
-          <p style="font-size:clamp(11px,1.1vh,13.5px);color:var(--columbia-blue);line-height:1.8;">
-            Namun yang lebih menarik adalah <strong style="color:var(--celadon);">variasi gaji yang semakin melebar</strong> di setiap kenaikan level, terutama pada level senior. Hal ini terlihat dari IQR dan rentang distribusi yang makin besar — tidak semua individu dengan pengalaman tinggi memperoleh kompensasi yang sama.
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(185,240,215,0.08);border:1px solid rgba(185,240,215,0.2);border-radius:20px;padding:4px 12px;width:fit-content;">
+            <span class="font-raj" style="font-size:clamp(11px,1.2vh,14px);font-weight:700;color:var(--celadon);">$23K &nbsp;→&nbsp; $48K &nbsp;median</span>
+          </div>
+          <p style="font-size:clamp(10px,1vh,12.5px);color:rgba(201,232,255,0.65);line-height:1.8;margin:0;">
+            Pengalaman berperan sebagai <strong style="color:var(--periwinkle);">fondasi utama</strong> dalam meningkatkan tingkat pendapatan.
           </p>
-          <p style="font-size:clamp(11px,1.1vh,13.5px);color:var(--columbia-blue);line-height:1.8;">
-            Keberadaan banyak <strong style="color:var(--hot-pink);">outlier di setiap level</strong> menegaskan bahwa gaji tidak hanya ditentukan oleh lama pengalaman, tetapi juga sangat dipengaruhi oleh <strong style="color:var(--celadon);">skill spesifik, spesialisasi, industri, serta skala perusahaan</strong>.
+        </div>
+
+        <!-- Box 2: Variasi & Faktor Lain -->
+        <div class="glass-accent slide-in" style="padding:clamp(10px,1.8vh,20px);display:flex;flex-direction:column;gap:10px;flex:1;border-color:rgba(255,77,166,0.2);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--periwinkle),var(--hot-pink));border-radius:4px 4px 0 0;"></div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--hot-pink);box-shadow:0 0 6px var(--hot-pink);flex-shrink:0;"></div>
+            <div class="font-raj" style="font-size:clamp(9px,0.9vh,11px);font-weight:700;color:rgba(255,77,166,0.55);letter-spacing:.1em;text-transform:uppercase;">Kesimpulan 2 · Variasi & Faktor Lain</div>
+          </div>
+          <div class="font-raj" style="font-size:clamp(13px,1.4vh,16px);font-weight:700;color:var(--columbia-blue);">Di Balik Angka Gaji</div>
+          <div style="height:1px;background:rgba(255,77,166,0.12);"></div>
+          <p style="font-size:clamp(10px,1vh,12.5px);color:var(--columbia-blue);line-height:1.8;margin:0;">
+            Variasi gaji <strong style="color:var(--celadon);">semakin melebar</strong> di tiap kenaikan level — tidak semua individu berpengalaman tinggi memperoleh kompensasi yang sama.
           </p>
-          <p style="font-size:clamp(11px,1.1vh,13.5px);color:rgba(201,232,255,0.7);line-height:1.8;border-top:1px solid rgba(185,240,215,0.15);padding-top:14px;">
-            Pengalaman meningkatkan <em>baseline</em> gaji, tetapi <strong style="color:var(--celadon);">keunggulan kompetitif dan diferensiasi kemampuan</strong> menjadi faktor kunci yang menentukan seberapa besar lonjakan gaji yang bisa dicapai.
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,77,166,0.08);border:1px solid rgba(255,77,166,0.22);border-radius:20px;padding:4px 12px;width:fit-content;">
+            <span class="font-raj" style="font-size:clamp(11px,1.2vh,14px);font-weight:700;color:#ff8cc8;">Banyak outlier di setiap level</span>
+          </div>
+          <p style="font-size:clamp(10px,1vh,12.5px);color:rgba(201,232,255,0.65);line-height:1.8;margin:0;">
+            Gaji turut dipengaruhi <strong style="color:var(--celadon);">skill spesifik, spesialisasi, industri,</strong> dan <strong style="color:var(--celadon);">hal lainnya.</strong> Pengalaman meningkatkan <strong style="color:var(--periwinkle);">baseline</strong>, tapi <strong style="color:var(--hot-pink);">diferensiasi kemampuan</strong> jadi penentu seberapa besar lompatannya.
           </p>
         </div>
 
@@ -69,20 +90,26 @@
   const C = window.PALETTE;
 
   // ── Tukey box stats — identik dengan Tableau ──────────────────────────
-  // Whisker bawah = nilai data terkecil yang >= Q1 - 1.5×IQR
-  // Whisker atas  = nilai data terbesar yang <= Q3 + 1.5×IQR
+  // Tableau pakai (N+1)*p untuk posisi quantile (interpolasi linear)
+  // Lower whisker = nilai data aktual terendah yang >= Q1 - 1.5*IQR
+  // Upper whisker = nilai data aktual tertinggi yang <= Q3 + 1.5*IQR
   // Outlier       = titik data di luar fence whisker
   function boxStats(arr) {
     if (!arr || arr.length === 0) return null;
     const s = [...arr].map(Number).filter(v => !isNaN(v) && v > 0).sort((a, b) => a - b);
-    if (s.length < 4) return null;
+    const n = s.length;
+    if (n < 4) return null;
 
-    // Interpolated quantile — sama seperti Tableau
+    // Tableau quantile: posisi = (N+1)*p, lalu interpolasi linear
     function quantile(sorted, p) {
-      const idx = p * (sorted.length - 1);
-      const lo  = Math.floor(idx);
-      const hi  = Math.ceil(idx);
-      return sorted[lo] + (sorted[hi] - sorted[lo]) * (idx - lo);
+      const pos  = (sorted.length + 1) * p;
+      const lo   = Math.floor(pos) - 1;
+      const hi   = Math.ceil(pos) - 1;
+      const frac = pos - Math.floor(pos);
+      if (lo < 0)                  return sorted[0];
+      if (hi >= sorted.length)     return sorted[sorted.length - 1];
+      if (lo === hi)               return sorted[lo];
+      return sorted[lo] + frac * (sorted[hi] - sorted[lo]);
     }
 
     const q1     = quantile(s, 0.25);
@@ -93,13 +120,13 @@
     const fenceLo = q1 - 1.5 * iqr;
     const fenceHi = q3 + 1.5 * iqr;
 
-    // Whisker = titik data paling jauh yang masih di dalam fence
+    // Whisker = titik data aktual paling jauh yang masih dalam fence
     const whiskerLo = s.find(v => v >= fenceLo) ?? s[0];
     const whiskerHi = [...s].reverse().find(v => v <= fenceHi) ?? s[s.length - 1];
 
     const outliers = s.filter(v => v < whiskerLo || v > whiskerHi);
 
-    return { whiskerLo, q1, median, q3, whiskerHi, iqr, outliers, n: s.length };
+    return { whiskerLo, q1, median, q3, whiskerHi, iqr, outliers, n };
   }
 
   // ── Parse data dari SLIDE_DATA.slide8 ─────────────────────────────────
@@ -136,19 +163,77 @@
   // ── Format helpers ─────────────────────────────────────────────────────
   const fmtD  = v => v != null ? (v / 1000).toFixed(1) + 'K' : '—';
 
-  // ── ECharts box plot ───────────────────────────────────────────────────
+  // ── ECharts box plot — pakai custom series supaya 5 nilai full kontrol ──
   const categories = ['Entry', 'Mid', 'Senior'];
   const colors     = [C.peri, C.blue, C.cel];
 
-  // ECharts boxplot format: [whiskerLo, Q1, median, Q3, whiskerHi]
+  // Format data untuk tooltip — ambil langsung dari stats kita, bukan dari ECharts
+  // boxData: array of { wlo, q1, med, q3, whi } per kategori
   const boxData = keys.map(k => {
     const s = stats[k];
-    return s ? [s.whiskerLo, s.q1, s.median, s.q3, s.whiskerHi] : [0,0,0,0,0];
+    if (!s) return null;
+    return { wlo: s.whiskerLo, q1: s.q1, med: s.median, q3: s.q3, whi: s.whiskerHi };
   });
 
   // Scatter outliers: [[xCategoryIndex, value], ...]
   const outlierData = [];
   keys.forEach((k, i) => (stats[k]?.outliers || []).forEach(v => outlierData.push([i, v])));
+
+  // renderItem untuk custom boxplot
+  function renderBoxItem(params, api) {
+    const categoryIndex = api.value(0);
+    const wlo = api.value(1);
+    const q1  = api.value(2);
+    const med = api.value(3);
+    const q3  = api.value(4);
+    const whi = api.value(5);
+
+    const xCenter = api.coord([categoryIndex, 0])[0];
+    const bandW   = api.size([1, 0])[0];
+    const boxW    = bandW * 0.45;
+    const halfBox = boxW / 2;
+
+    const yWlo = api.coord([0, wlo])[1];
+    const yQ1  = api.coord([0, q1])[1];
+    const yMed = api.coord([0, med])[1];
+    const yQ3  = api.coord([0, q3])[1];
+    const yWhi = api.coord([0, whi])[1];
+
+    const color  = colors[categoryIndex];
+    const fillC  = color + '28';
+    const whisW  = boxW * 0.4;
+
+    return {
+      type: 'group',
+      children: [
+        // IQR box
+        { type: 'rect', shape: { x: xCenter - halfBox, y: yQ3, width: boxW, height: yQ1 - yQ3 },
+          style: { fill: fillC, stroke: color, lineWidth: 2 } },
+        // Median line
+        { type: 'line', shape: { x1: xCenter - halfBox, y1: yMed, x2: xCenter + halfBox, y2: yMed },
+          style: { stroke: color, lineWidth: 2.5 } },
+        // Upper whisker vertical
+        { type: 'line', shape: { x1: xCenter, y1: yQ3, x2: xCenter, y2: yWhi },
+          style: { stroke: color, lineWidth: 1.5, lineDash: [3, 2] } },
+        // Lower whisker vertical
+        { type: 'line', shape: { x1: xCenter, y1: yQ1, x2: xCenter, y2: yWlo },
+          style: { stroke: color, lineWidth: 1.5, lineDash: [3, 2] } },
+        // Upper whisker cap
+        { type: 'line', shape: { x1: xCenter - whisW/2, y1: yWhi, x2: xCenter + whisW/2, y2: yWhi },
+          style: { stroke: color, lineWidth: 2 } },
+        // Lower whisker cap
+        { type: 'line', shape: { x1: xCenter - whisW/2, y1: yWlo, x2: xCenter + whisW/2, y2: yWlo },
+          style: { stroke: color, lineWidth: 2 } },
+      ]
+    };
+  }
+
+  // Data untuk custom series: [categoryIndex, wlo, q1, med, q3, whi]
+  const customData = keys.map((k, i) => {
+    const s = stats[k];
+    if (!s) return [i, 0, 0, 0, 0, 0];
+    return [i, s.whiskerLo, s.q1, s.median, s.q3, s.whiskerHi];
+  });
 
   const ec = echarts.init(document.getElementById('salaryBoxChart'), null, { renderer: 'canvas' });
   ec.setOption({
@@ -160,20 +245,28 @@
       textStyle: { color: C.col, fontFamily: 'Outfit', fontSize: 12 },
       formatter(params) {
         if (params.seriesName === 'Outlier') {
-          return `<span style="color:${C.pink};font-family:Rajdhani;font-weight:700">Outlier</span><br/>$${fmtD(params.value[1])}`;
+          const idx = params.value[0];
+          const val = params.value[1];
+          const col = colors[idx];
+          const cat = categories[idx];
+          return `
+            <div style="font-family:Rajdhani;font-size:13px;font-weight:700;color:${col};margin-bottom:4px;">${cat} · Outlier</div>
+            <div style="font-size:12px;color:${C.pink};font-weight:700;">$${fmtD(val)}</div>`;
         }
-        const [wlo, q1, med, q3, whi] = params.value;
-        const col = colors[params.dataIndex];
-        const cat = categories[params.dataIndex];
+        // Custom series: ambil dari boxData kita langsung
+        const i   = params.value[0];
+        const d   = boxData[i];
+        if (!d) return '';
+        const col = colors[i];
+        const cat = categories[i];
         return `
           <div style="font-family:Rajdhani;font-size:14px;font-weight:700;color:${col};margin-bottom:6px;">${cat} Level</div>
-          <div style="display:grid;grid-template-columns:auto auto;gap:2px 16px;font-size:12px;">
-            <span style="color:${C.peri}">Whisker Atas</span><span style="color:${C.cel}">$${fmtD(whi)}</span>
-            <span style="color:${C.peri}">Q3</span><span style="color:${C.col}">$${fmtD(q3)}</span>
-            <span style="color:${C.peri}">Median</span><span style="color:${col};font-weight:700">$${fmtD(med)}</span>
-            <span style="color:${C.peri}">Q1</span><span style="color:${C.col}">$${fmtD(q1)}</span>
-            <span style="color:${C.peri}">Whisker Bawah</span><span style="color:${C.cel}">$${fmtD(wlo)}</span>
-            <span style="color:${C.peri}">IQR</span><span style="color:${C.peri}">$${fmtD(q3 - q1)}</span>
+          <div style="display:grid;grid-template-columns:auto auto;gap:3px 18px;font-size:12px;">
+            <span style="color:${C.peri};">Upper Whisker</span><span style="color:${C.cel};font-weight:600;">$${fmtD(d.whi)}</span>
+            <span style="color:${C.peri};">Q3</span><span style="color:${C.col};">$${fmtD(d.q3)}</span>
+            <span style="color:${C.peri};">Median</span><span style="color:${col};font-weight:700;">$${fmtD(d.med)}</span>
+            <span style="color:${C.peri};">Q1</span><span style="color:${C.col};">$${fmtD(d.q1)}</span>
+            <span style="color:${C.peri};">Lower Whisker</span><span style="color:${C.cel};font-weight:600;">$${fmtD(d.wlo)}</span>
           </div>`;
       }
     },
@@ -197,24 +290,19 @@
     series: [
       {
         name: 'Box',
-        type: 'boxplot',
-        data: boxData,
-        itemStyle: {
-          color:       params => colors[params.dataIndex] + '28',
-          borderColor: params => colors[params.dataIndex],
-          borderWidth: 2,
-        },
-        emphasis: {
-          itemStyle: { borderWidth: 3, shadowBlur: 14, shadowColor: 'rgba(102,102,255,0.5)' }
-        },
-        boxWidth: ['28%', '48%'],
+        type: 'custom',
+        renderItem: renderBoxItem,
+        encode: { x: 0, y: [1, 2, 3, 4, 5], tooltip: [0] },
+        data: customData,
+        z: 2,
       },
       {
         name: 'Outlier',
         type: 'scatter',
         data: outlierData,
         symbolSize: 7,
-        itemStyle: { color: C.pink, opacity: 0.8, borderColor: 'rgba(255,77,166,0.35)', borderWidth: 1 },
+        itemStyle: { color: C.pink, opacity: 0.75, borderColor: 'rgba(255,77,166,0.35)', borderWidth: 1 },
+        z: 3,
       },
     ],
   });

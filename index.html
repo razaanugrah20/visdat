@@ -22,6 +22,7 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -55,17 +56,17 @@
 </div>
 
 <!-- Progress Bar -->
-<div id="progress-bar" style="width:12.5%"></div>
+<div id="progress-bar" style="width:9.09%"></div>
 
 <!-- Slide Navigation Dots -->
 <div id="dots">
-  <div class="dot active" onclick="goTo(0)" title="Landing Page"></div>
+  <div class="dot active" onclick="goTo(0)" title="Slide 0: Landing Page"></div>
   <div class="dot" onclick="goTo(1)" title="Slide 1: Cover"></div>
   <div class="dot" onclick="goTo(2)" title="Slide 2: Bukti Paradoks"></div>
   <div class="dot" onclick="goTo(3)" title="Slide 3: Perbandingan Profesi"></div>
   <div class="dot" onclick="goTo(4)" title="Slide 4: Perbandingan Profesi"></div>
-  <div class="dot" onclick="goTo(5)" title="Slide 6: Top Skills"></div>
-  <div class="dot" onclick="goTo(6)" title="Slide 5: Pendidikan & Risiko"></div>
+  <div class="dot" onclick="goTo(5)" title="Slide 5: Top Skills"></div>
+  <div class="dot" onclick="goTo(6)" title="Slide 6: Pendidikan & Risiko"></div>
   <div class="dot" onclick="goTo(7)" title="Slide 7: Job Survival"></div>
   <div class="dot" onclick="goTo(8)" title="Slide 8: Salary per Pengalaman"></div>
   <div class="dot" onclick="goTo(9)" title="Slide 9: World Heatmap"></div>
@@ -91,7 +92,7 @@ window.PALETTE = {
 };
 
 // ═══════════════════════════════════════════
-// DAFTAR SLIDE
+// DAFTAR SLIDE (slide-00 ditambahkan di awal)
 // ═══════════════════════════════════════════
 const SLIDE_FILES = [
   'slides/slide-00-landing-page.html',
@@ -109,10 +110,8 @@ const SLIDE_FILES = [
 
 // ═══════════════════════════════════════════
 // ENDPOINT API PHP
-// Ganti URL ini jika folder presentasi kamu
-// bukan di root htdocs XAMPP
 // ═══════════════════════════════════════════
-const API_URL = 'data.php?slide=all';
+const API_URL = 'https://aiworkfuture.infinityfree.me/data.php?slide=all';
 
 // ── Loading UI helpers ─────────────────────
 function setLoadStatus(msg, pct) {
@@ -135,14 +134,9 @@ function hideLoading() {
 
 // ═══════════════════════════════════════════
 // MAIN BOOT SEQUENCE
-// 1. Fetch data dari PHP API
-// 2. Simpan ke window.SLIDE_DATA
-// 3. Load semua slide HTML
-// 4. Inisialisasi navigasi
 // ═══════════════════════════════════════════
 async function boot() {
   try {
-    // ── Step 1: Fetch data dari API ───────
     setLoadStatus('Mengambil data dari database...', 20);
     const res = await fetch(API_URL);
 
@@ -155,15 +149,11 @@ async function boot() {
       throw new Error('API error: ' + (json.error || 'Unknown error'));
     }
 
-    // ── Step 2: Simpan global ─────────────
-    // Semua slide bisa akses via window.SLIDE_DATA.slide1, .slide2, dst
     window.SLIDE_DATA = json.data;
     setLoadStatus('Data diterima. Memuat slide...', 50);
 
-    // ── Step 3: Load slide HTML ───────────
     await loadSlides();
 
-    // ── Step 4: Selesai ───────────────────
     setLoadStatus('Selesai!', 100);
     setTimeout(hideLoading, 300);
 
@@ -174,26 +164,27 @@ async function boot() {
 }
 
 // ═══════════════════════════════════════════
-// SLIDE LOADER (sama seperti sebelumnya)
+// SLIDE LOADER
 // ═══════════════════════════════════════════
 async function loadSlides() {
   const story = document.getElementById('story');
-  const total = SLIDE_FILES.length;
 
-  for (let i = 0; i < total; i++) {
-    const file = SLIDE_FILES[i];
-    setLoadStatus(`Memuat slide ${i + 1} dari ${total}...`, 50 + (i / total) * 45);
-
-    try {
+  const results = await Promise.allSettled(
+    SLIDE_FILES.map(async (file) => {
       const res = await fetch(file);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const html = await res.text();
+      if (!res.ok) throw new Error(res.status);
+      return res.text();
+    })
+  );
 
+  results.forEach((result, i) => {
+    if (result.status === 'fulfilled') {
       const wrapper = document.createElement('div');
-      wrapper.innerHTML = html;
+      wrapper.innerHTML = result.value;
 
       const scripts = wrapper.querySelectorAll('script');
       const scriptContents = [];
+
       scripts.forEach(s => {
         scriptContents.push(s.textContent);
         s.remove();
@@ -207,15 +198,14 @@ async function loadSlides() {
         document.body.appendChild(tag);
       });
 
-    } catch (err) {
-      console.error(`Gagal memuat ${file}:`, err);
+    } else {
       story.insertAdjacentHTML('beforeend', `
-        <section class="slide" style="color:var(--hot-pink);font-family:Orbitron;font-size:1rem;">
-          ⚠ Gagal memuat: ${file}
+        <section class="slide" style="color:#ff4da6;font-family:Orbitron;">
+          ⚠ Slide gagal load: ${SLIDE_FILES[i]}
         </section>
       `);
     }
-  }
+  });
 
   initNavigation();
 }

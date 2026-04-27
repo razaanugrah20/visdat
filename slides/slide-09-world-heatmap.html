@@ -7,330 +7,353 @@
 -->
 
 <section class="slide" id="s9">
-    <div style="max-width:1200px;width:100%;display:flex;flex-direction:column;gap:16px;height:92vh;justify-content:center;">
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-        <div>
-          <div class="badge badge-blue slide-in" style="margin-bottom:8px;">Slide 9 · Global View</div>
-          <h2 class="font-raj slide-in" style="font-size:clamp(1.6rem,4vw,3rem);font-weight:700;">
-            PETA GAJI & RISIKO <span style="color:var(--slate-blue);" class="glow-blue">DUNIA IT</span>
-          </h2>
-        </div>
-        <p class="slide-in" style="color:var(--periwinkle);font-size:.88rem;max-width:400px;line-height:1.6;">
-          Arahkan kursor ke negara untuk melihat detail gaji rata-rata, profesi paling berisiko, dan profesi paling aman.
-        </p>
+  <div
+    style="max-width:1200px;width:100%;display:flex;flex-direction:column;gap:16px;height:92vh;justify-content:center;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+      <div>
+        <div class="badge badge-blue slide-in" style="margin-bottom:8px;">Slide 9 · Global View</div>
+        <h2 class="font-raj slide-in" style="font-size:clamp(1.6rem,4vw,3rem);font-weight:700;">
+          PETA GAJI & RISIKO <span style="color:var(--slate-blue);" class="glow-blue">DUNIA IT</span>
+        </h2>
       </div>
-      
-      <!-- Peta Wrapper -->
-      <div class="glass slide-in" style="width:100%; height:50vh; min-height:400px; padding:6px; position:relative; z-index:10;">
-        <div id="worldMap" style="width:100%; height:100%; border-radius:10px;"></div>
+      <p class="slide-in" style="color:var(--periwinkle);font-size:.88rem;max-width:400px;line-height:1.6;">
+        Arahkan kursor ke negara untuk melihat detail gaji rata-rata, profesi paling berisiko, dan profesi paling aman.
+      </p>
+    </div>
+
+    <!-- Peta Wrapper -->
+    <div class="glass slide-in"
+      style="width:100%; height:50vh; min-height:400px; padding:6px; position:relative; z-index:10;">
+      <div id="worldMap" style="width:100%; height:100%; border-radius:10px;"></div>
+    </div>
+
+    <div class="grid-3 slide-in" style="gap:12px;">
+      <div class="glass-accent" style="padding:14px;display:flex;align-items:center;gap:12px;">
+        <div style="flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="var(--columbia-blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path
+              d="M12 6v2m0 8v2M9.5 9.5A2.5 2.5 0 0 1 12 8a2.5 2.5 0 0 1 0 5 2.5 2.5 0 0 0 0 5 2.5 2.5 0 0 0 2.5-1.5" />
+          </svg>
+        </div>
+        <div>
+          <div class="font-raj" style="font-weight:700;font-size:.95rem;color:var(--columbia-blue);">Heatmap Gaji</div>
+          <div style="font-size:11px;color:var(--periwinkle);">Warna berdasarkan rata-rata gaji</div>
+        </div>
       </div>
 
-      <div class="grid-3 slide-in" style="gap:12px;">
-        <div class="glass-accent" style="padding:14px;display:flex;align-items:center;gap:12px;">
-          <div style="font-size:1.4rem;">💰</div>
-          <div>
-            <div class="font-raj" style="font-weight:700;font-size:.95rem;color:var(--columbia-blue);">Heatmap Gaji</div>
-            <div style="font-size:11px;color:var(--periwinkle);">Warna berdasarkan rata-rata gaji</div>
-          </div>
+      <div class="glass-accent" style="padding:14px;display:flex;align-items:center;gap:12px;">
+        <div style="flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="var(--columbia-blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
         </div>
-        <div class="glass-accent" style="padding:14px;display:flex;align-items:center;gap:12px;">
-          <div style="font-size:1.4rem;">⚠️</div>
-          <div>
-            <div class="font-raj" style="font-weight:700;font-size:.95rem;color:var(--columbia-blue);">Most Risk Job</div>
-            <div style="font-size:11px;color:var(--periwinkle);">Profesi dengan risiko AI tertinggi</div>
-          </div>
+        <div>
+          <div class="font-raj" style="font-weight:700;font-size:.95rem;color:var(--columbia-blue);">Most Risk Job</div>
+          <div style="font-size:11px;color:var(--periwinkle);">Profesi dengan risiko AI tertinggi</div>
         </div>
-        <div class="glass-accent" style="padding:14px;display:flex;align-items:center;gap:12px;">
-          <div style="font-size:1.4rem;">🛡️</div>
-          <div>
-            <div class="font-raj" style="font-weight:700;font-size:.95rem;color:var(--columbia-blue);">Safest Job</div>
-            <div style="font-size:11px;color:var(--periwinkle);">Profesi dengan risiko AI terendah</div>
-          </div>
+      </div>
+
+      <div class="glass-accent" style="padding:14px;display:flex;align-items:center;gap:12px;">
+        <div style="flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="var(--columbia-blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </div>
+        <div>
+          <div class="font-raj" style="font-weight:700;font-size:.95rem;color:var(--columbia-blue);">Safest Job</div>
+          <div style="font-size:11px;color:var(--periwinkle);">Profesi dengan risiko AI terendah</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 <script>
-// ═══════════════════════════════════════════
-// LEAFLET CHOROPLETH HEATMAP - SALARY BASED
-// ═══════════════════════════════════════════
-(function initslide9() {
-  const map = L.map('worldMap', {
-    center: [25, 10],
-    zoom: 2,
-    zoomControl: true,
-    scrollWheelZoom: false,
-    minZoom: 1,
-    maxZoom: 6
-  });
+  // ═══════════════════════════════════════════
+  // LEAFLET CHOROPLETH HEATMAP - SALARY BASED
+  // ═══════════════════════════════════════════
+  (function initslide9() {
+    const map = L.map('worldMap', {
+      center: [25, 10],
+      zoom: 2,
+      zoomControl: true,
+      scrollWheelZoom: false,
+      minZoom: 1,
+      maxZoom: 6
+    });
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
-    attribution: '© OpenStreetMap © CARTO',
-    subdomains: 'abcd',
-    maxZoom: 20
-  }).addTo(map);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap © CARTO',
+      subdomains: 'abcd',
+      maxZoom: 20
+    }).addTo(map);
 
-  // Ambil data dari API (window.SLIDE_DATA sudah di-load oleh index.html)
-  const slide9Data = window.SLIDE_DATA?.slide9 || [];
-  
-  console.log('[v0] Slide 9 data loaded:', slide9Data.length, 'countries');
-  console.log('[v0] Sample data:', slide9Data.slice(0, 3));
-  
-  // Build lookup by ISO code AND by country name
-  const countryDataByCode = {};
-  const countryDataByName = {};
-  let minSalary = Infinity;
-  let maxSalary = -Infinity;
-  
-  // Name mapping: Database name -> GeoJSON ADMIN name
-  const nameToAdmin = {
-    'USA': 'united states of america',
-    'United States': 'united states of america',
-    'UK': 'united kingdom',
-    'United Kingdom': 'united kingdom',
-    'South Korea': 'south korea',
-    'Korea': 'south korea',
-    'UAE': 'united arab emirates',
-    'United Arab Emirates': 'united arab emirates',
-    'Russia': 'russia',
-    'Germany': 'germany',
-    'France': 'france',
-    'Japan': 'japan',
-    'China': 'china',
-    'India': 'india',
-    'Canada': 'canada',
-    'Australia': 'australia',
-    'Brazil': 'brazil',
-    'Mexico': 'mexico',
-    'Spain': 'spain',
-    'Italy': 'italy',
-    'Netherlands': 'netherlands',
-    'Sweden': 'sweden',
-    'Switzerland': 'switzerland',
-    'Singapore': 'singapore',
-    'Indonesia': 'indonesia',
-    'Poland': 'poland',
-    'Belgium': 'belgium',
-    'Austria': 'austria',
-    'Norway': 'norway',
-    'Denmark': 'denmark',
-    'Finland': 'finland',
-    'Ireland': 'ireland',
-    'New Zealand': 'new zealand',
-    'Portugal': 'portugal',
-    'Israel': 'israel',
-    'Turkey': 'turkey',
-    'Czech Republic': 'czechia',
-    'Romania': 'romania',
-    'Greece': 'greece',
-    'Hungary': 'hungary',
-    'Argentina': 'argentina',
-    'Chile': 'chile',
-    'Colombia': 'colombia',
-    'South Africa': 'south africa',
-    'Egypt': 'egypt',
-    'Nigeria': 'nigeria',
-    'Kenya': 'kenya',
-    'Pakistan': 'pakistan',
-    'Bangladesh': 'bangladesh',
-    'Vietnam': 'vietnam',
-    'Thailand': 'thailand',
-    'Malaysia': 'malaysia',
-    'Philippines': 'philippines',
-    'Taiwan': 'taiwan',
-    'Hong Kong': 'hong kong',
-    'Saudi Arabia': 'saudi arabia',
-    'Ukraine': 'ukraine',
-  };
-  
-  slide9Data.forEach(d => {
-    // Store by ISO code
-    if (d.country_code) {
-      countryDataByCode[d.country_code] = d;
-    }
-    // Store by country name (normalized)
-    if (d.country_name) {
-      const nameLower = d.country_name.toLowerCase();
-      countryDataByName[nameLower] = d;
-      
-      // Also map to GeoJSON ADMIN name
-      const adminName = nameToAdmin[d.country_name];
-      if (adminName) {
-        countryDataByName[adminName] = d;
+    // Ambil data dari API (window.SLIDE_DATA sudah di-load oleh index.html)
+    const slide9Data = window.SLIDE_DATA?.slide9 || [];
+
+    console.log('[v0] Slide 9 data loaded:', slide9Data.length, 'countries');
+    console.log('[v0] Sample data:', slide9Data.slice(0, 3));
+
+    // Build lookup by ISO code AND by country name
+    const countryDataByCode = {};
+    const countryDataByName = {};
+    let minSalary = Infinity;
+    let maxSalary = -Infinity;
+
+    // Name mapping: Database name -> GeoJSON ADMIN name
+    const nameToAdmin = {
+      'USA': 'united states of america',
+      'United States': 'united states of america',
+      'UK': 'united kingdom',
+      'United Kingdom': 'united kingdom',
+      'South Korea': 'south korea',
+      'Korea': 'south korea',
+      'UAE': 'united arab emirates',
+      'United Arab Emirates': 'united arab emirates',
+      'Russia': 'russia',
+      'Germany': 'germany',
+      'France': 'france',
+      'Japan': 'japan',
+      'China': 'china',
+      'India': 'india',
+      'Canada': 'canada',
+      'Australia': 'australia',
+      'Brazil': 'brazil',
+      'Mexico': 'mexico',
+      'Spain': 'spain',
+      'Italy': 'italy',
+      'Netherlands': 'netherlands',
+      'Sweden': 'sweden',
+      'Switzerland': 'switzerland',
+      'Singapore': 'singapore',
+      'Indonesia': 'indonesia',
+      'Poland': 'poland',
+      'Belgium': 'belgium',
+      'Austria': 'austria',
+      'Norway': 'norway',
+      'Denmark': 'denmark',
+      'Finland': 'finland',
+      'Ireland': 'ireland',
+      'New Zealand': 'new zealand',
+      'Portugal': 'portugal',
+      'Israel': 'israel',
+      'Turkey': 'turkey',
+      'Czech Republic': 'czechia',
+      'Romania': 'romania',
+      'Greece': 'greece',
+      'Hungary': 'hungary',
+      'Argentina': 'argentina',
+      'Chile': 'chile',
+      'Colombia': 'colombia',
+      'South Africa': 'south africa',
+      'Egypt': 'egypt',
+      'Nigeria': 'nigeria',
+      'Kenya': 'kenya',
+      'Pakistan': 'pakistan',
+      'Bangladesh': 'bangladesh',
+      'Vietnam': 'vietnam',
+      'Thailand': 'thailand',
+      'Malaysia': 'malaysia',
+      'Philippines': 'philippines',
+      'Taiwan': 'taiwan',
+      'Hong Kong': 'hong kong',
+      'Saudi Arabia': 'saudi arabia',
+      'Ukraine': 'ukraine',
+    };
+
+    slide9Data.forEach(d => {
+      // Store by ISO code
+      if (d.country_code) {
+        countryDataByCode[d.country_code] = d;
       }
-    }
-    
-    if (d.avg_salary < minSalary) minSalary = d.avg_salary;
-    if (d.avg_salary > maxSalary) maxSalary = d.avg_salary;
-  });
-  
-  // If no data loaded, provide fallback demo data for testing
-  if (slide9Data.length === 0) {
-    console.warn('[v0] No data from API, using demo data');
-    const demoData = [
-      { country_name: 'United States', country_code: 'USA', avg_salary: 95000, job_count: 1500, most_risk_job: 'Data Entry Clerk', most_risk_score: 72.5, safest_job: 'AI Researcher', safest_score: 12.3 },
-      { country_name: 'India', country_code: 'IND', avg_salary: 15000, job_count: 2000, most_risk_job: 'Technical Writer', most_risk_score: 68.2, safest_job: 'ML Engineer', safest_score: 15.6 },
-      { country_name: 'United Kingdom', country_code: 'GBR', avg_salary: 75000, job_count: 800, most_risk_job: 'Data Analyst', most_risk_score: 55.4, safest_job: 'Software Architect', safest_score: 18.2 },
-      { country_name: 'Germany', country_code: 'DEU', avg_salary: 70000, job_count: 600, most_risk_job: 'QA Tester', most_risk_score: 61.3, safest_job: 'Security Engineer', safest_score: 14.8 },
-      { country_name: 'Canada', country_code: 'CAN', avg_salary: 85000, job_count: 450, most_risk_job: 'Support Engineer', most_risk_score: 58.7, safest_job: 'DevOps Engineer', safest_score: 19.1 },
-      { country_name: 'Australia', country_code: 'AUS', avg_salary: 82000, job_count: 350, most_risk_job: 'Business Analyst', most_risk_score: 52.8, safest_job: 'Cloud Architect', safest_score: 16.4 },
-      { country_name: 'France', country_code: 'FRA', avg_salary: 55000, job_count: 400, most_risk_job: 'Project Manager', most_risk_score: 48.2, safest_job: 'Data Scientist', safest_score: 21.3 },
-      { country_name: 'Japan', country_code: 'JPN', avg_salary: 60000, job_count: 550, most_risk_job: 'Software Tester', most_risk_score: 59.1, safest_job: 'Robotics Engineer', safest_score: 11.7 },
-      { country_name: 'Brazil', country_code: 'BRA', avg_salary: 25000, job_count: 300, most_risk_job: 'Help Desk', most_risk_score: 75.2, safest_job: 'Backend Developer', safest_score: 22.8 },
-      { country_name: 'China', country_code: 'CHN', avg_salary: 35000, job_count: 1200, most_risk_job: 'Data Entry', most_risk_score: 78.5, safest_job: 'AI Engineer', safest_score: 13.2 },
-    ];
-    
-    demoData.forEach(d => {
-      countryDataByCode[d.country_code] = d;
-      countryDataByName[d.country_name.toLowerCase()] = d;
-      const adminName = nameToAdmin[d.country_name];
-      if (adminName) countryDataByName[adminName] = d;
-      
+      // Store by country name (normalized)
+      if (d.country_name) {
+        const nameLower = d.country_name.toLowerCase();
+        countryDataByName[nameLower] = d;
+
+        // Also map to GeoJSON ADMIN name
+        const adminName = nameToAdmin[d.country_name];
+        if (adminName) {
+          countryDataByName[adminName] = d;
+        }
+      }
+
       if (d.avg_salary < minSalary) minSalary = d.avg_salary;
       if (d.avg_salary > maxSalary) maxSalary = d.avg_salary;
     });
-  }
-  
-  // Fallback if still no data
-  if (minSalary === Infinity) minSalary = 10000;
-  if (maxSalary === -Infinity) maxSalary = 100000;
-  
-  console.log('[v0] Salary range:', minSalary, '-', maxSalary);
-  console.log('[v0] Countries by code:', Object.keys(countryDataByCode));
-  console.log('[v0] Countries by name:', Object.keys(countryDataByName));
 
-  // Fungsi untuk mendapatkan warna berdasarkan salary (heatmap)
-  // Gradien: Low salary (biru gelap) -> High salary (kuning/emas)
-  function getSalaryColor(salary) {
-    if (salary === null || salary === undefined) return 'rgba(30,30,50,0.4)';
-    
-    // Normalize salary to 0-1 range
-    const normalized = (salary - minSalary) / (maxSalary - minSalary);
-    
-    // Color gradient: 
-    // 0.0 = #1a1a4e (dark blue/purple) - lowest salary
-    // 0.25 = #3366cc (blue)
-    // 0.5 = #66cc99 (teal/green)
-    // 0.75 = #ffcc33 (yellow/gold)
-    // 1.0 = #ff6633 (orange/red) - highest salary
-    
-    if (normalized < 0.25) {
-      // Dark blue to blue
-      const t = normalized / 0.25;
-      return interpolateColor('#2a2a6e', '#4477dd', t);
-    } else if (normalized < 0.5) {
-      // Blue to teal
-      const t = (normalized - 0.25) / 0.25;
-      return interpolateColor('#4477dd', '#55bb99', t);
-    } else if (normalized < 0.75) {
-      // Teal to yellow
-      const t = (normalized - 0.5) / 0.25;
-      return interpolateColor('#55bb99', '#ffcc44', t);
-    } else {
-      // Yellow to orange
-      const t = (normalized - 0.75) / 0.25;
-      return interpolateColor('#ffcc44', '#ff7744', t);
-    }
-  }
-  
-  // Helper function untuk interpolasi warna
-  function interpolateColor(color1, color2, factor) {
-    const r1 = parseInt(color1.slice(1, 3), 16);
-    const g1 = parseInt(color1.slice(3, 5), 16);
-    const b1 = parseInt(color1.slice(5, 7), 16);
-    
-    const r2 = parseInt(color2.slice(1, 3), 16);
-    const g2 = parseInt(color2.slice(3, 5), 16);
-    const b2 = parseInt(color2.slice(5, 7), 16);
-    
-    const r = Math.round(r1 + factor * (r2 - r1));
-    const g = Math.round(g1 + factor * (g2 - g1));
-    const b = Math.round(b1 + factor * (b2 - b1));
-    
-    return `rgb(${r}, ${g}, ${b})`;
-  }
+    // If no data loaded, provide fallback demo data for testing
+    if (slide9Data.length === 0) {
+      console.warn('[v0] No data from API, using demo data');
+      const demoData = [
+        { country_name: 'United States', country_code: 'USA', avg_salary: 95000, job_count: 1500, most_risk_job: 'Data Entry Clerk', most_risk_score: 72.5, safest_job: 'AI Researcher', safest_score: 12.3 },
+        { country_name: 'India', country_code: 'IND', avg_salary: 15000, job_count: 2000, most_risk_job: 'Technical Writer', most_risk_score: 68.2, safest_job: 'ML Engineer', safest_score: 15.6 },
+        { country_name: 'United Kingdom', country_code: 'GBR', avg_salary: 75000, job_count: 800, most_risk_job: 'Data Analyst', most_risk_score: 55.4, safest_job: 'Software Architect', safest_score: 18.2 },
+        { country_name: 'Germany', country_code: 'DEU', avg_salary: 70000, job_count: 600, most_risk_job: 'QA Tester', most_risk_score: 61.3, safest_job: 'Security Engineer', safest_score: 14.8 },
+        { country_name: 'Canada', country_code: 'CAN', avg_salary: 85000, job_count: 450, most_risk_job: 'Support Engineer', most_risk_score: 58.7, safest_job: 'DevOps Engineer', safest_score: 19.1 },
+        { country_name: 'Australia', country_code: 'AUS', avg_salary: 82000, job_count: 350, most_risk_job: 'Business Analyst', most_risk_score: 52.8, safest_job: 'Cloud Architect', safest_score: 16.4 },
+        { country_name: 'France', country_code: 'FRA', avg_salary: 55000, job_count: 400, most_risk_job: 'Project Manager', most_risk_score: 48.2, safest_job: 'Data Scientist', safest_score: 21.3 },
+        { country_name: 'Japan', country_code: 'JPN', avg_salary: 60000, job_count: 550, most_risk_job: 'Software Tester', most_risk_score: 59.1, safest_job: 'Robotics Engineer', safest_score: 11.7 },
+        { country_name: 'Brazil', country_code: 'BRA', avg_salary: 25000, job_count: 300, most_risk_job: 'Help Desk', most_risk_score: 75.2, safest_job: 'Backend Developer', safest_score: 22.8 },
+        { country_name: 'China', country_code: 'CHN', avg_salary: 35000, job_count: 1200, most_risk_job: 'Data Entry', most_risk_score: 78.5, safest_job: 'AI Engineer', safest_score: 13.2 },
+      ];
 
-  // Format currency
-  function formatSalary(salary) {
-    if (salary >= 1000) {
-      return '$' + (salary / 1000).toFixed(2) + 'K';
-    }
-    return '$' + salary.toFixed(2);
-  }
+      demoData.forEach(d => {
+        countryDataByCode[d.country_code] = d;
+        countryDataByName[d.country_name.toLowerCase()] = d;
+        const adminName = nameToAdmin[d.country_name];
+        if (adminName) countryDataByName[adminName] = d;
 
-  // Get risk level label with color
-  function riskLabel(score) {
-    if (score < 25) return '<span style="color:#b9f0d7">● Rendah (' + score.toFixed(1) + '%)</span>';
-    if (score < 45) return '<span style="color:#b8baff">● Menengah (' + score.toFixed(1) + '%)</span>';
-    if (score < 60) return '<span style="color:#6666ff">● Tinggi (' + score.toFixed(1) + '%)</span>';
-    return '<span style="color:#ff4da6">● Sangat Tinggi (' + score.toFixed(1) + '%)</span>';
-  }
-
-  // Helper function to find country data from GeoJSON feature
-  function findCountryData(feature) {
-    const iso = feature.properties.ISO_A3;
-    const adminName = (feature.properties.ADMIN || feature.properties.name || '').toLowerCase();
-    
-    // Try ISO code first
-    if (iso && iso !== '-99' && countryDataByCode[iso]) {
-      return countryDataByCode[iso];
-    }
-    
-    // Try admin name
-    if (adminName && countryDataByName[adminName]) {
-      return countryDataByName[adminName];
-    }
-    
-    return null;
-  }
-
-  // Load GeoJSON dan render peta
-  fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
-    .then(r => r.json())
-    .then(geo => {
-      console.log('[v0] GeoJSON loaded, features:', geo.features.length);
-      
-      // Debug: check first few features
-      geo.features.slice(0, 5).forEach(f => {
-        console.log('[v0] Feature:', f.properties.ADMIN, 'ISO:', f.properties.ISO_A3);
+        if (d.avg_salary < minSalary) minSalary = d.avg_salary;
+        if (d.avg_salary > maxSalary) maxSalary = d.avg_salary;
       });
-      
-      let matchedCount = 0;
-      
-      const geoLayer = L.geoJSON(geo, {
-        style: feature => {
-          const d = findCountryData(feature);
-          
-          if (d) matchedCount++;
-          
-          return {
-            fillColor: d ? getSalaryColor(d.avg_salary) : 'rgba(30,30,50,0.3)',
-            fillOpacity: d ? 0.85 : 0.15,
-            color: d ? 'rgba(102,102,255,0.5)' : 'rgba(102,102,255,0.2)',
-            weight: d ? 1 : 0.5
-          };
-        },
-        onEachFeature: (feature, layer) => {
-          const d = findCountryData(feature);
-          
-          if (d) {
-            // Hover effects
-            layer.on('mouseover', function(e) {
-              this.setStyle({ 
-                weight: 3, 
-                color: '#ffffff', 
-                fillOpacity: 0.95 
+    }
+
+    // Fallback if still no data
+    if (minSalary === Infinity) minSalary = 10000;
+    if (maxSalary === -Infinity) maxSalary = 100000;
+
+    console.log('[v0] Salary range:', minSalary, '-', maxSalary);
+    console.log('[v0] Countries by code:', Object.keys(countryDataByCode));
+    console.log('[v0] Countries by name:', Object.keys(countryDataByName));
+
+    // Fungsi untuk mendapatkan warna berdasarkan salary (heatmap)
+    // Gradien: Low salary (biru gelap) -> High salary (kuning/emas)
+    function getSalaryColor(salary) {
+      if (salary === null || salary === undefined) return 'rgba(30,30,50,0.4)';
+
+      // Normalize salary to 0-1 range
+      const normalized = (salary - minSalary) / (maxSalary - minSalary);
+
+      // Color gradient: 
+      // 0.0 = #1a1a4e (dark blue/purple) - lowest salary
+      // 0.25 = #3366cc (blue)
+      // 0.5 = #66cc99 (teal/green)
+      // 0.75 = #ffcc33 (yellow/gold)
+      // 1.0 = #ff6633 (orange/red) - highest salary
+
+      if (normalized < 0.25) {
+        // Dark blue to blue
+        const t = normalized / 0.25;
+        return interpolateColor('#2a2a6e', '#4477dd', t);
+      } else if (normalized < 0.5) {
+        // Blue to teal
+        const t = (normalized - 0.25) / 0.25;
+        return interpolateColor('#4477dd', '#55bb99', t);
+      } else if (normalized < 0.75) {
+        // Teal to yellow
+        const t = (normalized - 0.5) / 0.25;
+        return interpolateColor('#55bb99', '#ffcc44', t);
+      } else {
+        // Yellow to orange
+        const t = (normalized - 0.75) / 0.25;
+        return interpolateColor('#ffcc44', '#ff7744', t);
+      }
+    }
+
+    // Helper function untuk interpolasi warna
+    function interpolateColor(color1, color2, factor) {
+      const r1 = parseInt(color1.slice(1, 3), 16);
+      const g1 = parseInt(color1.slice(3, 5), 16);
+      const b1 = parseInt(color1.slice(5, 7), 16);
+
+      const r2 = parseInt(color2.slice(1, 3), 16);
+      const g2 = parseInt(color2.slice(3, 5), 16);
+      const b2 = parseInt(color2.slice(5, 7), 16);
+
+      const r = Math.round(r1 + factor * (r2 - r1));
+      const g = Math.round(g1 + factor * (g2 - g1));
+      const b = Math.round(b1 + factor * (b2 - b1));
+
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    // Format currency
+    function formatSalary(salary) {
+      if (salary >= 1000) {
+        return '$' + (salary / 1000).toFixed(2) + 'K';
+      }
+      return '$' + salary.toFixed(2);
+    }
+
+    // Get risk level label with color
+    function riskLabel(score) {
+      if (score < 25) return '<span style="color:#b9f0d7">● Rendah (' + score.toFixed(1) + '%)</span>';
+      if (score < 45) return '<span style="color:#b8baff">● Menengah (' + score.toFixed(1) + '%)</span>';
+      if (score < 60) return '<span style="color:#6666ff">● Tinggi (' + score.toFixed(1) + '%)</span>';
+      return '<span style="color:#ff4da6">● Sangat Tinggi (' + score.toFixed(1) + '%)</span>';
+    }
+
+    // Helper function to find country data from GeoJSON feature
+    function findCountryData(feature) {
+      const iso = feature.properties.ISO_A3;
+      const adminName = (feature.properties.ADMIN || feature.properties.name || '').toLowerCase();
+
+      // Try ISO code first
+      if (iso && iso !== '-99' && countryDataByCode[iso]) {
+        return countryDataByCode[iso];
+      }
+
+      // Try admin name
+      if (adminName && countryDataByName[adminName]) {
+        return countryDataByName[adminName];
+      }
+
+      return null;
+    }
+
+    // Load GeoJSON dan render peta
+    fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+      .then(r => r.json())
+      .then(geo => {
+        console.log('[v0] GeoJSON loaded, features:', geo.features.length);
+
+        // Debug: check first few features
+        geo.features.slice(0, 5).forEach(f => {
+          console.log('[v0] Feature:', f.properties.ADMIN, 'ISO:', f.properties.ISO_A3);
+        });
+
+        let matchedCount = 0;
+
+        const geoLayer = L.geoJSON(geo, {
+          style: feature => {
+            const d = findCountryData(feature);
+
+            if (d) matchedCount++;
+
+            return {
+              fillColor: d ? getSalaryColor(d.avg_salary) : 'rgba(30,30,50,0.3)',
+              fillOpacity: d ? 0.85 : 0.15,
+              color: d ? 'rgba(102,102,255,0.5)' : 'rgba(102,102,255,0.2)',
+              weight: d ? 1 : 0.5
+            };
+          },
+          onEachFeature: (feature, layer) => {
+            const d = findCountryData(feature);
+
+            if (d) {
+              // Hover effects
+              layer.on('mouseover', function (e) {
+                this.setStyle({
+                  weight: 3,
+                  color: '#ffffff',
+                  fillOpacity: 0.95
+                });
+                this.bringToFront();
               });
-              this.bringToFront();
-            });
-            
-            layer.on('mouseout', function(e) {
-              geoLayer.resetStyle(this);
-            });
-            
-            // Create rich tooltip content (seperti gambar Tableau)
-            const tooltipContent = `
+
+              layer.on('mouseout', function (e) {
+                geoLayer.resetStyle(this);
+              });
+
+              // Create rich tooltip content (seperti gambar Tableau)
+              const tooltipContent = `
               <div class="popup-title">${d.country_name}</div>
               <div class="popup-row">
                 <span class="popup-label">Avg. IT Salary</span>
@@ -360,15 +383,15 @@
                 <span class="popup-val">${d.job_count.toLocaleString()} jobs</span>
               </div>
             `;
-            
-            layer.bindPopup(tooltipContent, {
-              className: 'custom-popup',
-              maxWidth: 280,
-              minWidth: 220
-            });
-            
-            // Also bind tooltip for quick hover preview
-            layer.bindTooltip(`
+
+              layer.bindPopup(tooltipContent, {
+                className: 'custom-popup',
+                maxWidth: 280,
+                minWidth: 220
+              });
+
+              // Also bind tooltip for quick hover preview
+              layer.bindTooltip(`
               <div style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:#6666ff;margin-bottom:4px;">
                 ${d.country_name}
               </div>
@@ -376,22 +399,22 @@
                 Avg Salary: ${formatSalary(d.avg_salary)}
               </div>
             `, {
-              sticky: true,
-              className: 'custom-tooltip',
-              direction: 'top',
-              offset: [0, -10]
-            });
+                sticky: true,
+                className: 'custom-tooltip',
+                direction: 'top',
+                offset: [0, -10]
+              });
+            }
           }
-        }
-      }).addTo(map);
+        }).addTo(map);
 
-      console.log('[v0] Matched', matchedCount, 'countries with data');
+        console.log('[v0] Matched', matchedCount, 'countries with data');
 
-      // Add salary-based legend
-      const legend = L.control({ position: 'bottomright' });
-      legend.onAdd = () => {
-        const div = L.DomUtil.create('div', 'info-legend');
-        div.innerHTML = `
+        // Add salary-based legend
+        const legend = L.control({ position: 'bottomright' });
+        legend.onAdd = () => {
+          const div = L.DomUtil.create('div', 'info-legend');
+          div.innerHTML = `
           <h4>Rata-rata Gaji IT</h4>
           <div style="display:flex;flex-direction:column;gap:4px;">
             <div style="display:flex;align-items:center;gap:8px;">
@@ -420,39 +443,39 @@
             </div>
           </div>
         `;
-        return div;
-      };
-      legend.addTo(map);
-    })
-    .catch(err => {
-      console.error('Failed to load GeoJSON:', err);
-      // Fallback: tampilkan marker untuk negara dengan data
-      slide9Data.forEach(d => {
-        // Koordinat fallback untuk beberapa negara
-        const coords = {
-          'USA': [39.8, -98.5],
-          'IND': [20.6, 78.9],
-          'CAN': [56.1, -106.3],
-          'GBR': [55.3, -3.4],
-          'DEU': [51.1, 10.4],
-          'AUS': [-25.2, 133.7],
+          return div;
         };
-        
-        if (coords[d.country_code]) {
-          const icon = L.divIcon({
-            html: `<div style="
+        legend.addTo(map);
+      })
+      .catch(err => {
+        console.error('Failed to load GeoJSON:', err);
+        // Fallback: tampilkan marker untuk negara dengan data
+        slide9Data.forEach(d => {
+          // Koordinat fallback untuk beberapa negara
+          const coords = {
+            'USA': [39.8, -98.5],
+            'IND': [20.6, 78.9],
+            'CAN': [56.1, -106.3],
+            'GBR': [55.3, -3.4],
+            'DEU': [51.1, 10.4],
+            'AUS': [-25.2, 133.7],
+          };
+
+          if (coords[d.country_code]) {
+            const icon = L.divIcon({
+              html: `<div style="
               width:20px;height:20px;border-radius:50%;
               background:${getSalaryColor(d.avg_salary)};
               box-shadow:0 0 12px ${getSalaryColor(d.avg_salary)};
               border:2px solid rgba(255,255,255,0.6);
             "></div>`,
-            iconSize: [20, 20],
-            iconAnchor: [10, 10],
-            className: ''
-          });
-          
-          L.marker(coords[d.country_code], { icon }).addTo(map)
-            .bindPopup(`
+              iconSize: [20, 20],
+              iconAnchor: [10, 10],
+              className: ''
+            });
+
+            L.marker(coords[d.country_code], { icon }).addTo(map)
+              .bindPopup(`
               <div class="popup-title">${d.country_name}</div>
               <div class="popup-row">
                 <span class="popup-label">Avg Salary</span>
@@ -467,61 +490,61 @@
                 <span class="popup-val">${d.safest_job}</span>
               </div>
             `);
-        }
+          }
+        });
       });
-    });
 
-  // Expose map for resize handling
-  window._leafletMap = map;
-})();
+    // Expose map for resize handling
+    window._leafletMap = map;
+  })();
 </script>
 
 <style>
-/* Custom tooltip style */
-.custom-tooltip {
-  background: rgba(8,8,20,0.95) !important;
-  border: 1px solid rgba(102,102,255,0.5) !important;
-  border-radius: 8px !important;
-  padding: 8px 12px !important;
-  font-family: 'Outfit', sans-serif !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
-}
+  /* Custom tooltip style */
+  .custom-tooltip {
+    background: rgba(8, 8, 20, 0.95) !important;
+    border: 1px solid rgba(102, 102, 255, 0.5) !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    font-family: 'Outfit', sans-serif !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  }
 
-.custom-tooltip::before {
-  border-top-color: rgba(102,102,255,0.5) !important;
-}
+  .custom-tooltip::before {
+    border-top-color: rgba(102, 102, 255, 0.5) !important;
+  }
 
-/* Enhanced popup styles */
-.leaflet-popup-content {
-  margin: 12px 14px !important;
-}
+  /* Enhanced popup styles */
+  .leaflet-popup-content {
+    margin: 12px 14px !important;
+  }
 
-.popup-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--slate-blue);
-  margin-bottom: 10px;
-  text-align: center;
-}
+  .popup-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--slate-blue);
+    margin-bottom: 10px;
+    text-align: center;
+  }
 
-.popup-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  font-size: 12px;
-  padding: 4px 0;
-}
+  .popup-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    padding: 4px 0;
+  }
 
-.popup-label {
-  color: var(--periwinkle);
-  white-space: nowrap;
-}
+  .popup-label {
+    color: var(--periwinkle);
+    white-space: nowrap;
+  }
 
-.popup-val {
-  color: var(--celadon);
-  font-weight: 600;
-  text-align: right;
-}
+  .popup-val {
+    color: var(--celadon);
+    font-weight: 600;
+    text-align: right;
+  }
 </style>
