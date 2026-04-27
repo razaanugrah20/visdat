@@ -1,0 +1,224 @@
+<!--
+  SLIDE 7 — JOB SURVIVAL BY PROFESSION
+  File: slide-07-stacked-jobtitle.html
+  Berisi: 100% Stacked Bar Chart (Chart.js), narasi interpretasi di kiri
+  Data: window.SLIDE_DATA.slide7
+  Fix: 
+    - Chart sekarang 100% per bar (pakai persentase, bukan raw count)
+    - Tooltip menampilkan persen bersih tanpa desimal panjang
+    - Layout konsisten dengan slide lain (glass, slide-in, badge, font-raj)
+    - Narasi interpretasi ditambahkan di kolom kiri
+-->
+
+<section class="slide" id="s7">
+  <div class="deco-circle" style="width:500px;height:500px;border-color:var(--slate-blue);bottom:-200px;left:-150px;"></div>
+  <div class="deco-circle" style="width:300px;height:300px;border-color:var(--celadon);top:-100px;right:-80px;"></div>
+
+  <div style="max-width:1200px;width:100%;display:flex;flex-direction:column;gap:clamp(8px,1.6vh,18px);">
+
+    <!-- Header -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+      <div>
+        <div class="badge badge-blue slide-in" style="margin-bottom:10px;">Slide 7 · Job Survival</div>
+        <h2 class="font-raj slide-in" style="font-size:clamp(1.8rem,4.5vw,3.4rem);font-weight:700;line-height:1.05;">
+          SIAPA YANG BERTAHAN,<br>
+          <span style="color:var(--slate-blue);" class="glow-blue">SIAPA YANG BERKEMBANG?</span>
+        </h2>
+      </div>
+      <div class="badge-blue badge slide-in" style="font-size:10px;opacity:.7;">
+        Distribusi Job Survival Class per Profesi
+      </div>
+    </div>
+
+    <!-- Body: Narasi kiri + Chart kanan -->
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:clamp(10px,2vw,24px);align-items:stretch;">
+
+      <!-- Kiri: Narasi -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div class="glass-accent slide-in" style="padding:clamp(10px,1.5vh,18px);border-left:3px solid var(--hot-pink);">
+          <div style="font-size:10px;color:var(--hot-pink);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">⚠ At Risk</div>
+          <p style="font-size:13px;color:var(--columbia-blue);line-height:1.65;">
+            <strong style="color:var(--periwinkle);">Business Analyst</strong> dan <strong style="color:var(--periwinkle);">Data Analyst</strong> didominasi warna gelap di bagian bawah — porsi <em>At Risk</em>-nya paling besar dibanding profesi lain.
+          </p>
+        </div>
+
+        <div class="glass-accent slide-in" style="padding:clamp(10px,1.5vh,18px);border-left:3px solid var(--celadon);">
+          <div style="font-size:10px;color:var(--celadon);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">✓ Thriving</div>
+          <p style="font-size:13px;color:var(--columbia-blue);line-height:1.65;">
+            <strong style="color:var(--periwinkle);">AI Researcher</strong> dan <strong style="color:var(--periwinkle);">ML Engineer</strong> hampir seluruhnya berwarna terang: mereka bukan sekadar bertahan, mereka berkembang.
+          </p>
+        </div>
+
+        <div class="glass slide-in" style="padding:clamp(10px,1.5vh,18px);background:rgba(102,102,255,0.1);border-color:rgba(102,102,255,0.4);">
+          <div style="font-family:Orbitron;font-size:10px;letter-spacing:.12em;color:var(--periwinkle);margin-bottom:8px;">KESIMPULAN</div>
+          <p style="font-size:13px;color:var(--columbia-blue);line-height:1.65;">
+            Satu chart, satu kesimpulan — di era AI, <strong style="color:var(--celadon);">tidak semua karir IT diciptakan sama.</strong>
+          </p>
+        </div>
+
+        <!-- Legend -->
+        <div class="slide-in" style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="width:14px;height:14px;border-radius:3px;background:#ff4da6;display:inline-block;flex-shrink:0;"></span>
+            <span style="font-size:12px;color:var(--columbia-blue);">At Risk — kemungkinan tergantikan AI</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="width:14px;height:14px;border-radius:3px;background:#b8baff;display:inline-block;flex-shrink:0;"></span>
+            <span style="font-size:12px;color:var(--columbia-blue);">Transitioning — sedang beradaptasi</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="width:14px;height:14px;border-radius:3px;background:#b9f0d7;display:inline-block;flex-shrink:0;"></span>
+            <span style="font-size:12px;color:var(--columbia-blue);">Thriving — berkembang bersama AI</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Kanan: Chart -->
+      <div class="glass slide-in" style="padding:20px 24px 16px;position:relative;">
+        <div style="font-family:Rajdhani;font-size:13px;font-weight:600;color:var(--periwinkle);letter-spacing:.05em;margin-bottom:12px;">
+          DISTRIBUSI SURVIVAL CLASS (100% PER PROFESI)
+        </div>
+        <div style="position:relative;height:clamp(200px,40vh,340px);">
+          <canvas id="stackedBarChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+// ═══════════════════════════════════════════
+// CHART 7 — 100% STACKED BAR (Chart.js)
+// ═══════════════════════════════════════════
+(function initSlide7() {
+  const rawData = window.SLIDE_DATA?.slide7 || [];
+
+  // Fallback demo data jika tidak ada data dari API
+  const data = rawData.length ? rawData : [
+    { job_title: 'AI Researcher',    at_risk_count: 50,  transitioning_count: 150, thriving_count: 800, total_count: 1000 },
+    { job_title: 'Business Analyst', at_risk_count: 570, transitioning_count: 280, thriving_count: 150, total_count: 1000 },
+    { job_title: 'Cloud Engineer',   at_risk_count: 100, transitioning_count: 300, thriving_count: 600, total_count: 1000 },
+    { job_title: 'Cybersecurity',    at_risk_count: 80,  transitioning_count: 220, thriving_count: 700, total_count: 1000 },
+    { job_title: 'Data Analyst',     at_risk_count: 400, transitioning_count: 350, thriving_count: 250, total_count: 1000 },
+    { job_title: 'Data Scientist',   at_risk_count: 120, transitioning_count: 280, thriving_count: 600, total_count: 1000 },
+    { job_title: 'DevOps Engineer',  at_risk_count: 150, transitioning_count: 350, thriving_count: 500, total_count: 1000 },
+    { job_title: 'ML Engineer',      at_risk_count: 60,  transitioning_count: 200, thriving_count: 740, total_count: 1000 },
+    { job_title: 'Product Manager',  at_risk_count: 200, transitioning_count: 400, thriving_count: 400, total_count: 1000 },
+    { job_title: 'Software Engineer',at_risk_count: 180, transitioning_count: 320, thriving_count: 500, total_count: 1000 },
+  ];
+
+  // Hitung persentase dengan benar — tiap bar = 100%
+  // Rumus: (count / total_count) * 100, dibulatkan ke 1 desimal
+  const pct = (count, total) => total > 0 ? Math.round((count / total) * 1000) / 10 : 0;
+
+  const labels      = data.map(d => d.job_title);
+  const atRiskPct   = data.map(d => pct(d.at_risk_count,      d.total_count));
+  const transPct    = data.map(d => pct(d.transitioning_count, d.total_count));
+  const thrivingPct = data.map(d => pct(d.thriving_count,      d.total_count));
+
+  const canvas = document.getElementById('stackedBarChart');
+  if (!canvas) return;
+
+  new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'At Risk',
+          data: atRiskPct,
+          backgroundColor: '#ff4da6',
+          borderColor: 'transparent',
+          borderWidth: 0,
+          borderRadius: 0,
+        },
+        {
+          label: 'Transitioning',
+          data: transPct,
+          backgroundColor: '#b8baff',
+          borderColor: 'transparent',
+          borderWidth: 0,
+        },
+        {
+          label: 'Thriving',
+          data: thrivingPct,
+          backgroundColor: '#b9f0d7',
+          borderColor: 'transparent',
+          borderWidth: 0,
+          borderRadius: { topLeft: 6, topRight: 6, bottomLeft: 0, bottomRight: 0 },
+        },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 900, easing: 'easeInOutQuart' },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { display: false },
+          border: { display: false },
+          ticks: {
+            color: 'rgba(201,232,255,0.75)',
+            font: { family: 'Outfit', size: 11 },
+            maxRotation: 40,
+            minRotation: 40,
+          }
+        },
+        y: {
+          stacked: true,
+          min: 0,
+          max: 100,
+          grid: { color: 'rgba(102,102,255,0.08)', drawBorder: false },
+          border: { display: false },
+          ticks: {
+            color: 'rgba(184,186,255,0.6)',
+            font: { family: 'Outfit', size: 11 },
+            // Tampilkan sebagai persentase
+            callback: v => v + '%',
+            stepSize: 25,
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false }, // Pakai custom legend di HTML
+        tooltip: {
+          backgroundColor: 'rgba(8,8,20,0.96)',
+          titleColor: '#6666ff',
+          bodyColor: '#c9e8ff',
+          borderColor: 'rgba(102,102,255,0.45)',
+          borderWidth: 1,
+          padding: 12,
+          titleFont: { family: 'Rajdhani', size: 14, weight: '700' },
+          bodyFont: { family: 'Outfit', size: 12 },
+          displayColors: true,
+          boxWidth: 12,
+          boxHeight: 12,
+          boxPadding: 4,
+          callbacks: {
+            title: ctx => ctx[0].label,
+            label: ctx => {
+              const pctVal = ctx.raw.toFixed(1);
+              const d = data[ctx.dataIndex];
+              const countKey = ctx.dataset.label === 'At Risk'
+                ? 'at_risk_count'
+                : ctx.dataset.label === 'Transitioning'
+                  ? 'transitioning_count'
+                  : 'thriving_count';
+              return ` ${ctx.dataset.label}: ${pctVal}%  (n=${d[countKey].toLocaleString()})`;
+            },
+            afterBody: ctx => {
+              const d = data[ctx[0].dataIndex];
+              return [``, `Total: ${d.total_count.toLocaleString()} records`];
+            }
+          }
+        }
+      },
+      interaction: { mode: 'index', intersect: false },
+    }
+  });
+})();
+</script>

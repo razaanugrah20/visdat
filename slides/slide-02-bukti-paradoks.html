@@ -1,0 +1,136 @@
+<!--
+  SLIDE 2 — BUKTI PARADOKS
+  File: slide-02-bukti-paradoks.html
+  Berisi: Bar chart dual-axis (AI Risk Score vs Job Openings), compare cards, insight
+  Chart: barChart (ECharts bar + scatter dual-axis)
+-->
+
+<section class="slide" id="s2">
+  <div class="deco-circle" style="width:400px;height:400px;border-color:var(--hot-pink);top:-100px;left:-100px;"></div>
+
+  <div style="max-width:1100px;width:100%;display:flex;flex-direction:column;gap:20px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div class="badge badge-pink slide-in" style="margin-bottom:10px;">Slide 2 · Bukti Paradoks</div>
+        <h2 class="font-raj slide-in" style="font-size:clamp(2rem,5vw,3.8rem);font-weight:700;line-height:1.05;">
+          LOWONGAN TINGGI,<br><span style="color:var(--hot-pink);" class="glow-pink">RISIKO JUGA TINGGI</span>
+        </h2>
+      </div>
+      <p class="slide-in" style="color:var(--periwinkle);font-size:.95rem;max-width:320px;line-height:1.6;">
+        Beberapa profesi IT punya permintaan besar, tetapi juga rentan terdampak AI — inilah paradoks yang terlihat dari data.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:start;">
+      <div class="glass slide-in" style="padding:24px;height:420px;">
+        <div id="barChart" class="chart-box"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="compare-card slide-in" style="border-color:rgba(255,77,166,0.4);background:rgba(255,77,166,0.06);">
+          <div style="font-size:11px;color:var(--hot-pink);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">⚠ Risiko Tertinggi</div>
+          <div class="font-raj" style="font-size:1.2rem;font-weight:700;color:var(--columbia-blue);">Business Analyst</div>
+          <div class="font-raj" style="font-size:1.2rem;font-weight:700;color:var(--columbia-blue);">& Data Analyst</div>
+          <div class="risk-bar" style="background:linear-gradient(90deg,var(--hot-pink),rgba(255,77,166,0.2));width:90%;"></div>
+          <p style="font-size:12px;color:var(--periwinkle);margin-top:8px;line-height:1.5;">Tugas rutin: analisis dasar, pelaporan, dan pembuatan laporan mudah diotomatisasi AI.</p>
+        </div>
+        <div class="compare-card slide-in" style="border-color:rgba(185,240,215,0.4);background:rgba(185,240,215,0.06);">
+          <div style="font-size:11px;color:var(--celadon);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">✓ Paling Aman</div>
+          <div class="font-raj" style="font-size:1.2rem;font-weight:700;color:var(--columbia-blue);">AI Researcher</div>
+          <div class="risk-bar" style="background:linear-gradient(90deg,var(--celadon),rgba(185,240,215,0.2));width:18%;"></div>
+          <p style="font-size:12px;color:var(--periwinkle);margin-top:8px;line-height:1.5;">Inovasi dan riset sistem AI kompleks belum bisa direplikasi mesin.</p>
+        </div>
+        <div class="glass-accent slide-in" style="padding:16px;">
+          <div style="font-size:11px;color:var(--slate-blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;">💡 Insight Utama</div>
+          <p style="font-size:13px;color:var(--columbia-blue);line-height:1.6;">AI tidak langsung menghapus pekerjaan, tetapi <strong>mengubah cara kerjanya.</strong> Tingginya lowongan tidak selalu berarti aman.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ═══════════════════════════════════════════
+// CHART 2 — BAR (Risk + Openings dual axis)
+// ═══════════════════════════════════════════
+(function initSlide2() {
+  const C = window.PALETTE;
+  const barEC = echarts.init(document.getElementById('barChart'), null, {renderer:'canvas'});
+  const professions = ['AI Researcher','Cybersecurity','ML Engineer','DevOps Engineer','Data Scientist','Cloud Engineer','Product Manager','Software Engineer','Data Analyst','Business Analyst'];
+  const riskScores = [15, 25, 26, 31, 33, 33, 35, 42, 65, 75];
+  const jobOpenings = [24915, 24805, 24665, 25296, 25679, 25007, 25105, 25537, 25562, 25610];
+
+  barEC.setOption({
+    backgroundColor: 'transparent',
+    tooltip: {
+      trigger: 'axis', axisPointer: { type: 'shadow' },
+      backgroundColor: 'rgba(8,8,20,0.95)', borderColor: C.blue,
+      textStyle: { color: C.col, fontFamily: 'Outfit' }
+    },
+    legend: {
+      data: ['AI Risk Score (%)', 'Job Openings'],
+      textStyle: { color: C.peri, fontFamily: 'Outfit' },
+      top: 0, right: 0
+    },
+    grid: { left: '2%', right: '4%', bottom: '2%', top: '10%', containLabel: true },
+    xAxis: [
+      {
+        type: 'value', name: 'Risk %',
+        nameTextStyle: { color: C.peri, fontSize: 11 },
+        axisLabel: { color: C.peri, fontFamily: 'Outfit', formatter: '{value}%' },
+        splitLine: { lineStyle: { color: 'rgba(184,186,255,0.07)', type: 'dashed' } },
+        max: 100
+      },
+      {
+        type: 'value', name: 'Job Openings',
+        nameTextStyle: { color: C.peri, fontSize: 11 },
+        axisLabel: { color: C.peri, fontFamily: 'Outfit', formatter: v => (v/1000).toFixed(0)+'K' },
+        splitLine: { show: false }
+      }
+    ],
+    yAxis: {
+      type: 'category', data: professions,
+      axisLabel: { color: C.col, fontFamily: 'Outfit', fontSize: 12 },
+      axisTick: { show: false }
+    },
+    series: [
+      {
+        name: 'AI Risk Score (%)',
+        type: 'bar',
+        xAxisIndex: 0,
+        data: riskScores,
+        barWidth: '38%',
+        itemStyle: {
+          borderRadius: [0, 4, 4, 0],
+          color: params => {
+            const v = params.value;
+            if(v >= 60) return { type:'linear', x:0, y:0, x2:1, y2:0, colorStops:[{offset:0,color:C.pink},{offset:1,color:'rgba(255,77,166,0.3)'}] };
+            if(v >= 35) return { type:'linear', x:0, y:0, x2:1, y2:0, colorStops:[{offset:0,color:C.peri},{offset:1,color:'rgba(184,186,255,0.3)'}] };
+            return { type:'linear', x:0, y:0, x2:1, y2:0, colorStops:[{offset:0,color:C.cel},{offset:1,color:'rgba(185,240,215,0.3)'}] };
+          }
+        },
+        label: { show: true, position: 'right', color: C.col, fontFamily: 'Outfit', fontSize: 12, formatter: '{c}%' }
+      },
+      {
+        name: 'Job Openings',
+        type: 'scatter',
+        xAxisIndex: 1,
+        symbolSize: 24,
+        data: jobOpenings,
+        itemStyle: {
+          color: C.col,
+          borderColor: C.blue,
+          borderWidth: 2,
+          shadowBlur: 8,
+          shadowColor: C.blue
+        },
+        label: {
+          show: true, position: 'right', color: C.col, fontFamily: 'Outfit', fontSize: 11,
+          formatter: p => (p.value/1000).toFixed(1)+'K'
+        }
+      }
+    ]
+  });
+  window._charts = window._charts || [];
+  window._charts.push(barEC);
+})();
+</script>

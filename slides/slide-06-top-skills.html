@@ -1,0 +1,218 @@
+<!--
+  SLIDE 5 — TOP SKILLS (DINAMIS)
+  Data: window.SLIDE_DATA.slide6 → [{ skill_name, demand_score }]
+-->
+
+<section class="slide" id="s6">
+  <div style="max-width:1100px;width:100%;display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(14px,2.5vw,32px);align-items:start;">
+
+    <!-- CHART + CONTROLS -->
+    <div style="display:flex;flex-direction:column;gap:10px;">
+
+      <!-- Sort buttons -->
+      <div style="display:flex;gap:8px;align-items:center;" class="slide-in">
+        <span style="font-size:11px;color:var(--periwinkle);opacity:.6;font-family:'Outfit';letter-spacing:.05em;">URUTKAN :</span>
+        <button id="btn-desc" onclick="sortChart('desc')"
+          style="font-family:'Rajdhani';font-size:12px;font-weight:600;letter-spacing:.05em;padding:5px 14px;border-radius:20px;border:1px solid var(--periwinkle);background:var(--periwinkle);color:#080814;cursor:pointer;transition:all .2s;">
+          ↓ TERTINGGI
+        </button>
+        <button id="btn-asc" onclick="sortChart('asc')"
+          style="font-family:'Rajdhani';font-size:12px;font-weight:600;letter-spacing:.05em;padding:5px 14px;border-radius:20px;border:1px solid rgba(184,186,255,0.3);background:transparent;color:var(--periwinkle);cursor:pointer;transition:all .2s;">
+          ↑ TERENDAH
+        </button>
+        <button id="btn-alpha" onclick="sortChart('alpha')"
+          style="font-family:'Rajdhani';font-size:12px;font-weight:600;letter-spacing:.05em;padding:5px 14px;border-radius:20px;border:1px solid rgba(184,186,255,0.3);background:transparent;color:var(--periwinkle);cursor:pointer;transition:all .2s;">
+          A–Z
+        </button>
+      </div>
+
+      <!-- Chart -->
+      <div class="glass slide-in" style="padding:24px;height:clamp(210px,43vh,390px);">
+        <div style="font-family:Rajdhani;font-size:13px;font-weight:600;color:var(--periwinkle);letter-spacing:.08em;opacity:.7;margin-bottom:6px;">
+          TOP SKILL BY DEMAND SCORE
+        </div>
+        <div id="skillChart" class="chart-box" style="height:calc(100% - 28px);"></div>
+      </div>
+
+      <!-- Caption -->
+      <div class="glass-accent slide-in" style="padding:11px 16px;">
+        <p style="font-size:12px;color:var(--periwinkle);line-height:1.6;margin:0;font-style:italic;">
+          Semua skill berkompetisi di level yang hampir setara — pasar menghargai
+          <strong style="color:var(--columbia-blue);">kedalaman teknikal sekaligus pemikiran bisnis.</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- NARASI -->
+    <div style="padding-top:4px;">
+      <div class="badge badge-celadon slide-in" style="margin-bottom:12px;">Slide 5 · Skills</div>
+      <h2 class="font-raj slide-in" style="font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;">
+        SKILL PALING<br><span style="color:var(--celadon);" class="glow-celadon">DICARI INDUSTRI</span>
+      </h2>
+      <span class="neon-line slide-in" style="width:140px;background:linear-gradient(90deg,var(--celadon),transparent);box-shadow:0 0 8px var(--celadon);"></span>
+
+      <p class="slide-in" style="color:var(--periwinkle);font-size:.92rem;margin-top:14px;line-height:1.8;">
+        Pertanyaannya bukan lagi <em>"apa gelarmu?"</em> —
+        melainkan <strong style="color:var(--columbia-blue);">"skill apa yang kamu kuasai?"</strong>
+      </p>
+
+      <p id="skill-narasi" class="slide-in" style="color:rgba(184,186,255,0.75);font-size:.87rem;margin-top:10px;line-height:1.8;"></p>
+
+      <!-- Highlight stat dinamis -->
+      <div class="glass-accent slide-in" style="padding:14px 16px;margin-top:14px;display:flex;gap:20px;align-items:center;">
+        <div style="text-align:center;flex-shrink:0;">
+          <div id="stat-spread" style="font-family:'Rajdhani';font-size:2rem;font-weight:700;color:var(--celadon);line-height:1;">—</div>
+          <div style="font-size:10px;color:var(--periwinkle);opacity:.6;letter-spacing:.05em;margin-top:2px;">SELISIH POIN</div>
+        </div>
+        <p style="font-size:12px;color:var(--columbia-blue);line-height:1.65;margin:0;border-left:1px solid rgba(184,186,255,0.15);padding-left:16px;">
+          Gap yang sangat kecil ini menandakan pasar tidak hanya butuh
+          <strong>satu skill dominan</strong> — tapi profil yang <strong>beragam dan komplementer.</strong>
+        </p>
+      </div>
+
+      <!-- Takeaway -->
+      <div class="glass-accent slide-in" style="padding:13px 16px;margin-top:10px;border-left:2px solid var(--celadon);">
+        <p style="font-size:12px;color:var(--columbia-blue);line-height:1.65;margin:0;">
+          <strong style="color:var(--celadon);">Bottom line —</strong>
+          gelar membuka pintu, tapi skill yang menentukan apakah kamu tetap relevan di dalamnya.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function initSlide6() {
+  const C = window.PALETTE;
+
+  const FALLBACK = [
+    { skill_name: 'Java',          demand_score: 79.88 },
+    { skill_name: 'Excel',         demand_score: 79.77 },
+    { skill_name: 'Deep Learning', demand_score: 79.57 },
+    { skill_name: 'Strategy',      demand_score: 79.55 },
+    { skill_name: 'Docker',        demand_score: 79.50 },
+    { skill_name: 'AWS',           demand_score: 79.49 },
+    { skill_name: 'SQL',           demand_score: 79.43 },
+    { skill_name: 'Python',        demand_score: 79.22 },
+    { skill_name: 'Security',      demand_score: 78.86 },
+  ];
+
+  const raw = (window.SLIDE_DATA && window.SLIDE_DATA.slide6)
+    ? window.SLIDE_DATA.slide6 : FALLBACK;
+
+  const rows = raw
+    .map(r => ({ skill_name: String(r.skill_name||'').trim(), demand_score: parseFloat(r.demand_score)||0 }))
+    .filter(r => r.skill_name && r.demand_score > 0)
+    .sort((a, b) => b.demand_score - a.demand_score)
+    .slice(0, 10);
+
+  const minScore = Math.min(...rows.map(r => r.demand_score));
+  const maxScore = Math.max(...rows.map(r => r.demand_score));
+  const spread   = (maxScore - minScore).toFixed(2);
+  const xMin     = Math.floor(minScore - (maxScore - minScore) * 2.5);
+
+  // ── NARASI DINAMIS ──────────────────────────────────────────────────
+  const top3 = rows.slice(0, 3).map(r =>
+    `<strong style="color:var(--columbia-blue);">${r.skill_name}</strong>`).join(', ');
+  document.getElementById('skill-narasi').innerHTML =
+    `${top3} memimpin demand score — membuktikan bahwa cloud, data, dan rekayasa perangkat lunak
+    masih jadi tulang punggung industri. Tapi yang menarik:
+    <strong style="color:var(--celadon);">Strategy</strong> dan
+    <strong style="color:var(--celadon);">Security</strong> ikut bersaing ketat —
+    sinyal bahwa berpikir bisnis dan sadar risiko digital kini
+    <em>sama berharganya dengan bisa coding.</em>`;
+
+  document.getElementById('stat-spread').textContent = spread;
+
+  // ── CHART ──────────────────────────────────────────────────────────
+  const skillEC = echarts.init(document.getElementById('skillChart'), null, { renderer: 'canvas' });
+
+  function getChartData(order) {
+    let sorted = [...rows];
+    if (order === 'asc')   sorted.sort((a,b) => a.demand_score - b.demand_score);
+    if (order === 'desc')  sorted.sort((a,b) => b.demand_score - a.demand_score);
+    if (order === 'alpha') sorted.sort((a,b) => a.skill_name.localeCompare(b.skill_name));
+    const chartRows = [...sorted].reverse();
+    return {
+      names:  chartRows.map(r => r.skill_name),
+      values: chartRows.map(r => r.demand_score),
+      topName: order === 'desc' ? sorted[0].skill_name : null,
+    };
+  }
+
+  function renderChart(order) {
+    const { names, values, topName } = getChartData(order);
+    skillEC.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'axis', axisPointer: { type: 'shadow' },
+        backgroundColor: 'rgba(8,8,20,0.95)', borderColor: C.blue,
+        textStyle: { color: C.col, fontFamily: 'Outfit' },
+        formatter: params => {
+          const p = params[0];
+          const rank = rows.findIndex(r => r.skill_name === p.axisValue) + 1;
+          return `<div style="font-family:'Rajdhani';font-size:15px;font-weight:700;color:${C.peri};margin-bottom:4px;">#${rank} ${p.axisValue}</div>
+            <div style="font-size:12px;">Demand Score: <strong style="color:${C.cel};">${parseFloat(p.value).toFixed(2)}</strong></div>`;
+        },
+      },
+      grid: { left: '3%', right: '7%', bottom: '2%', top: '2%', containLabel: true },
+      xAxis: {
+        type: 'value', min: xMin,
+        axisLabel: { color: C.peri, fontFamily: 'Outfit', formatter: v => v.toFixed(0) },
+        splitLine: { lineStyle: { color: 'rgba(184,186,255,0.07)', type: 'dashed' } },
+        axisLine: { show: false }, axisTick: { show: false },
+      },
+      yAxis: {
+        type: 'category', data: names,
+        axisLabel: {
+          color: C.col, fontFamily: 'Outfit', fontWeight: '600', fontSize: 13,
+          rich: { top: { color: C.cel, fontWeight: '700' } },
+          formatter: val => topName && val === topName ? `{top|★ ${val}}` : val,
+        },
+        axisLine: { show: false }, axisTick: { show: false },
+      },
+      series: [{
+        name: 'Avg Demand Score', type: 'bar', barWidth: '52%', data: values,
+        itemStyle: {
+          borderRadius: [0,10,10,0],
+          color: new echarts.graphic.LinearGradient(0,0,1,0,[
+            {offset:0,color:C.blue},{offset:.6,color:C.peri},{offset:1,color:C.cel}
+          ]),
+        },
+        label: { show:true, position:'right', color:C.col, fontFamily:'Outfit', fontSize:12,
+          formatter: p => parseFloat(p.value).toFixed(2) },
+        markLine: {
+          silent:true, symbol:'none',
+          lineStyle:{ color:C.peri, type:'dashed', width:1, opacity:.35 },
+          label:{ color:C.peri, fontFamily:'Outfit', fontSize:10, formatter:'avg' },
+          data:[{type:'average'}],
+        },
+      }],
+    });
+  }
+
+  // ── SORT BUTTON HANDLER ─────────────────────────────────────────────
+  window.sortChart = function(order) {
+    renderChart(order);
+    ['desc','asc','alpha'].forEach(o => {
+      const btn = document.getElementById('btn-' + o);
+      if (!btn) return;
+      if (o === order) {
+        btn.style.background = 'var(--periwinkle)';
+        btn.style.color = '#080814';
+        btn.style.borderColor = 'var(--periwinkle)';
+      } else {
+        btn.style.background = 'transparent';
+        btn.style.color = 'var(--periwinkle)';
+        btn.style.borderColor = 'rgba(184,186,255,0.3)';
+      }
+    });
+  };
+
+  renderChart('desc');
+
+  window._charts = window._charts || [];
+  window._charts.push(skillEC);
+})();
+</script>

@@ -1,0 +1,358 @@
+<!--
+  SLIDE 00 — LANDING PAGE
+  File: slide-00-landing-page.html
+  Tidak boleh ada: <html>, <body>, <style> dengan selector body/html,
+  overflow:hidden, atau height:100vh di level root.
+  Semua sudah di-handle oleh index.html & styles.css
+-->
+
+<section 
+  class="slide" 
+  id="s0" 
+  style="
+    position:relative;
+    overflow:hidden;
+    background-image:
+      linear-gradient(rgba(8,10,30,.72), rgba(8,10,30,.82)),
+      url('image/background-polos.jpg');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+  "
+>
+  <!-- Deco circles (lokal, tidak konflik) -->
+  <div class="deco-circle" style="width:520px;height:520px;top:-160px;right:-120px;border-color:rgba(102,102,255,0.12);"></div>
+  <div class="deco-circle" style="width:300px;height:300px;bottom:80px;left:-90px;border-color:rgba(185,240,215,0.09);"></div>
+  <div class="deco-circle" style="width:180px;height:180px;top:60px;left:90px;border-color:rgba(184,186,255,0.07);"></div>
+
+  <!-- Corner frame dekorasi -->
+  <div style="position:absolute;top:22px;left:22px;width:40px;height:40px;border-top:1px solid rgba(102,102,255,0.3);border-left:1px solid rgba(102,102,255,0.3);pointer-events:none;"></div>
+  <div style="position:absolute;top:22px;right:22px;width:40px;height:40px;border-top:1px solid rgba(184,186,255,0.25);border-right:1px solid rgba(184,186,255,0.25);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:22px;left:22px;width:40px;height:40px;border-bottom:1px solid rgba(185,240,215,0.2);border-left:1px solid rgba(185,240,215,0.2);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:22px;right:22px;width:40px;height:40px;border-bottom:1px solid rgba(184,186,255,0.2);border-right:1px solid rgba(184,186,255,0.2);pointer-events:none;"></div>
+
+  <!-- Particle canvas (lokal per slide) -->
+  <canvas id="landing-canvas" style="position:absolute;inset:0;pointer-events:none;z-index:0;"></canvas>
+
+  <!-- Konten utama -->
+  <div style="
+    position:relative;z-index:1;
+    max-width:1200px;width:100%;
+    display:flex;flex-direction:column;
+    align-items:center;
+    gap:clamp(12px,2vh,24px);
+    text-align:center;
+  ">
+
+    <!-- Badge -->
+    <div class="badge badge-blue slide-in" style="animation-delay:0s;">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--slate-blue);animation:pulse 2s infinite;display:inline-block;"></span>
+      Visualisasi Data &nbsp;·&nbsp; AI &amp; Future of Jobs &nbsp;·&nbsp; 2025
+    </div>
+
+    <!-- ═══ AKRONIM HERO ═══
+         P·A·R·A·D·O·K·S
+         Profesi · Ancaman · Risiko · Adaptasi · Digitalisasi · Otomatisasi · Karir · Strategis
+    -->
+    <div class="slide-in" style="
+      display:flex;flex-direction:column;
+      align-items:center;
+      gap:clamp(4px,0.8vh,10px);
+    ">
+
+      <!-- Baris 1: P A R A -->
+      <div style="display:flex;align-items:center;gap:clamp(10px,1.5vw,28px);flex-wrap:wrap;justify-content:center;">
+
+        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
+          <span id="lp-P" style="
+            font-family:'Orbitron',monospace;font-weight:900;
+            font-size:clamp(3.2rem,9vw,8.5rem);
+            line-height:.9;color:var(--columbia-blue);
+            text-shadow:0 0 36px rgba(102,102,255,0.6),0 0 72px rgba(102,102,255,0.2);
+            transition:transform .2s,color .2s;cursor:default;
+          ">P</span>
+          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
+            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
+            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--columbia-blue);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Profesi</span>
+          </div>
+        </div>
+
+        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
+
+        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
+          <span style="
+            font-family:'Orbitron',monospace;font-weight:900;
+            font-size:clamp(3.2rem,9vw,8.5rem);
+            line-height:.9;color:var(--hot-pink);
+            text-shadow:0 0 36px rgba(255,77,166,0.6),0 0 72px rgba(255,77,166,0.2);
+            cursor:default;
+          ">A</span>
+          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
+            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
+            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--hot-pink);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Ancaman</span>
+          </div>
+        </div>
+
+        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
+
+        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
+          <span style="
+            font-family:'Orbitron',monospace;font-weight:900;
+            font-size:clamp(3.2rem,9vw,8.5rem);
+            line-height:.9;color:var(--columbia-blue);
+            text-shadow:0 0 36px rgba(102,102,255,0.6),0 0 72px rgba(102,102,255,0.2);
+            cursor:default;
+          ">R</span>
+          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
+            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
+            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--columbia-blue);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Risiko</span>
+          </div>
+        </div>
+
+        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
+
+        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
+          <span style="
+            font-family:'Orbitron',monospace;font-weight:900;
+            font-size:clamp(3.2rem,9vw,8.5rem);
+            line-height:.9;color:var(--celadon);
+            text-shadow:0 0 36px rgba(185,240,215,0.6),0 0 72px rgba(185,240,215,0.2);
+            cursor:default;
+          ">A</span>
+          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
+            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
+            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--celadon);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Adaptasi</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Baris 2: D O K S -->
+      <div style="display:flex;align-items:center;gap:clamp(10px,1.5vw,28px);flex-wrap:wrap;justify-content:center;">
+
+        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
+          <span style="
+            font-family:'Orbitron',monospace;font-weight:900;
+            font-size:clamp(3.2rem,9vw,8.5rem);
+            line-height:.9;color:var(--periwinkle);
+            text-shadow:0 0 36px rgba(184,186,255,0.6),0 0 72px rgba(184,186,255,0.2);
+            cursor:default;
+          ">D</span>
+          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
+            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
+            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--periwinkle);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Digitalisasi</span>
+          </div>
+        </div>
+
+        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
+
+        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
+          <span style="
+            font-family:'Orbitron',monospace;font-weight:900;
+            font-size:clamp(3.2rem,9vw,8.5rem);
+            line-height:.9;color:var(--hot-pink);
+            text-shadow:0 0 36px rgba(255,77,166,0.6),0 0 72px rgba(255,77,166,0.2);
+            cursor:default;
+          ">O</span>
+          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
+            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
+            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--hot-pink);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Otomatisasi</span>
+          </div>
+        </div>
+
+        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
+
+        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
+          <span style="
+            font-family:'Orbitron',monospace;font-weight:900;
+            font-size:clamp(3.2rem,9vw,8.5rem);
+            line-height:.9;color:var(--columbia-blue);
+            text-shadow:0 0 36px rgba(102,102,255,0.6),0 0 72px rgba(102,102,255,0.2);
+            cursor:default;
+          ">K</span>
+          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
+            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
+            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--columbia-blue);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Karir</span>
+          </div>
+        </div>
+
+        <span style="font-family:Orbitron;font-size:clamp(1.2rem,2.5vw,3rem);color:rgba(102,102,255,0.3);line-height:1;">·</span>
+
+        <div style="display:flex;align-items:flex-end;gap:clamp(4px,0.6vw,10px);">
+          <span style="
+            font-family:'Orbitron',monospace;font-weight:900;
+            font-size:clamp(3.2rem,9vw,8.5rem);
+            line-height:.9;color:var(--celadon);
+            text-shadow:0 0 36px rgba(185,240,215,0.6),0 0 72px rgba(185,240,215,0.2);
+            cursor:default;
+          ">S</span>
+          <div style="display:flex;flex-direction:column;padding-bottom:6px;">
+            <span style="font-family:Rajdhani;font-size:clamp(.5rem,1vw,.8rem);color:rgba(184,186,255,0.4);letter-spacing:.08em;text-transform:uppercase;">singkatan dari</span>
+            <span style="font-family:Rajdhani;font-weight:700;font-size:clamp(.8rem,1.8vw,1.5rem);color:var(--celadon);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Strategis</span>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /akronim -->
+
+    <!-- Garis neon -->
+    <div class="neon-line slide-in" style="width:clamp(160px,28vw,360px);"></div>
+
+    <!-- Subtitle -->
+    <p class="slide-in" style="
+      font-size:clamp(.8rem,1.3vw,.98rem);
+      color:rgba(184,186,255,0.6);
+      max-width:520px;line-height:1.75;
+    ">
+      Di balik tingginya permintaan pasar kerja digital, tersimpan paradoks —
+      <strong style="color:var(--columbia-blue);">tidak semua profesi IT aman dari gelombang otomatisasi.</strong>
+      Temukan datanya.
+    </p>
+
+    <!-- CTA -->
+    <div class="slide-in" style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+      <button onclick="goTo(1)" style="
+        display:inline-flex;align-items:center;gap:10px;
+        padding:clamp(9px,1.2vh,14px) clamp(24px,3vw,44px);
+        background:linear-gradient(135deg,var(--slate-blue),rgba(102,102,255,0.7));
+        border:none;border-radius:8px;
+        font-family:'Orbitron',monospace;
+        font-size:clamp(9px,1vw,12px);
+        letter-spacing:.18em;color:#fff;cursor:pointer;
+        box-shadow:0 0 28px rgba(102,102,255,0.45);
+        transition:box-shadow .3s,transform .2s;
+      "
+      onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 44px rgba(102,102,255,0.7)'"
+      onmouseleave="this.style.transform='';this.style.boxShadow='0 0 28px rgba(102,102,255,0.45)'"
+      >
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+        MULAI EKSPLORASI
+      </button>
+    </div>
+
+    <!-- Stat strip inline -->
+    <div class="slide-in" style="
+      display:flex;align-items:center;gap:clamp(14px,2.5vw,40px);
+      padding:clamp(10px,1.4vh,16px) clamp(20px,3vw,40px);
+      border:1px solid rgba(102,102,255,0.15);
+      border-radius:12px;
+      background:rgba(12,12,30,0.5);
+      backdrop-filter:blur(10px);
+      flex-wrap:wrap;justify-content:center;
+      margin-top:clamp(2px,0.5vh,8px);
+    ">
+      <div style="text-align:center;">
+        <div style="font-family:Orbitron;font-size:clamp(.9rem,1.8vw,1.2rem);font-weight:700;color:var(--hot-pink);text-shadow:0 0 12px rgba(255,77,166,0.5);">18.59%</div>
+        <div style="font-size:9px;letter-spacing:.1em;color:rgba(184,186,255,0.4);text-transform:uppercase;margin-top:2px;">High Risk</div>
+      </div>
+      <div style="width:1px;height:32px;background:rgba(102,102,255,0.2);"></div>
+      <div style="text-align:center;">
+        <div style="font-family:Orbitron;font-size:clamp(.9rem,1.8vw,1.2rem);font-weight:700;color:var(--periwinkle);">48.74%</div>
+        <div style="font-size:9px;letter-spacing:.1em;color:rgba(184,186,255,0.4);text-transform:uppercase;margin-top:2px;">Medium Risk</div>
+      </div>
+      <div style="width:1px;height:32px;background:rgba(102,102,255,0.2);"></div>
+      <div style="text-align:center;">
+        <div style="font-family:Orbitron;font-size:clamp(.9rem,1.8vw,1.2rem);font-weight:700;color:var(--celadon);text-shadow:0 0 12px rgba(185,240,215,0.4);">32.67%</div>
+        <div style="font-size:9px;letter-spacing:.1em;color:rgba(184,186,255,0.4);text-transform:uppercase;margin-top:2px;">Low Risk</div>
+      </div>
+      <div style="width:1px;height:32px;background:rgba(102,102,255,0.2);"></div>
+      <div style="text-align:center;">
+        <div style="font-family:Orbitron;font-size:clamp(.9rem,1.8vw,1.2rem);font-weight:700;color:var(--columbia-blue);">12.546</div>
+        <div style="font-size:9px;letter-spacing:.1em;color:rgba(184,186,255,0.4);text-transform:uppercase;margin-top:2px;">Data Records</div>
+      </div>
+    </div>
+
+  </div><!-- /konten utama -->
+
+  <!-- Scroll hint -->
+  <div class="scroll-down" onclick="goTo(1)" style="z-index:2;">
+    <svg width="26" height="26" fill="none" stroke="var(--slate-blue)" stroke-width="2.5" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+
+</section>
+
+<script>
+// Partikel mengambang — lokal untuk slide landing, tidak konflik global
+(function initLandingParticles() {
+  const canvas = document.getElementById('landing-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    const section = canvas.parentElement;
+    canvas.width  = section.offsetWidth;
+    canvas.height = section.offsetHeight;
+  }
+  resize();
+  // Re-resize saat window resize
+  window.addEventListener('resize', resize);
+
+  const COLS = [
+    'rgba(102,102,255,',
+    'rgba(184,186,255,',
+    'rgba(185,240,215,',
+    'rgba(255,77,166,',
+  ];
+
+  function mkParticle(W, H) {
+    return {
+      x: Math.random() * W,
+      y: H + 10,
+      r: Math.random() * 1.6 + 0.3,
+      vx: (Math.random() - .5) * .3,
+      vy: -Math.random() * .38 - .08,
+      alpha: Math.random() * .45 + .1,
+      col: COLS[Math.floor(Math.random() * COLS.length)],
+      life: 0,
+      maxLife: 160 + Math.random() * 200,
+    };
+  }
+
+  let particles = [];
+  function populate() {
+    const W = canvas.width, H = canvas.height;
+    particles = Array.from({ length: 70 }, () => {
+      const p = mkParticle(W, H);
+      p.y = Math.random() * H; // scatter on init
+      return p;
+    });
+  }
+  populate();
+  window.addEventListener('resize', populate);
+
+  let rafId;
+  function animate() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach((p, idx) => {
+      p.x += p.vx; p.y += p.vy; p.life++;
+      const t = p.life / p.maxLife;
+      const a = p.alpha * (t < .15 ? t / .15 : t > .75 ? 1 - (t - .75) / .25 : 1);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.col + a + ')';
+      ctx.fill();
+      if (p.life > p.maxLife || p.y < -10) {
+        particles[idx] = mkParticle(W, H);
+      }
+    });
+    rafId = requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Stop animation ketika slide ini tidak terlihat (optimasi)
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      if (!rafId) animate();
+    } else {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }, { threshold: 0.1 });
+  observer.observe(canvas.parentElement);
+})();
+</script>

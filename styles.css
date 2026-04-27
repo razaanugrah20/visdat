@@ -1,0 +1,307 @@
+/* ═══════════════════════════════════════════
+   SHARED STYLES — Future AI Jobs Web Story
+   Dipakai oleh semua slide
+═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --rich-black: #080810;
+  --deep-navy: #0c0c1e;
+  --slate-blue: #6666ff;
+  --periwinkle: #b8baff;
+  --columbia-blue: #c9e8ff;
+  --celadon: #b9f0d7;
+  --hot-pink: #ff4da6;
+  --amber: #ffb347;
+  --glass-bg: rgba(12,12,30,0.75);
+  --glass-border: rgba(102,102,255,0.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--rich-black);
+  color: var(--columbia-blue);
+  overflow: hidden;
+}
+
+/* ─── CIRCUIT BACKGROUND ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(102,102,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(102,102,255,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(102,102,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── STORY SCROLL ─── */
+#story {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  position: relative;
+  z-index: 1;
+}
+#story::-webkit-scrollbar { display: none; }
+
+.slide {
+  height: 100vh;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 5vw;
+}
+
+/* ─── SLIDE DOTS ─── */
+#dots {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(184,186,255,0.3);
+  cursor: pointer;
+  transition: all .3s;
+  border: 1px solid rgba(102,102,255,0.4);
+}
+.dot.active {
+  background: var(--slate-blue);
+  box-shadow: 0 0 8px var(--slate-blue);
+  transform: scale(1.4);
+}
+
+/* ─── PROGRESS BAR ─── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--slate-blue), var(--celadon));
+  transition: width .3s;
+  z-index: 200;
+  box-shadow: 0 0 8px var(--slate-blue);
+}
+
+/* ─── GLASS PANEL ─── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+}
+.glass-accent {
+  background: rgba(102,102,255,0.08);
+  border: 1px solid rgba(102,102,255,0.35);
+  border-radius: 12px;
+}
+
+/* ─── NEON GLOW ─── */
+.glow-blue { text-shadow: 0 0 20px rgba(102,102,255,0.9), 0 0 40px rgba(102,102,255,0.4); }
+.glow-celadon { text-shadow: 0 0 20px rgba(185,240,215,0.8), 0 0 40px rgba(185,240,215,0.3); }
+.glow-pink { text-shadow: 0 0 20px rgba(255,77,166,0.8); }
+
+.neon-line {
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, var(--slate-blue), var(--celadon), transparent);
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--slate-blue);
+  margin: 12px 0;
+}
+
+/* ─── TYPOGRAPHY ─── */
+.font-orbit { font-family: 'Orbitron', monospace; }
+.font-raj { font-family: 'Rajdhani', sans-serif; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: 1px solid;
+}
+.badge-blue { border-color: var(--slate-blue); color: var(--slate-blue); background: rgba(102,102,255,0.1); }
+.badge-celadon { border-color: var(--celadon); color: var(--celadon); background: rgba(185,240,215,0.1); }
+.badge-pink { border-color: var(--hot-pink); color: var(--hot-pink); background: rgba(255,77,166,0.1); }
+
+/* ─── CHART CONTAINERS ─── */
+.chart-box { width: 100%; height: 100%; }
+
+/* ─── SCROLL ARROW ─── */
+.scroll-down {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bob 2s ease-in-out infinite;
+  opacity: .6;
+  cursor: pointer;
+}
+@keyframes bob {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* ─── SLIDE ANIMATIONS ─── */
+.slide-in { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+.slide-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── STAT CARDS ─── */
+.stat-card {
+  padding: 20px 24px;
+  border-radius: 14px;
+  border: 1px solid;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(102,102,255,0.15) 0%, transparent 70%);
+}
+
+/* ─── MAP POPUP ─── */
+.leaflet-popup-content-wrapper {
+  background: rgba(8,8,20,0.95) !important;
+  color: var(--columbia-blue) !important;
+  border: 1px solid var(--slate-blue) !important;
+  border-radius: 10px !important;
+  font-family: 'Outfit', sans-serif !important;
+  box-shadow: 0 0 20px rgba(102,102,255,0.4) !important;
+}
+.leaflet-popup-tip { background: rgba(102,102,255,0.4) !important; }
+.leaflet-popup-close-button { color: var(--periwinkle) !important; }
+.popup-title { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 16px; color: var(--slate-blue); margin-bottom: 8px; }
+.popup-row { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; padding: 3px 0; border-bottom: 1px solid rgba(102,102,255,0.15); }
+.popup-row:last-child { border-bottom: none; }
+.popup-label { color: var(--periwinkle); }
+.popup-val { color: var(--celadon); font-weight: 600; }
+
+/* ─── SKILL BADGE ─── */
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(102,102,255,0.12);
+  border: 1px solid rgba(102,102,255,0.3);
+  border-radius: 30px;
+  font-size: 14px;
+  transition: all .3s;
+}
+.skill-pill:hover { background: rgba(102,102,255,0.25); border-color: var(--slate-blue); transform: translateX(4px); }
+
+/* ─── COMPARISON CARD ─── */
+.compare-card {
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+}
+.risk-bar { height: 6px; border-radius: 3px; margin-top: 10px; }
+
+/* ─── LEGEND DOT ─── */
+.ldot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+/* ─── DECORATIVE CIRCLES ─── */
+.deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  opacity: .15;
+  pointer-events: none;
+}
+
+/* ─── LEAFLET MAP ─── */
+#worldMap { width: 100%; height: 100%; border-radius: 14px; }
+.info-legend {
+  background: rgba(8,8,20,0.9) !important;
+  border: 1px solid rgba(102,102,255,0.3) !important;
+  border-radius: 8px !important;
+  color: var(--columbia-blue) !important;
+  padding: 10px 14px !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 12px !important;
+  line-height: 1.8 !important;
+}
+.info-legend h4 { font-family: 'Rajdhani'; font-size: 14px; color: var(--slate-blue); margin-bottom: 4px; }
+
+/* ─── GRID HELPERS ─── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .slide { padding: 0 4vw; }
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(1.5)}
+}
+
+/* ─── ENHANCED MAP TOOLTIP ─── */
+.leaflet-tooltip {
+  background: rgba(8,8,20,0.95) !important;
+  border: 1px solid rgba(102,102,255,0.5) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-family: 'Outfit', sans-serif !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
+  color: var(--columbia-blue) !important;
+}
+
+.leaflet-tooltip-top:before {
+  border-top-color: rgba(102,102,255,0.5) !important;
+}
+
+.leaflet-tooltip-bottom:before {
+  border-bottom-color: rgba(102,102,255,0.5) !important;
+}
+
+.leaflet-tooltip-left:before {
+  border-left-color: rgba(102,102,255,0.5) !important;
+}
+
+.leaflet-tooltip-right:before {
+  border-right-color: rgba(102,102,255,0.5) !important;
+}

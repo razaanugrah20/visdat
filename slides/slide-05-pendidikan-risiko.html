@@ -1,0 +1,290 @@
+<!--
+  SLIDE 6 — PENDIDIKAN & RISIKO (DINAMIS)
+  Data: window.SLIDE_DATA.slide5 → [{ education_level, high_risk_pct, medium_risk_pct, low_risk_pct }]
+-->
+
+<section class="slide" id="s5">
+  <div class="deco-circle" style="width:400px;height:400px;border-color:var(--periwinkle);top:-120px;right:-80px;"></div>
+
+  <div style="max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(16px,2.8vw,36px);align-items:center;">
+
+    <!-- NARASI KIRI -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+
+      <div class="badge badge-blue slide-in">Slide 6 · Pendidikan &amp; Risiko</div>
+
+      <h2 class="font-raj slide-in" style="font-size:clamp(1.6rem,3.8vw,2.8rem);font-weight:700;line-height:1.1;margin:0;">
+        GELAR LEBIH TINGGI,<br>
+        <span style="color:var(--periwinkle);">RISIKO SAMA SAJA?</span>
+      </h2>
+
+      <span class="neon-line slide-in" style="width:140px;"></span>
+
+      <!-- Narasi singkat — 1 kalimat kuat -->
+      <p class="slide-in" style="color:var(--periwinkle);font-size:.9rem;line-height:1.75;margin:0;">
+        AI tidak membaca ijazah —
+        <strong style="color:var(--columbia-blue);">ia membaca apa yang bisa kamu kerjakan.</strong>
+      </p>
+
+      <!-- Narasi dinamis — singkat, berubah per filter -->
+      <p id="edu-narasi" class="slide-in" style="color:rgba(184,186,255,0.65);font-size:.82rem;line-height:1.75;margin:0;min-height:52px;transition:opacity .3s;"></p>
+
+      <!-- Filter buttons -->
+      <div class="slide-in" style="display:flex;flex-direction:column;gap:7px;">
+        <span style="font-size:10px;color:var(--periwinkle);opacity:.5;font-family:'Outfit';letter-spacing:.08em;">FOKUS RISIKO :</span>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;">
+          <button id="flt-all"  onclick="filterEdu('all')"
+            style="font-family:'Rajdhani';font-size:11px;font-weight:700;letter-spacing:.06em;padding:5px 13px;border-radius:20px;border:1px solid var(--periwinkle);background:var(--periwinkle);color:#080814;cursor:pointer;transition:all .25s;">
+            SEMUA
+          </button>
+          <button id="flt-high" onclick="filterEdu('high')"
+            style="font-family:'Rajdhani';font-size:11px;font-weight:700;letter-spacing:.06em;padding:5px 13px;border-radius:20px;border:1px solid rgba(184,186,255,0.25);background:transparent;color:var(--periwinkle);cursor:pointer;transition:all .25s;">
+            HIGH RISK
+          </button>
+          <button id="flt-med"  onclick="filterEdu('med')"
+            style="font-family:'Rajdhani';font-size:11px;font-weight:700;letter-spacing:.06em;padding:5px 13px;border-radius:20px;border:1px solid rgba(184,186,255,0.25);background:transparent;color:var(--periwinkle);cursor:pointer;transition:all .25s;">
+            MEDIUM
+          </button>
+          <button id="flt-low"  onclick="filterEdu('low')"
+            style="font-family:'Rajdhani';font-size:11px;font-weight:700;letter-spacing:.06em;padding:5px 13px;border-radius:20px;border:1px solid rgba(184,186,255,0.25);background:transparent;color:var(--periwinkle);cursor:pointer;transition:all .25s;">
+            LOW RISK
+          </button>
+        </div>
+      </div>
+
+      <!-- Insight box — berubah per filter -->
+      <div class="glass-accent slide-in" style="padding:12px 14px;border-left:2px solid var(--periwinkle);">
+        <p id="edu-insight" style="font-size:12px;color:var(--columbia-blue);line-height:1.6;margin:0;transition:opacity .3s;"></p>
+      </div>
+
+      <!-- Quote -->
+      <p class="slide-in" style="font-size:11px;color:rgba(184,186,255,0.4);font-style:italic;margin:0;line-height:1.6;">
+        "Gelar membuka pintu. Skill menentukan apakah kamu bertahan di dalamnya."
+      </p>
+
+    </div>
+
+    <!-- CHART KANAN -->
+    <div style="display:flex;flex-direction:column;gap:10px;">
+
+      <!-- Chart -->
+      <div class="glass slide-in" style="padding:20px 24px;height:clamp(200px,42vh,370px);">
+        <div style="font-family:Rajdhani;font-size:12px;font-weight:600;color:var(--periwinkle);letter-spacing:.08em;opacity:.6;margin-bottom:4px;">
+          DISTRIBUSI RISIKO AI PER JENJANG PENDIDIKAN
+        </div>
+        <div id="eduChart" class="chart-box" style="height:calc(100% - 24px);"></div>
+      </div>
+
+      <!-- Caption dinamis -->
+      <div class="glass-accent slide-in" style="padding:10px 15px;">
+        <p id="edu-caption" style="font-size:11.5px;color:var(--periwinkle);line-height:1.6;margin:0;font-style:italic;transition:opacity .3s;"></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function initSlide6Edu() {
+  const C = window.PALETTE;
+
+  const FALLBACK = [
+    { education_level:'Bachelor', high_risk_pct:0.7147, medium_risk_pct:0.3986, low_risk_pct:0.2087 },
+    { education_level:'Master',   high_risk_pct:0.7211, medium_risk_pct:0.3975, low_risk_pct:0.2099 },
+    { education_level:'PhD',      high_risk_pct:0.7168, medium_risk_pct:0.3975, low_risk_pct:0.2123 },
+  ];
+
+  const raw = (window.SLIDE_DATA && window.SLIDE_DATA.slide5) ? window.SLIDE_DATA.slide5 : FALLBACK;
+
+  function normLevel(lvl) {
+    const l = (lvl||'').toLowerCase().trim();
+    if (l.startsWith('bachelor')) return 'Bachelor';
+    if (l.startsWith('master'))   return 'Master';
+    if (l.startsWith('phd') || l === 'doctorate') return 'PhD';
+    return lvl;
+  }
+
+  const map = {};
+  raw.forEach(r => {
+    const key = normLevel(r.education_level);
+    if (!map[key]) map[key] = { high:0, medium:0, low:0, n:0 };
+    map[key].high   += parseFloat(r.high_risk_pct)   || 0;
+    map[key].medium += parseFloat(r.medium_risk_pct) || 0;
+    map[key].low    += parseFloat(r.low_risk_pct)    || 0;
+    map[key].n++;
+  });
+
+  const ORDER = ['Bachelor','Master','PhD'];
+  const rows = ORDER.filter(k => map[k]).map(k => ({
+    education_level:  k,
+    high_risk_pct:   map[k].high   / map[k].n,
+    medium_risk_pct: map[k].medium / map[k].n,
+    low_risk_pct:    map[k].low    / map[k].n,
+  }));
+
+  const xLabels = rows.map(r => r.education_level);
+  const highData = rows.map(r => +r.high_risk_pct.toFixed(4));
+  const medData  = rows.map(r => +r.medium_risk_pct.toFixed(4));
+  const lowData  = rows.map(r => +r.low_risk_pct.toFixed(4));
+
+  const avg = arr => arr.reduce((s,v)=>s+v,0)/arr.length;
+  const avgHigh = avg(highData);
+  const avgMed  = avg(medData);
+  const avgLow  = avg(lowData);
+
+  const spreadHigh = ((Math.max(...highData)-Math.min(...highData))*100).toFixed(2);
+  const spreadMed  = ((Math.max(...medData) -Math.min(...medData))*100).toFixed(2);
+  const spreadLow  = ((Math.max(...lowData) -Math.min(...lowData))*100).toFixed(2);
+
+  // ── KONTEN DINAMIS PER MODE ─────────────────────────────────────────
+  const CONTENT = {
+    all: {
+      narasi:  `Dari Bachelor hingga PhD, tiga bar berulang dengan pola yang nyaris identik. High risk ~<strong style="color:var(--periwinkle);">${(avgHigh*100).toFixed(1)}%</strong>, medium ~<strong style="color:var(--periwinkle);">${(avgMed*100).toFixed(1)}%</strong> — angka yang tidak bergeser meski gelar makin tinggi.`,
+      insight: `<strong style="color:var(--celadon);">Tiga jenjang, satu pola.</strong> AI benar-benar agnostik terhadap gelar — yang dinilai bukan titel di CV, tapi skill yang ada di baliknya.`,
+      caption: `Bachelor, Master, PhD — proporsi risikonya hampir sama persis. <strong style="color:var(--columbia-blue);">Skill jauh lebih menentukan dari selembar ijazah.</strong>`,
+    },
+    high: {
+      narasi:  `Fokus ke <strong style="color:var(--periwinkle);">High Risk</strong>: Bachelor <strong>${(highData[0]*100).toFixed(1)}%</strong>, Master <strong>${(highData[1]*100).toFixed(1)}%</strong>, PhD <strong>${(highData[2]*100).toFixed(1)}%</strong>. Selisih hanya <strong style="color:var(--celadon);">${spreadHigh}%</strong> — hampir tak terlihat.`,
+      insight: `<strong style="color:var(--periwinkle);">High Risk</strong> mendominasi semua jenjang di atas 70%. Gap Bachelor↔PhD cuma <strong>${spreadHigh}%</strong> — artinya 8 tahun kuliah tambahan tidak menggeser angka risiko secara berarti.`,
+      caption: `Zoom ke High Risk — tiga jenjang, angka yang hampir <strong style="color:var(--columbia-blue);">tidak bisa dibedakan.</strong>`,
+    },
+    med: {
+      narasi:  `Zona <strong style="color:var(--periwinkle);">Medium Risk</strong> stabil di ~<strong>${(avgMed*100).toFixed(1)}%</strong> lintas jenjang. Selisih antar gelar hanya <strong style="color:var(--celadon);">${spreadMed}%</strong> — zona abu-abu yang sama ratanya.`,
+      insight: `<strong style="color:var(--periwinkle);">Medium Risk</strong> adalah zona transisi — otomasi sudah masuk, tapi belum total. Ironisnya, PhD tidak lebih "aman" dari Bachelor di zona ini.`,
+      caption: `Medium Risk hampir identik di semua jenjang. <strong style="color:var(--columbia-blue);">Pendidikan bukan tameng di zona abu-abu ini.</strong>`,
+    },
+    low: {
+      narasi:  `Hanya ~<strong style="color:#c9e8ff;">${(avgLow*100).toFixed(1)}%</strong> yang berada di zona aman <strong>Low Risk</strong>. Dan angka ini nyaris sama dari Bachelor ke PhD — selisih cuma <strong style="color:var(--celadon);">${spreadLow}%</strong>.`,
+      insight: `Zona <strong style="color:#c9e8ff;">Low Risk</strong> adalah yang paling sedikit — dan tetap sama kecilnya di semua jenjang. Yang masuk zona ini bukan karena gelarnya, tapi karena <strong>jenis skill dan pekerjaannya.</strong>`,
+      caption: `Low Risk tetap minoritas di semua jenjang. <strong style="color:var(--columbia-blue);">Faktor penentu bukan pendidikan, tapi pilihan karir dan skill.</strong>`,
+    },
+  };
+
+  function updateContent(mode) {
+    const c = CONTENT[mode];
+    const narasi  = document.getElementById('edu-narasi');
+    const insight = document.getElementById('edu-insight');
+    const caption = document.getElementById('edu-caption');
+    // fade out → update → fade in
+    [narasi, insight, caption].forEach(el => el.style.opacity = '0');
+    setTimeout(() => {
+      narasi.innerHTML  = c.narasi;
+      insight.innerHTML = c.insight;
+      caption.innerHTML = c.caption;
+      [narasi, insight, caption].forEach(el => el.style.opacity = '1');
+    }, 200);
+  }
+
+  // ── CHART ───────────────────────────────────────────────────────────
+  const eduEC = echarts.init(document.getElementById('eduChart'), null, { renderer:'canvas' });
+
+  const mkColor = (hex, alpha) => ({
+    type:'linear', x:0, y:1, x2:0, y2:0,
+    colorStops:[{offset:0,color:hex+(alpha||'')},{offset:1,color:hex}]
+  });
+
+  const DIM = 'rgba(184,186,255,0.07)';
+
+  function buildSeries(mode) {
+    const vis = s => mode === 'all' ||
+      (mode==='high' && s==='high') ||
+      (mode==='med'  && s==='med')  ||
+      (mode==='low'  && s==='low');
+
+    const lbl = (col, show) => ({
+      show, position:'top', fontFamily:'Outfit', fontSize:11,
+      color: col, formatter: p => (p.value*100).toFixed(1)+'%'
+    });
+
+    return [
+      {
+        name:'Low Risk', type:'bar', barWidth:'22%', barGap:'10%',
+        data: lowData,
+        itemStyle:{ borderRadius:[6,6,0,0], color: vis('low') ? mkColor('#c9e8ff','55') : DIM },
+        label: lbl('#c9e8ff', vis('low')),
+      },
+      {
+        name:'Medium Risk', type:'bar', barWidth:'22%',
+        data: medData,
+        itemStyle:{ borderRadius:[6,6,0,0], color: vis('med') ? mkColor(C.peri,'66') : DIM },
+        label: lbl(C.peri, vis('med')),
+      },
+      {
+        name:'High Risk', type:'bar', barWidth:'22%',
+        data: highData,
+        itemStyle:{ borderRadius:[6,6,0,0], color: vis('high') ? mkColor(C.blue,'88') : DIM },
+        label: lbl(C.col, vis('high')),
+      },
+    ];
+  }
+
+  function renderEdu(mode) {
+    eduEC.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger:'axis', axisPointer:{type:'shadow'},
+        backgroundColor:'rgba(8,8,20,0.95)', borderColor:C.blue,
+        textStyle:{ color:C.col, fontFamily:'Outfit' },
+        formatter: params => {
+          const edu = params[0].axisValue;
+          let html = `<div style="font-family:'Rajdhani';font-size:14px;font-weight:700;color:${C.peri};margin-bottom:4px;">${edu}</div>`;
+          params.forEach(p => {
+            const show = mode==='all' ||
+              (mode==='high'&&p.seriesName==='High Risk') ||
+              (mode==='med'&&p.seriesName==='Medium Risk') ||
+              (mode==='low'&&p.seriesName==='Low Risk');
+            if (show) html += `<div style="display:flex;justify-content:space-between;gap:14px;font-size:12px;margin-top:2px;">
+              <span>${p.marker}${p.seriesName}</span>
+              <strong style="color:${C.col};">${(+p.value*100).toFixed(2)}%</strong>
+            </div>`;
+          });
+          return html;
+        },
+      },
+      legend:{
+        data:['Low Risk','Medium Risk','High Risk'],
+        textStyle:{ color:C.peri, fontFamily:'Outfit', fontSize:11 },
+        top:0,
+      },
+      grid:{ left:'3%', right:'4%', bottom:'8%', top:'14%', containLabel:true },
+      xAxis:{
+        type:'category', data:xLabels,
+        axisLabel:{ color:C.col, fontFamily:'Outfit', fontSize:13 },
+        axisLine:{ lineStyle:{ color:'rgba(184,186,255,0.15)' } },
+        axisTick:{ show:false },
+      },
+      yAxis:{
+        type:'value', min:0, max:0.8,
+        axisLabel:{ color:C.peri, fontFamily:'Outfit', formatter:p=>(p*100).toFixed(0)+'%' },
+        splitLine:{ lineStyle:{ color:'rgba(184,186,255,0.07)', type:'dashed' } },
+      },
+      series: buildSeries(mode),
+    });
+  }
+
+  // ── FILTER HANDLER ──────────────────────────────────────────────────
+  window.filterEdu = function(mode) {
+    renderEdu(mode);
+    updateContent(mode);
+    ['all','high','med','low'].forEach(m => {
+      const btn = document.getElementById('flt-'+m);
+      if (!btn) return;
+      if (m === mode) {
+        btn.style.background  = 'var(--periwinkle)';
+        btn.style.color       = '#080814';
+        btn.style.borderColor = 'var(--periwinkle)';
+      } else {
+        btn.style.background  = 'transparent';
+        btn.style.color       = 'var(--periwinkle)';
+        btn.style.borderColor = 'rgba(184,186,255,0.25)';
+      }
+    });
+  };
+
+  renderEdu('all');
+  updateContent('all');
+
+  window._charts = window._charts || [];
+  window._charts.push(eduEC);
+})();
+</script>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & Future of Jobs — Paradoks Dunia IT</title>
+
+<!-- ═══════════════════════════════════════════
+     MAIN RUNNER — index.html (versi dinamis MySQL)
+     Data diambil dari: api/data.php?slide=all
+     ─────────────────────────────────────────────
+     Cara pakai:
+     1. Jalankan lewat XAMPP/Laragon (bukan buka langsung di browser)
+        URL: http://localhost/presentasi/index.html
+     2. Pastikan api/data.php bisa diakses
+     3. Data tersimpan di window.SLIDE_DATA dan bisa dipakai
+        oleh semua file slide
+═══════════════════════════════════════════ -->
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- Loading screen (tampil selama fetch data) -->
+<div id="loading-screen" style="
+  position:fixed;inset:0;background:#080810;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;z-index:9999;transition:opacity .4s;
+">
+  <div style="font-family:Orbitron;font-size:1.2rem;color:#6666ff;letter-spacing:.2em;margin-bottom:16px;">
+    MEMUAT DATA
+  </div>
+  <div style="width:200px;height:3px;background:rgba(102,102,255,0.2);border-radius:2px;overflow:hidden;">
+    <div id="load-bar" style="height:100%;background:#6666ff;width:0%;transition:width .3s;border-radius:2px;"></div>
+  </div>
+  <div id="load-status" style="font-family:Outfit;font-size:12px;color:rgba(184,186,255,0.5);margin-top:10px;">
+    Menghubungkan ke database...
+  </div>
+</div>
+
+<!-- Error screen (tampil jika API gagal) -->
+<div id="error-screen" style="
+  position:fixed;inset:0;background:#080810;display:none;flex-direction:column;
+  align-items:center;justify-content:center;z-index:9998;
+">
+  <div style="font-family:Orbitron;font-size:1rem;color:#ff4da6;margin-bottom:12px;">⚠ GAGAL MEMUAT DATA</div>
+  <div id="error-msg" style="font-family:Outfit;font-size:13px;color:rgba(184,186,255,0.6);text-align:center;max-width:400px;line-height:1.6;"></div>
+  <button onclick="location.reload()" style="
+    margin-top:20px;padding:8px 24px;background:transparent;border:1px solid #6666ff;
+    color:#6666ff;font-family:Orbitron;font-size:11px;cursor:pointer;border-radius:4px;
+  ">COBA LAGI</button>
+</div>
+
+<!-- Progress Bar -->
+<div id="progress-bar" style="width:12.5%"></div>
+
+<!-- Slide Navigation Dots -->
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)" title="Landing Page"></div>
+  <div class="dot" onclick="goTo(1)" title="Slide 1: Cover"></div>
+  <div class="dot" onclick="goTo(2)" title="Slide 2: Bukti Paradoks"></div>
+  <div class="dot" onclick="goTo(3)" title="Slide 3: Perbandingan Profesi"></div>
+  <div class="dot" onclick="goTo(4)" title="Slide 4: Perbandingan Profesi"></div>
+  <div class="dot" onclick="goTo(5)" title="Slide 6: Top Skills"></div>
+  <div class="dot" onclick="goTo(6)" title="Slide 5: Pendidikan & Risiko"></div>
+  <div class="dot" onclick="goTo(7)" title="Slide 7: Job Survival"></div>
+  <div class="dot" onclick="goTo(8)" title="Slide 8: Salary per Pengalaman"></div>
+  <div class="dot" onclick="goTo(9)" title="Slide 9: World Heatmap"></div>
+  <div class="dot" onclick="goTo(10)" title="Slide 10: Penutup"></div>
+</div>
+
+<!-- Story Container -->
+<div id="story"></div>
+
+<script>
+// ═══════════════════════════════════════════
+// GLOBAL COLOUR PALETTE
+// ═══════════════════════════════════════════
+window.PALETTE = {
+  black: '#080810',
+  navy:  '#0c0c1e',
+  blue:  '#6666ff',
+  peri:  '#b8baff',
+  col:   '#c9e8ff',
+  cel:   '#b9f0d7',
+  pink:  '#ff4da6',
+  text:  'rgba(201,232,255,0.8)',
+};
+
+// ═══════════════════════════════════════════
+// DAFTAR SLIDE
+// ═══════════════════════════════════════════
+const SLIDE_FILES = [
+  'slides/slide-00-landing-page.html',
+  'slides/slide-01-cover.html',
+  'slides/slide-02-bukti-paradoks.html',
+  'slides/slide-03-salary-distribution.html',
+  'slides/slide-04-salary-bucket.html',
+  'slides/slide-06-top-skills.html',
+  'slides/slide-05-pendidikan-risiko.html',
+  'slides/slide-07-stacked-jobtitle.html',
+  'slides/slide-08-salary-experience.html',
+  'slides/slide-09-world-heatmap.html',
+  'slides/slide-10-penutup.html',
+];
+
+// ═══════════════════════════════════════════
+// ENDPOINT API PHP
+// Ganti URL ini jika folder presentasi kamu
+// bukan di root htdocs XAMPP
+// ═══════════════════════════════════════════
+const API_URL = 'data.php?slide=all';
+
+// ── Loading UI helpers ─────────────────────
+function setLoadStatus(msg, pct) {
+  document.getElementById('load-status').textContent = msg;
+  document.getElementById('load-bar').style.width = pct + '%';
+}
+
+function showError(msg) {
+  document.getElementById('loading-screen').style.display = 'none';
+  const err = document.getElementById('error-screen');
+  err.style.display = 'flex';
+  document.getElementById('error-msg').textContent = msg;
+}
+
+function hideLoading() {
+  const el = document.getElementById('loading-screen');
+  el.style.opacity = '0';
+  setTimeout(() => el.style.display = 'none', 400);
+}
+
+// ═══════════════════════════════════════════
+// MAIN BOOT SEQUENCE
+// 1. Fetch data dari PHP API
+// 2. Simpan ke window.SLIDE_DATA
+// 3. Load semua slide HTML
+// 4. Inisialisasi navigasi
+// ═══════════════════════════════════════════
+async function boot() {
+  try {
+    // ── Step 1: Fetch data dari API ───────
+    setLoadStatus('Mengambil data dari database...', 20);
+    const res = await fetch(API_URL);
+
+    if (!res.ok) {
+      throw new Error(`API error: HTTP ${res.status}. Pastikan XAMPP/Laragon sudah jalan dan file data.php ada.`);
+    }
+
+    const json = await res.json();
+    if (!json.success) {
+      throw new Error('API error: ' + (json.error || 'Unknown error'));
+    }
+
+    // ── Step 2: Simpan global ─────────────
+    // Semua slide bisa akses via window.SLIDE_DATA.slide1, .slide2, dst
+    window.SLIDE_DATA = json.data;
+    setLoadStatus('Data diterima. Memuat slide...', 50);
+
+    // ── Step 3: Load slide HTML ───────────
+    await loadSlides();
+
+    // ── Step 4: Selesai ───────────────────
+    setLoadStatus('Selesai!', 100);
+    setTimeout(hideLoading, 300);
+
+  } catch (err) {
+    console.error('[boot] Error:', err);
+    showError(err.message + '\n\nPastikan kamu membuka presentasi lewat localhost (XAMPP/Laragon), bukan langsung buka file HTML.');
+  }
+}
+
+// ═══════════════════════════════════════════
+// SLIDE LOADER (sama seperti sebelumnya)
+// ═══════════════════════════════════════════
+async function loadSlides() {
+  const story = document.getElementById('story');
+  const total = SLIDE_FILES.length;
+
+  for (let i = 0; i < total; i++) {
+    const file = SLIDE_FILES[i];
+    setLoadStatus(`Memuat slide ${i + 1} dari ${total}...`, 50 + (i / total) * 45);
+
+    try {
+      const res = await fetch(file);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const html = await res.text();
+
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = html;
+
+      const scripts = wrapper.querySelectorAll('script');
+      const scriptContents = [];
+      scripts.forEach(s => {
+        scriptContents.push(s.textContent);
+        s.remove();
+      });
+
+      story.insertAdjacentHTML('beforeend', wrapper.innerHTML);
+
+      scriptContents.forEach(code => {
+        const tag = document.createElement('script');
+        tag.textContent = code;
+        document.body.appendChild(tag);
+      });
+
+    } catch (err) {
+      console.error(`Gagal memuat ${file}:`, err);
+      story.insertAdjacentHTML('beforeend', `
+        <section class="slide" style="color:var(--hot-pink);font-family:Orbitron;font-size:1rem;">
+          ⚠ Gagal memuat: ${file}
+        </section>
+      `);
+    }
+  }
+
+  initNavigation();
+}
+
+// ═══════════════════════════════════════════
+// NAVIGATION & ANIMATION
+// ═══════════════════════════════════════════
+function initNavigation() {
+  const story       = document.getElementById('story');
+  const dots        = document.querySelectorAll('.dot');
+  const progressBar = document.getElementById('progress-bar');
+  const slides      = document.querySelectorAll('.slide');
+  const total       = slides.length;
+  let current       = 0;
+
+  window.goTo = function(i) {
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  };
+
+  story.addEventListener('scroll', () => {
+    const idx = Math.round(story.scrollTop / window.innerHeight);
+    if (idx !== current) {
+      current = idx;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      progressBar.style.width = ((current + 1) / total * 100) + '%';
+      animateSlide(slides[current]);
+      if (window._leafletMap) window._leafletMap.invalidateSize();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' && current < total - 1) window.goTo(current + 1);
+    if (e.key === 'ArrowUp'   && current > 0)         window.goTo(current - 1);
+  });
+
+  window.addEventListener('resize', () => {
+    (window._charts || []).forEach(c => c.resize());
+    if (window._leafletMap) window._leafletMap.invalidateSize();
+  });
+
+  animateSlide(slides[0]);
+}
+
+function animateSlide(slide) {
+  if (!slide) return;
+  slide.querySelectorAll('.slide-in').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+    el.classList.add('visible');
+  });
+}
+
+// ── Mulai ──────────────────────────────────
+boot();
+</script>
+</body>
+</html>

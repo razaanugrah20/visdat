@@ -1,0 +1,135 @@
+<!--
+  SLIDE 1 — COVER
+  File: slide-01-cover.html
+  Berisi: Hero title, stat cards (High/Medium/Low Risk), Donut Pie chart
+  Chart: pieChart (ECharts donut)
+-->
+
+<section class="slide" id="s1">
+  <!-- Deco circles -->
+  <div class="deco-circle" style="width:600px;height:600px;border-color:var(--slate-blue);top:-200px;right:-150px;"></div>
+  <div class="deco-circle" style="width:300px;height:300px;border-color:var(--celadon);bottom:-100px;left:-80px;"></div>
+
+  <div style="max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3.2vw,40px);align-items:center;">
+    <!-- Left: Text -->
+    <div style="space-y:16px;">
+      <div class="badge badge-blue slide-in" style="margin-bottom:16px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--slate-blue);animation:pulse 2s infinite;"></span>
+        AI & Future of Jobs
+      </div>
+      <h1 class="font-raj slide-in" style="font-size:clamp(2.5rem,6vw,5.5rem);font-weight:700;line-height:1.05;margin-bottom:8px;">
+        PARADOKS<br>
+        <span style="color:var(--slate-blue);" class="glow-blue">DUNIA IT</span>
+      </h1>
+      <span class="neon-line slide-in" style="width:300px;"></span>
+      <p class="slide-in" style=" font-size:clamp(.9rem,1.5vh,1.2rem); color:var(--periwinkle); line-height:1.7; margin-top:12px; max-width:640px; text-align: justify;">
+        Pembukaan lapangan kerja (job openings) di dunia IT tinggi, tetapi risiko tergantikan AI juga tinggi.
+      </p>
+      <p class="slide-in" style=" font-size:clamp(.9rem,1.5vh,1.2rem); color:var(--periwinkle); line-height:1.7; margin-top:12px; max-width:640px; text-align: justify;">
+        Di tengah tingginya permintaan pasar tenaga kerja digital, <strong style="color:var(--hot-pink);"> tidak semua profesi aman dari otomatisasi.</strong>
+      </p>
+      <!-- Stat row -->
+      <div class="grid-3 slide-in" style="margin-top:28px;">
+        <div class="stat-card" style="border-color:rgba(255,77,166,0.4);">
+          <div style="font-family:Orbitron;font-size:clamp(1.1rem,2.2vh,1.6rem);font-weight:700;color:var(--hot-pink);">18.59%</div>
+          <div style="font-size:11px;color:var(--periwinkle);margin-top:4px;text-transform:uppercase;letter-spacing:.05em;">High Risk</div>
+        </div>
+        <div class="stat-card" style="border-color:rgba(184,186,255,0.4);">
+          <div style="font-family:Orbitron;font-size:clamp(1.1rem,2.2vh,1.6rem);font-weight:700;color:var(--periwinkle);">48.74%</div>
+          <div style="font-size:11px;color:var(--periwinkle);margin-top:4px;text-transform:uppercase;letter-spacing:.05em;">Medium Risk</div>
+        </div>
+        <div class="stat-card" style="border-color:rgba(185,240,215,0.4);">
+          <div style="font-family:Orbitron;font-size:clamp(1.1rem,2.2vh,1.6rem);font-weight:700;color:var(--celadon);">32.67%</div>
+          <div style="font-size:11px;color:var(--periwinkle);margin-top:4px;text-transform:uppercase;letter-spacing:.05em;">Low Risk</div>
+        </div>
+      </div>
+    </div>
+    <!-- Right: Donut Chart -->
+    <div class="glass slide-in" style="margin-top:47px;padding:clamp(16px,2.8vh,35px);height:clamp(280px,52vh,480px);position:relative;">
+      <div id="pieChart" class="chart-box"></div>
+      <div style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);text-align:center;">
+        <span style="font-family:Orbitron;font-size:9px;letter-spacing:.15em;color:rgba(184,186,255,0.5);">DISTRIBUSI TINGKAT RISIKO AI</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-down" onclick="goTo(1)">
+    <svg width="28" height="28" fill="none" stroke="var(--slate-blue)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<script>
+// ═══════════════════════════════════════════
+// CHART 1 — DONUT PIE
+// ═══════════════════════════════════════════
+(function initSlide1() {
+  const C = window.PALETTE;
+  const pieEC = echarts.init(document.getElementById('pieChart'), null, {renderer:'canvas'});
+
+  // Ambil data dari data.php
+  fetch('data.php?slide=1')
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        const highRisk = data.data.high;
+        const mediumRisk = data.data.medium;
+        const lowRisk = data.data.low;
+        const totalJobs = data.data.total_jobs;
+
+        // Update chart dengan data dinamis
+        pieEC.setOption({
+          backgroundColor: 'transparent',
+          animation: true,
+          animationDuration: 1200,
+          tooltip: {
+            trigger: 'item',
+            backgroundColor: 'rgba(8,8,20,0.95)',
+            borderColor: C.blue,
+            textStyle: { color: C.col, fontFamily: 'Outfit' },
+            formatter: '{b}: <b>{c}%</b>'
+          },
+          legend: { show: false },
+          series: [{
+            name: 'Risiko',
+            type: 'pie',
+            radius: ['50%', '78%'],
+            center: ['50%', '50%'],
+            avoidLabelOverlap: true,
+            itemStyle: { borderRadius: 8, borderColor: C.navy, borderWidth: 3 },
+            label: {
+              show: true,
+              color: C.col,
+              fontFamily: 'Outfit',
+              formatter: ({ name, value }) => `{title|${name}}\n{val|${value}%}`,
+              rich: {
+                title: { fontSize: 12, color: C.peri, lineHeight: 18 },
+                val: { fontSize: 20, fontWeight: '700', color: C.col, fontFamily: 'Orbitron' }
+              }
+            },
+            labelLine: { lineStyle: { color: 'rgba(184,186,255,0.4)' } },
+            emphasis: {
+              itemStyle: { shadowBlur: 20, shadowColor: 'rgba(102,102,255,0.6)' }
+            },
+            data: [
+              { value: highRisk, name: 'High Risk', itemStyle: { color: C.pink, shadowBlur: 10, shadowColor: C.pink } },
+              { value: mediumRisk, name: 'Medium Risk', itemStyle: { color: C.peri } },
+              { value: lowRisk, name: 'Low Risk', itemStyle: { color: C.cel } }
+            ]
+          }]
+        });
+
+        // Update stat cards dengan total pekerjaan dan persentase risiko
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards[0].querySelector('div').innerText = highRisk.toFixed(2) + '%';
+        statCards[1].querySelector('div').innerText = mediumRisk.toFixed(2) + '%';
+        statCards[2].querySelector('div').innerText = lowRisk.toFixed(2) + '%';
+      } else {
+        console.error('Data gagal dimuat');
+      }
+    })
+    .catch(error => {
+      console.error('Terjadi kesalahan:', error);
+    });
+})();
+</script>
+zq
